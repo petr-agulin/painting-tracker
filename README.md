@@ -1,3 +1,6 @@
+⚠️ Work in Progress
+This project is under development. Contributions are welcome later, the code is unfinished.
+
 # 🎨 Painting Tracker
 
 A personal painting session tracker built for watercolor artists.
