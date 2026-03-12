@@ -88,13 +88,21 @@ with tab3:
         for brand in brands_in_palette:
             st.markdown(f"**{brand or 'Other'}**")
             brand_paints = [p for p in my_paints if p["brand"] == brand]
-            cols = st.columns(6)
-            for i, paint in enumerate(brand_paints):
-                with cols[i % 6]:
+            for paint in brand_paints:
+                col1, col2, col3 = st.columns([1, 4, 2])
+                with col1:
                     st.markdown(
-                        f'<div style="background-color:{paint["hex_color"]};width:50px;height:50px;border-radius:4px;border:1px solid #ccc;margin-bottom:4px"></div>',
+                        f'<div style="background-color:{paint["hex_color"]};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>',
                         unsafe_allow_html=True
                     )
-                    st.caption(paint["name"])
+                with col2:
+                    st.markdown(f"**{paint['name']}**")
+                    st.caption(paint["brand"] or "")
+                with col3:
+                    if st.button("Remove", key=f"remove_{paint['id']}"):
+                        conn.execute("DELETE FROM paints WHERE id = ?", (paint["id"],))
+                        conn.commit()
+                        st.success(f"Removed {paint['name']} from your palette.")
+                        st.rerun()
 
 conn.close()
