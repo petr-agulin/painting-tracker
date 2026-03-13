@@ -80,6 +80,10 @@ def initialize_database():
         )
     """)
 
+    try:
+        cursor.execute("ALTER TABLE paintings ADD COLUMN image_path TEXT")
+    except Exception:
+        pass
     conn.commit()
     conn.close()
 
