@@ -8,6 +8,10 @@ from config import (
 st.set_page_config(page_title="Manage Paintings", page_icon="🖼️")
 st.title("🖼️ Manage Paintings")
 
+st.markdown("""
+Add new paintings and manage existing ones. A painting is the starting point — log sessions against it each time you sit down to work on it. Fill in as much or as little as you like; only the title is required.
+""")
+
 conn = get_connection()
 
 tab1, tab2 = st.tabs(["Add New Painting", "Edit / Delete Paintings"])
@@ -66,8 +70,7 @@ with tab2:
             ).fetchone()["c"]
 
             with st.expander(f"🖼️ {painting['title']} — {painting['status']}"):
-                edit_key = f"edit_{painting['id']}"
-                if st.button("Edit this painting", key=edit_key):
+                if st.button("Edit this painting", key=f"edit_{painting['id']}"):
                     st.session_state[f"editing_{painting['id']}"] = True
 
                 if st.session_state.get(f"editing_{painting['id']}"):

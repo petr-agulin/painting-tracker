@@ -4,6 +4,9 @@ from datetime import datetime
 
 st.set_page_config(page_title="Next Up", page_icon="🎯")
 st.title("🎯 What to Work on Next")
+st.markdown("""
+All paintings currently in progress, sorted by how long since your last session. Use this as your daily prompt — the painting at the top is the one you have left waiting the longest.
+""")
 
 conn = get_connection()
 

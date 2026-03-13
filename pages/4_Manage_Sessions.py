@@ -7,8 +7,12 @@ from config import (
 import os
 from datetime import date, datetime
 
-st.set_page_config(page_title="Log Session", page_icon="🎨")
-st.title("🎨 Log a Painting Session")
+st.set_page_config(page_title="Manage Sessions", page_icon="🎨")
+st.title("🎨 Manage Sessions")
+
+st.markdown("""
+Log a painting session each time you sit down to work. Record how long you painted, what you worked on, which colors and techniques you used, and how the session felt. The more consistently you log, the more your dashboard will reveal about your creative process.
+""")
 
 conn = get_connection()
 
@@ -26,20 +30,15 @@ my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
 
 st.subheader("Colors used in this session")
 if not my_paints:
-    st.info("Your palette is empty. Add paints in the Palette page first.")
+    st.info("Your palette is empty. Add paints in the My Palette page first.")
     selected_colors = []
 else:
     selected_colors = []
     cols = st.columns(8)
-    color_states = {}
     for i, paint in enumerate(my_paints):
         with cols[i % 8]:
             key = f"color_{paint['id']}"
-            checked = st.checkbox(
-                " ",
-                key=key,
-                help=paint["name"]
-            )
+            checked = st.checkbox(" ", key=key, help=paint["name"])
             st.markdown(
                 f'<div style="background-color:{paint["hex_color"]};width:36px;height:36px;border-radius:4px;border:{"3px solid #333" if checked else "1px solid #ccc"}"></div>',
                 unsafe_allow_html=True
@@ -52,7 +51,6 @@ st.markdown("---")
 
 with st.form("session_form"):
     painting_title = st.selectbox("Painting *", list(painting_options.keys()))
-
     col1, col2 = st.columns(2)
     with col1:
         session_date = st.date_input("Date *", value=date.today())
@@ -75,14 +73,11 @@ with st.form("session_form"):
     what_didnt = st.text_area("What did not work")
     do_differently = st.text_area("What I would do differently")
     notes = st.text_area("Free notes")
-
     image_file = st.file_uploader("Session photo", type=["jpg", "jpeg", "png"])
-
     submitted = st.form_submit_button("Save Session")
 
     if submitted:
         painting_id = painting_options[painting_title]
-
         start_dt = datetime.combine(date.today(), start_time)
         end_dt = datetime.combine(date.today(), end_time)
         duration = max(0, int((end_dt - start_dt).total_seconds() / 60))
@@ -120,4 +115,23 @@ with st.form("session_form"):
             what_worked, what_didnt, do_differently,
             rating, notes, image_path
         ))
-        conn.com
+        conn.commit()
+
+        st.success("Session saved successfully!")
+
+        avg_rating = conn.execute(
+            "SELECT AVG(rating) as avg FROM sessions WHERE painting_id = ?",
+            (painting_id,)
+        ).fetchone()["avg"]
+
+        st.info(f"""
+            **Session summary**
+            - Duration: {duration} minutes
+            - Session number: {session_count + 1} for this painting
+            - Completion: {completion_percent}%
+            - Your rating: {rating}/5
+            - Average rating for this painting: {avg_rating:.1f}/5
+            - Colors used: {", ".join(selected_colors) if selected_colors else "none selected"}
+        """)
+
+conn.close()

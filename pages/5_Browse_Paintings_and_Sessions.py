@@ -3,6 +3,9 @@ from database import get_connection
 
 st.set_page_config(page_title="Browse Paintings and Sessions", page_icon="🔍")
 st.title("🔍 Browse Paintings & Sessions")
+st.markdown("""
+Search and explore your full painting history. Filter by status, genre, rating, and more. Click any painting to see its full session timeline, or browse sessions independently.
+""")
 
 conn = get_connection()
 

@@ -6,6 +6,10 @@ import os
 st.set_page_config(page_title="My Palette", page_icon="🎨")
 st.title("🎨 My Paint Palette")
 
+st.markdown("""
+Build your personal paint collection by adding the tubes and pans you own. Search by brand and the number or name printed on your packaging, and the correct color swatch will be assigned automatically. Your palette appears as clickable color swatches when logging your painting sessions.
+""")
+
 conn = get_connection()
 
 db_path = os.path.join(os.path.dirname(__file__), "..", "paints_database.json")
@@ -17,8 +21,8 @@ brand_names = [b["brand"] for b in paint_db["brands"]]
 tab1, tab2, tab3 = st.tabs(["Add from Database", "Add Manually", "My Palette"])
 
 with tab1:
-    st.subheader("Find a paint from your tube")
-    st.markdown("Select your brand, then search by color name or number printed on the tube.")
+    st.subheader("Find a paint from your tube or pan")
+    st.markdown("Select your brand, then search by color name or number printed on the packaging.")
 
     selected_brand = st.selectbox("Brand", brand_names, key="db_brand")
     brand_data = next(b for b in paint_db["brands"] if b["brand"] == selected_brand)

@@ -5,6 +5,9 @@ import pandas as pd
 
 st.set_page_config(page_title="Dashboard", page_icon="📊")
 st.title("📊 Insights Dashboard")
+st.markdown("""
+Discover patterns in your painting habits. Charts update automatically as you log more sessions — the more data you have, the more useful this becomes.
+""")
 
 conn = get_connection()
 

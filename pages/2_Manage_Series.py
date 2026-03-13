@@ -4,6 +4,10 @@ from database import get_connection
 st.set_page_config(page_title="Manage Series", page_icon="📚")
 st.title("📚 Manage Series")
 
+st.markdown("""
+Organize your paintings into series — a group of works sharing a common concept, theme, or intention. A series is optional; paintings can exist without one. Need inspiration for naming? Consider something like *Quiet Waters*, *Light Through February*, or *The Harbour at Dusk*.
+""")
+
 conn = get_connection()
 
 tab1, tab2 = st.tabs(["Add New Series", "Edit / Delete Series"])
