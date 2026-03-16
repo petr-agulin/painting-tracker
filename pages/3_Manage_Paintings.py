@@ -51,7 +51,8 @@ def image_link(image_path, label="View full size"):
     st.markdown(href, unsafe_allow_html=True)
 
 @st.dialog("Add New Session", width="large")
-def add_session_dialog(painting_id, painting_title, conn, IMAGES_DIR):
+def add_session_dialog(painting_id, painting_title, IMAGES_DIR):
+    conn = get_connection()
     my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
 
     st.markdown(f"**Painting:** {painting_title}")
@@ -293,7 +294,7 @@ with tab1:
                     st.markdown("**Session timeline**")
 
                     if st.button("+ Add new session", key=f"add_session_btn_{painting['id']}"):
-                        add_session_dialog(painting["id"], painting["title"], conn, IMAGES_DIR)
+                        add_session_dialog(painting["id"], painting["title"], IMAGES_DIR)
 
                     if sessions_for_painting:
                         total_sessions = len(sessions_for_painting)
