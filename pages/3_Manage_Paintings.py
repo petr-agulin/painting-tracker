@@ -2,10 +2,13 @@ import streamlit as st
 from database import get_connection
 from config import (
     PAPER_SIZES, GENRES,
-    INSPIRATION_CATEGORIES, STATUS_OPTIONS
+    INSPIRATION_CATEGORIES, STATUS_OPTIONS,
+    LOCATIONS, LIGHTING, REFERENCE_TYPES,
+    TECHNIQUES, MENTAL_STATES, BRUSH_SIZES
 )
 import os
 import base64
+from datetime import date, datetime
 
 MOODS = ["Calm", "Cozy", "Dark", "Dramatic", "Dreamy", "Dynamic", "Ethereal", "Intimate", "Melancholic", "Mysterious", "Nostalgic", "Playful", "Romantic", "Surreal", "Whimsical"]
 
@@ -47,6 +50,103 @@ def image_link(image_path, label="View full size"):
     href = f'<a href="data:{mime};base64,{data}" target="_blank">{label}</a>'
     st.markdown(href, unsafe_allow_html=True)
 
+@st.dialog("Add New Session", width="large")
+def add_session_dialog(painting_id, painting_title, conn, IMAGES_DIR):
+    my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
+
+    st.markdown(f"**Painting:** {painting_title}")
+    st.markdown("**Colors used in this session**")
+
+    selected_colors = []
+    if my_paints:
+        cols = st.columns(8)
+        for i, paint in enumerate(my_paints):
+            with cols[i % 8]:
+                checked = st.checkbox(" ", key=f"dlg_color_{paint['id']}", help=paint["name"])
+                st.markdown(
+                    f'<div style="background-color:{paint["hex_color"]};width:36px;height:36px;border-radius:4px;border:{"3px solid #333" if checked else "1px solid #ccc"}"></div>',
+                    unsafe_allow_html=True
+                )
+                st.caption(paint["name"].split(" ")[-1])
+                if checked:
+                    selected_colors.append(paint["name"])
+    else:
+        st.info("Your palette is empty. Add paints in My Palette first.")
+
+    with st.form("dialog_session_form"):
+        col1, col2 = st.columns(2)
+        with col1:
+            session_date = st.date_input("Date *", value=date.today())
+            start_time = st.time_input("Start time")
+            end_time = st.time_input("End time")
+            location = st.selectbox("Location", [""] + LOCATIONS)
+            lighting = st.selectbox("Lighting", [""] + LIGHTING)
+            mental_state = st.selectbox("Mental / physical state", [""] + MENTAL_STATES)
+            rating = st.slider("Session rating *", 1, 5, 3)
+        with col2:
+            completion_percent = st.slider("Estimated completion %", 0, 100, 0)
+            reference_used = st.selectbox("Reference used", [""] + REFERENCE_TYPES)
+            reference_detail = st.text_input("Reference detail")
+            techniques = st.multiselect("Techniques used", TECHNIQUES)
+            brushes = st.multiselect("Brushes used", BRUSH_SIZES)
+
+        what_worked_on = st.text_area("What I worked on")
+        whats_next = st.text_area("What's next")
+        what_worked = st.text_area("What worked")
+        what_didnt = st.text_area("What did not work")
+        do_differently = st.text_area("What I would do differently")
+        notes = st.text_area("Free notes")
+        image_file = st.file_uploader("Session photo", type=["jpg", "jpeg", "png"])
+
+        col1, col2 = st.columns(2)
+        with col1:
+            save_session = st.form_submit_button("Save Session")
+        with col2:
+            cancel_session = st.form_submit_button("Cancel")
+
+        if cancel_session:
+            st.rerun()
+
+        if save_session:
+            start_dt = datetime.combine(date.today(), start_time)
+            end_dt = datetime.combine(date.today(), end_time)
+            duration = max(0, int((end_dt - start_dt).total_seconds() / 60))
+
+            image_path = None
+            if image_file:
+                image_path = os.path.join(IMAGES_DIR, f"{painting_id}_{session_date}_{image_file.name}")
+                with open(image_path, "wb") as f:
+                    f.write(image_file.getbuffer())
+
+            session_count_now = conn.execute(
+                "SELECT COUNT(*) as count FROM sessions WHERE painting_id = ?",
+                (painting_id,)
+            ).fetchone()["count"]
+
+            conn.execute("""
+                INSERT INTO sessions (
+                    painting_id, date, start_time, end_time, duration_minutes,
+                    completion_percent, location, lighting, reference_used,
+                    reference_detail, what_worked_on, whats_next, techniques,
+                    colors_used, brushes_used, mental_state, what_worked,
+                    what_didnt_work, do_differently, rating, notes, image_path
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                painting_id, str(session_date),
+                str(start_time), str(end_time), duration,
+                completion_percent, location, lighting,
+                reference_used, reference_detail,
+                what_worked_on, whats_next,
+                ", ".join(techniques),
+                ", ".join(selected_colors),
+                ", ".join(brushes), mental_state,
+                what_worked, what_didnt, do_differently,
+                rating, notes, image_path
+            ))
+            conn.commit()
+            st.success(f"Session saved! Duration: {duration} minutes. Session {session_count_now + 1} for this painting.")
+            st.rerun()
+
 st.set_page_config(page_title="Manage Paintings", page_icon="🖼️")
 st.title("🖼️ Manage Paintings")
 
@@ -59,21 +159,53 @@ conn = get_connection()
 IMAGES_DIR = os.path.join(os.path.dirname(__file__), "..", "images")
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
-# Reset all editing states when page loads fresh
 if "paintings_page_loaded" not in st.session_state:
     st.session_state["paintings_page_loaded"] = True
     for key in list(st.session_state.keys()):
         if key.startswith("editing_") or key.startswith("confirm_delete_"):
             st.session_state[key] = False
 
-tab1, tab2 = st.tabs(["Edit / Delete Paintings", "Add New Painting"])
+tab1, tab2 = st.tabs(["Paintings", "Add new"])
 
 with tab1:
-    paintings = conn.execute("SELECT * FROM paintings ORDER BY title").fetchall()
+    paintings_all = conn.execute("SELECT * FROM paintings ORDER BY title").fetchall()
 
-    if not paintings:
-        st.info("No paintings yet. Add one in the Add New Painting tab.")
+    if not paintings_all:
+        st.info("No paintings yet. Add one in the Add new tab.")
     else:
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            status_filter = st.selectbox("Filter by status", ["All"] + STATUS_OPTIONS, key="manage_status_filter")
+        with col2:
+            available_genres = ["All"] + [
+                row["genre"] for row in conn.execute(
+                    "SELECT DISTINCT genre FROM paintings WHERE genre != '' AND genre IS NOT NULL"
+                ).fetchall()
+            ]
+            genre_filter = st.selectbox("Filter by genre", available_genres, key="manage_genre_filter")
+        with col3:
+            available_series = ["All"] + [
+                row["name"] for row in conn.execute(
+                    "SELECT name FROM series ORDER BY name"
+                ).fetchall()
+            ]
+            series_filter = st.selectbox("Filter by series", available_series, key="manage_series_filter")
+        with col4:
+            search = st.text_input("Search by title", key="manage_search")
+
+        paintings = [p for p in paintings_all if
+            (status_filter == "All" or p["status"] == status_filter) and
+            (genre_filter == "All" or p["genre"] == genre_filter) and
+            (series_filter == "All" or conn.execute(
+                "SELECT name FROM series WHERE id = ?", (p["series_id"],)
+            ).fetchone() and conn.execute(
+                "SELECT name FROM series WHERE id = ?", (p["series_id"],)
+            ).fetchone()["name"] == series_filter) and
+            (not search or search.lower() in p["title"].lower())
+        ]
+
+        st.markdown(f"**{len(paintings)} painting(s) found**")
+
         for painting in paintings:
             session_count = conn.execute(
                 "SELECT COUNT(*) as c FROM sessions WHERE painting_id = ?",
@@ -84,8 +216,28 @@ with tab1:
 
             with st.expander(f"🖼️ {painting['title']} — {painting['status']}"):
                 if not editing:
+                    series_name_display = "—"
+                    if painting["series_id"]:
+                        series_row = conn.execute(
+                            "SELECT name FROM series WHERE id = ?", (painting["series_id"],)
+                        ).fetchone()
+                        if series_row:
+                            series_name_display = series_row["name"]
+
+                    total_minutes = conn.execute(
+                        "SELECT SUM(duration_minutes) as t FROM sessions WHERE painting_id = ?",
+                        (painting["id"],)
+                    ).fetchone()["t"] or 0
+
+                    latest_completion = conn.execute(
+                        "SELECT completion_percent FROM sessions WHERE painting_id = ? ORDER BY date DESC LIMIT 1",
+                        (painting["id"],)
+                    ).fetchone()
+                    completion = latest_completion["completion_percent"] if latest_completion else 0
+
                     col1, col2 = st.columns(2)
                     with col1:
+                        st.write(f"**Series:** {series_name_display}")
                         st.write(f"**Genre:** {painting['genre'] or '—'}")
                         st.write(f"**Subject:** {painting['subject'] or '—'}")
                         st.write(f"**Style:** {painting['style'] or '—'}")
@@ -97,6 +249,8 @@ with tab1:
                         st.write(f"**Inspiration:** {painting['inspiration_category'] or '—'}")
                         st.write(f"**Note:** {painting['inspiration_note'] or '—'}")
                         st.write(f"**Sessions:** {session_count}")
+                        st.write(f"**Total time:** {total_minutes // 60}h {total_minutes % 60}m")
+                        st.write(f"**Completion:** {completion or 0}%")
 
                     if painting["image_path"] and os.path.exists(painting["image_path"]):
                         st.image(painting["image_path"], width=150)
@@ -129,6 +283,51 @@ with tab1:
                         if st.button("Cancel", key=f"cancel_delete_{painting['id']}"):
                             st.session_state[f"confirm_delete_{painting['id']}"] = False
                             st.rerun()
+
+                    sessions_for_painting = conn.execute(
+                        "SELECT * FROM sessions WHERE painting_id = ? ORDER BY date DESC",
+                        (painting["id"],)
+                    ).fetchall()
+
+                    st.markdown("---")
+                    st.markdown("**Session timeline**")
+
+                    if st.button("+ Add new session", key=f"add_session_btn_{painting['id']}"):
+                        add_session_dialog(painting["id"], painting["title"], conn, IMAGES_DIR)
+
+                    if sessions_for_painting:
+                        total_sessions = len(sessions_for_painting)
+                        for i, session in enumerate(sessions_for_painting):
+                            session_num = total_sessions - i
+                            with st.expander(f"Session {session_num} — {session['date']} — Rating {session['rating'] or '—'}/5", expanded=False):
+                                col1, col2 = st.columns([2, 3])
+                                with col1:
+                                    if session["image_path"]:
+                                        st.image(session["image_path"], caption=f"Session {session_num}", use_container_width=True)
+                                    else:
+                                        st.markdown(
+                                            '<div style="background:#f0f0f0;height:120px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa">No photo</div>',
+                                            unsafe_allow_html=True
+                                        )
+                                with col2:
+                                    st.write(f"**Duration:** {session['duration_minutes'] or 0} min")
+                                    st.write(f"**Completion:** {session['completion_percent'] or 0}%")
+                                    st.write(f"**Mental state:** {session['mental_state'] or '—'}")
+                                    st.write(f"**Techniques:** {session['techniques'] or '—'}")
+                                    st.write(f"**Colors used:** {session['colors_used'] or '—'}")
+                                    st.write(f"**Brushes:** {session['brushes_used'] or '—'}")
+                                    if session["what_worked_on"]:
+                                        st.write(f"**Worked on:** {session['what_worked_on']}")
+                                    if session["what_worked"]:
+                                        st.write(f"**What worked:** {session['what_worked']}")
+                                    if session["what_didnt_work"]:
+                                        st.write(f"**What did not work:** {session['what_didnt_work']}")
+                                    if session["do_differently"]:
+                                        st.write(f"**Do differently:** {session['do_differently']}")
+                                    if session["notes"]:
+                                        st.write(f"**Notes:** {session['notes']}")
+                                if session["completion_percent"]:
+                                    st.progress(session["completion_percent"] / 100, text=f"{session['completion_percent']}%")
 
                 else:
                     series_rows = conn.execute("SELECT id, name FROM series").fetchall()
