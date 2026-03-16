@@ -81,7 +81,55 @@ def initialize_database():
     """)
 
     try:
-        cursor.execute("ALTER TABLE paintings ADD COLUMN image_path TEXT")
+        cursor.execute("ALTER TABLE paints ADD COLUMN form TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN amount_remaining TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN pigments TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN lightfastness TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN transparency TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN granulation TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN staining TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN rewettability TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN price_paid REAL")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN date_purchased TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN where_purchased TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN would_repurchase TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE paints ADD COLUMN notes TEXT")
     except Exception:
         pass
     conn.commit()

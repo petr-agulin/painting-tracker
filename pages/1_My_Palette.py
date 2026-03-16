@@ -2,9 +2,7 @@ import streamlit as st
 from database import get_connection
 import json
 import os
-import base64
 from PIL import Image
-import io
 import math
 from itertools import combinations
 
@@ -33,6 +31,15 @@ for brand in paint_db["brands"]:
     for paint in brand["paints"]:
         all_paints_flat.append({**paint, "brand": brand["brand"]})
 
+FORM_OPTIONS = ["", "Tube", "Half pan", "Full pan", "Other"]
+AMOUNT_OPTIONS = ["", "Full", "Half", "Low", "Empty"]
+LIGHTFASTNESS_OPTIONS = ["", "Excellent (ASTM I)", "Very good (ASTM II)", "Fair (ASTM III)", "Poor (ASTM IV)", "Not rated"]
+TRANSPARENCY_OPTIONS = ["", "Transparent", "Semi-transparent", "Opaque"]
+GRANULATION_OPTIONS = ["", "None", "Slight", "Strong"]
+STAINING_OPTIONS = ["", "Non-staining", "Slight", "Staining"]
+REWETTABILITY_OPTIONS = ["", "Good", "Moderate", "Poor"]
+REPURCHASE_OPTIONS = ["", "Yes", "No", "Maybe"]
+
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip("#")
     return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
@@ -49,13 +56,6 @@ def rgb_to_lab(r, g, b):
     y = y**0.3333 if y > 0.008856 else 7.787*y + 16/116
     z = z**0.3333 if z > 0.008856 else 7.787*z + 16/116
     return (116*y - 16, 500*(x-y), 200*(y-z))
-
-def color_distance(hex1, hex2):
-    r1, g1, b1 = hex_to_rgb(hex1)
-    r2, g2, b2 = hex_to_rgb(hex2)
-    l1, a1, b1_lab = rgb_to_lab(r1, g1, b1)
-    l2, a2, b2_lab = rgb_to_lab(r2, g2, b2)
-    return math.sqrt((l1-l2)**2 + (a1-a2)**2 + (b1_lab-b2_lab)**2)
 
 def color_distance_hue_weighted(hex1, hex2, hue_weight=3.0):
     r1, g1, b1 = hex_to_rgb(hex1)
@@ -90,13 +90,13 @@ def get_hue_family(hex_color):
 def rgb_to_hex(r, g, b):
     return f"#{int(r):02x}{int(g):02x}{int(b):02x}"
 
-def find_best_matches_by_hue_family(target_hex, paint_list, top_n=5):
+def find_best_matches(target_hex, paint_list, top_n=5):
     target_family = get_hue_family(target_hex)
     family_matches = []
     other_matches = []
     for paint in paint_list:
         hex_val = paint["hex_color"] if "hex_color" in paint else paint["hex"]
-        dist = color_distance(target_hex, hex_val)
+        dist = color_distance_hue_weighted(target_hex, hex_val)
         paint_family = get_hue_family(hex_val)
         if paint_family == target_family:
             family_matches.append((dist, paint))
@@ -109,27 +109,7 @@ def find_best_matches_by_hue_family(target_hex, paint_list, top_n=5):
         combined += other_matches[:top_n - len(combined)]
     return combined[:top_n]
 
-def find_best_matches_combined(target_hex, paint_list, top_n=5):
-    target_family = get_hue_family(target_hex)
-    family_matches = []
-    other_matches = []
-    for paint in paint_list:
-        hex_val = paint["hex_color"] if "hex_color" in paint else paint["hex"]
-        dist_hue = color_distance_hue_weighted(target_hex, hex_val)
-        dist_plain = color_distance(target_hex, hex_val)
-        paint_family = get_hue_family(hex_val)
-        if paint_family == target_family:
-            family_matches.append((dist_hue, paint))
-        else:
-            other_matches.append((dist_hue, paint))
-    family_matches.sort(key=lambda x: x[0])
-    other_matches.sort(key=lambda x: x[0])
-    combined = family_matches[:top_n]
-    if len(combined) < top_n:
-        combined += other_matches[:top_n - len(combined)]
-    return combined[:top_n]
-
-def generate_weight_sets(n, steps=10):
+def generate_weight_sets(n, steps=20):
     if n == 1:
         return [[1.0]]
     result = []
@@ -156,7 +136,7 @@ def find_mix(target_hex, my_paints, max_colors=5):
     best_distance = float("inf")
     paints_with_rgb = [(p, hex_to_rgb(p["hex_color"])) for p in my_paints]
     for n in range(1, min(max_colors + 1, len(paints_with_rgb) + 1)):
-        weight_sets = generate_weight_sets(n, steps=10)
+        weight_sets = generate_weight_sets(n, steps=20)
         for combo in combinations(paints_with_rgb, n):
             for weights in weight_sets:
                 mix_r = sum(w * c[1][0] for w, c in zip(weights, combo))
@@ -174,7 +154,7 @@ def find_mix(target_hex, my_paints, max_colors=5):
 def render_paint_matches(matches, my_paints):
     for dist, paint in matches:
         hex_val = paint["hex_color"] if "hex_color" in paint else paint["hex"]
-        col1, col2, col3 = st.columns([1, 4, 1])
+        col1, col2 = st.columns([1, 5])
         with col1:
             st.markdown(
                 f'<div style="background-color:{hex_val};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>',
@@ -189,8 +169,107 @@ def render_paint_matches(matches, my_paints):
                 st.caption("✅ In your collection")
             else:
                 st.caption("Not in your collection")
+
+@st.dialog("Paint Details", width="large")
+def paint_detail_modal(paint_id):
+    conn = get_connection()
+    paint = conn.execute("SELECT * FROM paints WHERE id = ?", (paint_id,)).fetchone()
+    if not paint:
+        st.error("Paint not found.")
+        return
+
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        st.markdown(
+            f'<div style="background-color:{paint["hex_color"]};width:60px;height:60px;border-radius:8px;border:1px solid #ccc"></div>',
+            unsafe_allow_html=True
+        )
+    with col2:
+        st.markdown(f"## {paint['name']}")
+        st.markdown(f"**Brand:** {paint['brand'] or '—'}")
+
+    st.markdown("---")
+
+    with st.form(f"modal_form_{paint_id}"):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("**Paint properties**")
+            form = st.selectbox("Form ", FORM_OPTIONS,
+                index=FORM_OPTIONS.index(paint["form"]) if paint["form"] in FORM_OPTIONS else 0,
+                )
+            amount = st.selectbox("Amount remaining ", AMOUNT_OPTIONS,
+                index=AMOUNT_OPTIONS.index(paint["amount_remaining"]) if paint["amount_remaining"] in AMOUNT_OPTIONS else 0,
+                )
+            pigments = st.text_input("Pigments ", value=paint["pigments"] or "",
+                placeholder="e.g. PB29, PY43",
+                )
+            lightfastness = st.selectbox("Lightfastness ", LIGHTFASTNESS_OPTIONS,
+                index=LIGHTFASTNESS_OPTIONS.index(paint["lightfastness"]) if paint["lightfastness"] in LIGHTFASTNESS_OPTIONS else 0,
+                help="How resistant this color is to fading. ASTM I is archival quality. ASTM III or IV will fade.")
+            transparency = st.selectbox("Transparency ", TRANSPARENCY_OPTIONS,
+                index=TRANSPARENCY_OPTIONS.index(paint["transparency"]) if paint["transparency"] in TRANSPARENCY_OPTIONS else 0,
+                help="Whether light passes through the paint to the paper. Transparent paints glow. Opaque paints cover.")
+            granulation = st.selectbox("Granulation ", GRANULATION_OPTIONS,
+                index=GRANULATION_OPTIONS.index(paint["granulation"]) if paint["granulation"] in GRANULATION_OPTIONS else 0,
+                help="Whether pigment particles settle into paper texture creating a sandy effect.")
+            staining = st.selectbox("Staining ", STAINING_OPTIONS,
+                index=STAINING_OPTIONS.index(paint["staining"]) if paint["staining"] in STAINING_OPTIONS else 0,
+                help="Whether pigment permanently bonds with paper. Staining paints cannot be lifted once dry.")
+            rewettability = st.selectbox("Rewettability ", REWETTABILITY_OPTIONS,
+                index=REWETTABILITY_OPTIONS.index(paint["rewettability"]) if paint["rewettability"] in REWETTABILITY_OPTIONS else 0,
+                help="How easily dried pan paint reactivates with a wet brush.")
+        with col2:
+            st.markdown("**Personal**")
+            price = st.number_input("Price paid ", min_value=0.0,
+                value=float(paint["price_paid"]) if paint["price_paid"] else 0.0,
+                step=0.5, )
+            date_purchased = st.text_input("Date purchased ",
+                value=paint["date_purchased"] or "", placeholder="e.g. 2024-03",
+                )
+            where_purchased = st.text_input("Where purchased ",
+                value=paint["where_purchased"] or "", placeholder="e.g. Gerstaecker Stockholm",
+                )
+            repurchase = st.selectbox("Would repurchase ", REPURCHASE_OPTIONS,
+                index=REPURCHASE_OPTIONS.index(paint["would_repurchase"]) if paint["would_repurchase"] in REPURCHASE_OPTIONS else 0,
+                )
+            notes = st.text_area("Personal notes ", value=paint["notes"] or "",
+                placeholder="What you like, what's difficult, what subjects or moods it suits...",
+                )
+
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            save = st.form_submit_button("Save")
+        with col2:
+            cancel = st.form_submit_button("Cancel")
         with col3:
-            st.caption(f"Δ {int(dist)}")
+            remove = st.form_submit_button("Remove from collection")
+
+        if save:
+            conn.execute("""
+                UPDATE paints SET
+                    form=?, amount_remaining=?, pigments=?, lightfastness=?,
+                    transparency=?, granulation=?, staining=?, rewettability=?,
+                    price_paid=?, date_purchased=?, where_purchased=?,
+                    would_repurchase=?, notes=?
+                WHERE id=?
+            """, (
+                form, amount, pigments, lightfastness,
+                transparency, granulation, staining, rewettability,
+                price if price > 0 else None,
+                date_purchased, where_purchased,
+                repurchase, notes, paint_id
+            ))
+            conn.commit()
+            st.success("Paint details saved!")
+            st.rerun()
+
+        if cancel:
+            st.rerun()
+
+        if remove:
+            conn.execute("DELETE FROM paints WHERE id = ?", (paint_id,))
+            conn.commit()
+            st.rerun()
 
 tab1, tab2, tab3 = st.tabs(["Paint Database", "My Collection", "Color Finder"])
 
@@ -208,34 +287,43 @@ with tab1:
     if search:
         paints = [p for p in paints if search.lower() in p["name"].lower() or search.lower() in p["code"].lower()]
 
+    my_paints_check = conn.execute("SELECT name, brand FROM paints").fetchall()
+    my_paints_set = {(p["name"], p["brand"]) for p in my_paints_check}
+
     if not paints:
         st.info("No paints found. Try a different search term.")
     else:
         for paint in paints:
+            in_collection = (paint["name"], selected_brand) in my_paints_set
             col1, col2, col3 = st.columns([1, 4, 2])
             with col1:
-                st.markdown(
-                    f'<div style="background-color:{paint["hex"]};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>',
-                    unsafe_allow_html=True
-                )
+                if in_collection:
+                    st.markdown(
+                        f'<div style="position:relative;width:40px;height:40px">'
+                        f'<div style="background-color:{paint["hex"]};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>'
+                        f'<div style="position:absolute;top:0;left:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;text-shadow:0 0 3px #000">✓</div>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.markdown(
+                        f'<div style="background-color:{paint["hex"]};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>',
+                        unsafe_allow_html=True
+                    )
             with col2:
                 st.markdown(f"**{paint['name']}** — {paint['code']}")
                 st.caption(f"Pigments: {paint['pigments']}")
             with col3:
-                if st.button("Add to my collection", key=f"add_{selected_brand}_{paint['code']}"):
-                    existing = conn.execute(
-                        "SELECT id FROM paints WHERE name = ? AND brand = ?",
-                        (paint["name"], selected_brand)
-                    ).fetchone()
-                    if existing:
-                        st.warning("Already in your collection.")
-                    else:
+                if in_collection:
+                    st.markdown('<span style="color:#5a8a5a;font-weight:500">Added</span>', unsafe_allow_html=True)
+                else:
+                    if st.button("Add to my collection", key=f"add_{selected_brand}_{paint['code']}"):
                         conn.execute(
                             "INSERT INTO paints (name, hex_color, brand) VALUES (?, ?, ?)",
                             (paint["name"], paint["hex"], selected_brand)
                         )
                         conn.commit()
-                        st.success(f"Added {paint['name']}!")
+                        st.rerun()
 
     st.markdown("---")
     st.subheader("Add a paint manually")
@@ -269,21 +357,24 @@ with tab2:
             st.markdown(f"**{brand or 'Other'}**")
             brand_paints = [p for p in my_paints if p["brand"] == brand]
             for paint in brand_paints:
-                col1, col2, col3 = st.columns([1, 4, 2])
+                col1, col2, col3, col4, col5, col6 = st.columns([1, 3, 2, 2, 2, 2])
                 with col1:
                     st.markdown(
-                        f'<div style="background-color:{paint["hex_color"]};width:40px;height:40px;border-radius:4px;border:1px solid #ccc"></div>',
+                        f'<div style="background-color:{paint["hex_color"]};width:32px;height:32px;border-radius:4px;border:1px solid #ccc;margin-top:4px"></div>',
                         unsafe_allow_html=True
                     )
                 with col2:
                     st.markdown(f"**{paint['name']}**")
-                    st.caption(paint["brand"] or "")
                 with col3:
-                    if st.button("Remove", key=f"remove_{paint['id']}"):
-                        conn.execute("DELETE FROM paints WHERE id = ?", (paint["id"],))
-                        conn.commit()
-                        st.success(f"Removed {paint['name']}.")
-                        st.rerun()
+                    st.caption(paint["form"] or "—")
+                with col4:
+                    st.caption(paint["amount_remaining"] or "—")
+                with col5:
+                    st.caption(paint["date_purchased"] or "—")
+                with col6:
+                    if st.button("View / Edit / Remove", key=f"view_paint_{paint['id']}"):
+                        paint_detail_modal(paint["id"])
+            st.markdown("---")
 
 with tab3:
     st.subheader("Color Finder")
@@ -294,6 +385,12 @@ with tab3:
     if not IMAGE_COORDS_AVAILABLE:
         st.error("streamlit-image-coordinates is not installed. Run: pip install streamlit-image-coordinates")
         st.stop()
+
+    st.markdown("""
+    <style>
+    .stImage img { cursor: crosshair !important; }
+    </style>
+    """, unsafe_allow_html=True)
 
     my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
 
@@ -330,18 +427,6 @@ with tab3:
             with col2:
                 st.markdown(f"**Selected color:** `{target_hex.upper()}`")
                 st.markdown(f"RGB: {r}, {g}, {b}")
-
-            st.markdown("---")
-            st.markdown("**Option B — Hue family matching:**")
-            st.caption("Prioritises paints in the same color family as your target.")
-            matches_b = find_best_matches_by_hue_family(target_hex, all_paints_flat, top_n=5)
-            render_paint_matches(matches_b, my_paints)
-
-            st.markdown("---")
-            st.markdown("**Combined — Hue family + hue-weighted ranking:**")
-            st.caption("Same family priority as B, but ranked by perceptual hue accuracy within the family.")
-            matches_c = find_best_matches_combined(target_hex, all_paints_flat, top_n=5)
-            render_paint_matches(matches_c, my_paints)
 
             if my_paints:
                 st.markdown("---")
@@ -387,6 +472,12 @@ with tab3:
                     st.info("Add paints to your collection to get mixing suggestions.")
             else:
                 st.info("Add paints to your collection to get mixing suggestions.")
+
+            st.markdown("---")
+            st.markdown("**Closest paints from the full database:**")
+            matches = find_best_matches(target_hex, all_paints_flat, top_n=5)
+            render_paint_matches(matches, my_paints)
+
     else:
         st.info("Upload an image above to start picking colors.")
 
