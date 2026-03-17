@@ -194,47 +194,40 @@ def paint_detail_modal(paint_id):
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Paint properties**")
-            form = st.selectbox("Form ", FORM_OPTIONS,
-                index=FORM_OPTIONS.index(paint["form"]) if paint["form"] in FORM_OPTIONS else 0,
-                )
-            amount = st.selectbox("Amount remaining ", AMOUNT_OPTIONS,
-                index=AMOUNT_OPTIONS.index(paint["amount_remaining"]) if paint["amount_remaining"] in AMOUNT_OPTIONS else 0,
-                )
-            pigments = st.text_input("Pigments ", value=paint["pigments"] or "",
-                placeholder="e.g. PB29, PY43",
-                )
-            lightfastness = st.selectbox("Lightfastness ", LIGHTFASTNESS_OPTIONS,
+            form = st.selectbox("Form", FORM_OPTIONS,
+                index=FORM_OPTIONS.index(paint["form"]) if paint["form"] in FORM_OPTIONS else 0)
+            amount = st.selectbox("Amount remaining", AMOUNT_OPTIONS,
+                index=AMOUNT_OPTIONS.index(paint["amount_remaining"]) if paint["amount_remaining"] in AMOUNT_OPTIONS else 0)
+            pigments = st.text_input("Pigments", value=paint["pigments"] or "",
+                placeholder="e.g. PB29, PY43")
+            lightfastness = st.selectbox("Lightfastness", LIGHTFASTNESS_OPTIONS,
                 index=LIGHTFASTNESS_OPTIONS.index(paint["lightfastness"]) if paint["lightfastness"] in LIGHTFASTNESS_OPTIONS else 0,
                 help="How resistant this color is to fading. ASTM I is archival quality. ASTM III or IV will fade.")
-            transparency = st.selectbox("Transparency ", TRANSPARENCY_OPTIONS,
+            transparency = st.selectbox("Transparency", TRANSPARENCY_OPTIONS,
                 index=TRANSPARENCY_OPTIONS.index(paint["transparency"]) if paint["transparency"] in TRANSPARENCY_OPTIONS else 0,
                 help="Whether light passes through the paint to the paper. Transparent paints glow. Opaque paints cover.")
-            granulation = st.selectbox("Granulation ", GRANULATION_OPTIONS,
+            granulation = st.selectbox("Granulation", GRANULATION_OPTIONS,
                 index=GRANULATION_OPTIONS.index(paint["granulation"]) if paint["granulation"] in GRANULATION_OPTIONS else 0,
                 help="Whether pigment particles settle into paper texture creating a sandy effect.")
-            staining = st.selectbox("Staining ", STAINING_OPTIONS,
+            staining = st.selectbox("Staining", STAINING_OPTIONS,
                 index=STAINING_OPTIONS.index(paint["staining"]) if paint["staining"] in STAINING_OPTIONS else 0,
                 help="Whether pigment permanently bonds with paper. Staining paints cannot be lifted once dry.")
-            rewettability = st.selectbox("Rewettability ", REWETTABILITY_OPTIONS,
+            rewettability = st.selectbox("Rewettability", REWETTABILITY_OPTIONS,
                 index=REWETTABILITY_OPTIONS.index(paint["rewettability"]) if paint["rewettability"] in REWETTABILITY_OPTIONS else 0,
                 help="How easily dried pan paint reactivates with a wet brush.")
         with col2:
             st.markdown("**Personal**")
-            price = st.number_input("Price paid ", min_value=0.0,
+            price = st.number_input("Price paid", min_value=0.0,
                 value=float(paint["price_paid"]) if paint["price_paid"] else 0.0,
-                step=0.5, )
-            date_purchased = st.text_input("Date purchased ",
-                value=paint["date_purchased"] or "", placeholder="e.g. 2024-03",
-                )
-            where_purchased = st.text_input("Where purchased ",
-                value=paint["where_purchased"] or "", placeholder="e.g. Gerstaecker Stockholm",
-                )
-            repurchase = st.selectbox("Would repurchase ", REPURCHASE_OPTIONS,
-                index=REPURCHASE_OPTIONS.index(paint["would_repurchase"]) if paint["would_repurchase"] in REPURCHASE_OPTIONS else 0,
-                )
-            notes = st.text_area("Personal notes ", value=paint["notes"] or "",
-                placeholder="What you like, what's difficult, what subjects or moods it suits...",
-                )
+                step=0.5)
+            date_purchased = st.text_input("Date purchased",
+                value=paint["date_purchased"] or "", placeholder="e.g. 2024-03")
+            where_purchased = st.text_input("Where purchased",
+                value=paint["where_purchased"] or "", placeholder="e.g. Gerstaecker Stockholm")
+            repurchase = st.selectbox("Would repurchase", REPURCHASE_OPTIONS,
+                index=REPURCHASE_OPTIONS.index(paint["would_repurchase"]) if paint["would_repurchase"] in REPURCHASE_OPTIONS else 0)
+            notes = st.text_area("Personal notes", value=paint["notes"] or "",
+                placeholder="What you like, what's difficult, what subjects or moods it suits...")
 
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -328,22 +321,38 @@ with tab1:
     st.markdown("---")
     st.subheader("Add a paint manually")
     st.markdown("For paints not in the database.")
-    with st.form("manual_paint_form"):
-        manual_name = st.text_input("Paint name *", placeholder="e.g. Ultramarine Blue")
-        manual_brand = st.text_input("Brand", placeholder="e.g. Schmincke Horadam")
-        manual_color = st.color_picker("Pick color", "#2E3192")
-        manual_pigments = st.text_input("Pigments", placeholder="e.g. PB29")
-        submitted = st.form_submit_button("Add to my collection")
-        if submitted:
-            if not manual_name:
-                st.error("Please enter a paint name.")
-            else:
-                conn.execute(
-                    "INSERT INTO paints (name, hex_color, brand) VALUES (?, ?, ?)",
-                    (manual_name, manual_color, manual_brand)
-                )
-                conn.commit()
-                st.success(f"Added {manual_name} to your collection!")
+
+    if "prev_manual_color" not in st.session_state:
+        st.session_state["prev_manual_color"] = "#2E3192"
+    if "manual_name_input" not in st.session_state:
+        st.session_state["manual_name_input"] = "#2E3192"
+    if st.session_state.get("reset_manual_form"):
+        st.session_state["manual_name_input"] = "#2E3192"
+        st.session_state["prev_manual_color"] = "#2E3192"
+        st.session_state["reset_manual_form"] = False
+
+    manual_color = st.color_picker("Pick color", st.session_state["prev_manual_color"], key="manual_color_picker")
+
+    if manual_color != st.session_state["prev_manual_color"]:
+        st.session_state["manual_name_input"] = manual_color.upper()
+        st.session_state["prev_manual_color"] = manual_color
+
+    manual_name = st.text_input("Paint name *", key="manual_name_input", placeholder="e.g. Ultramarine Blue")
+    manual_brand = st.text_input("Brand", placeholder="e.g. Schmincke Horadam", key="manual_brand")
+    manual_pigments = st.text_input("Pigments", placeholder="e.g. PB29", key="manual_pigments")
+
+    if st.button("Add to my collection", key="manual_add_btn"):
+        if not manual_name:
+            st.error("Please enter a paint name.")
+        else:
+            conn.execute(
+                "INSERT INTO paints (name, hex_color, brand) VALUES (?, ?, ?)",
+                (manual_name, manual_color, manual_brand)
+            )
+            conn.commit()
+            st.success(f"Added {manual_name} to your collection!")
+            st.session_state["reset_manual_form"] = True
+            st.rerun()
 
 with tab2:
     st.subheader("My paint collection")

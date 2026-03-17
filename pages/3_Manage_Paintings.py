@@ -53,26 +53,7 @@ def image_link(image_path, label="View full size"):
 @st.dialog("Add New Session", width="large")
 def add_session_dialog(painting_id, painting_title, IMAGES_DIR):
     conn = get_connection()
-    my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
-
     st.markdown(f"**Painting:** {painting_title}")
-    st.markdown("**Colors used in this session**")
-
-    selected_colors = []
-    if my_paints:
-        cols = st.columns(8)
-        for i, paint in enumerate(my_paints):
-            with cols[i % 8]:
-                checked = st.checkbox(" ", key=f"dlg_color_{paint['id']}", help=paint["name"])
-                st.markdown(
-                    f'<div style="background-color:{paint["hex_color"]};width:36px;height:36px;border-radius:4px;border:{"3px solid #333" if checked else "1px solid #ccc"}"></div>',
-                    unsafe_allow_html=True
-                )
-                st.caption(paint["name"].split(" ")[-1])
-                if checked:
-                    selected_colors.append(paint["name"])
-    else:
-        st.info("Your palette is empty. Add paints in My Palette first.")
 
     with st.form("dialog_session_form"):
         col1, col2 = st.columns(2)
@@ -90,6 +71,7 @@ def add_session_dialog(painting_id, painting_title, IMAGES_DIR):
             reference_detail = st.text_input("Reference detail")
             techniques = st.multiselect("Techniques used", TECHNIQUES)
             brushes = st.multiselect("Brushes used", BRUSH_SIZES)
+            colors_used = st.text_input("Colors used", placeholder="e.g. Ultramarine, Burnt Sienna")
 
         what_worked_on = st.text_area("What I worked on")
         whats_next = st.text_area("What's next")
@@ -139,13 +121,114 @@ def add_session_dialog(painting_id, painting_title, IMAGES_DIR):
                 reference_used, reference_detail,
                 what_worked_on, whats_next,
                 ", ".join(techniques),
-                ", ".join(selected_colors),
+                colors_used,
                 ", ".join(brushes), mental_state,
                 what_worked, what_didnt, do_differently,
                 rating, notes, image_path
             ))
             conn.commit()
             st.success(f"Session saved! Duration: {duration} minutes. Session {session_count_now + 1} for this painting.")
+            st.rerun()
+
+@st.dialog("Edit Session", width="large")
+def edit_session_dialog(session_id, IMAGES_DIR):
+    conn = get_connection()
+    session = conn.execute("SELECT * FROM sessions WHERE id = ?", (session_id,)).fetchone()
+    if not session:
+        st.error("Session not found.")
+        return
+
+    painting = conn.execute("SELECT title FROM paintings WHERE id = ?", (session["painting_id"],)).fetchone()
+    st.markdown(f"**Painting:** {painting['title'] if painting else '—'}")
+
+    with st.form("edit_session_dialog_form"):
+        col1, col2 = st.columns(2)
+        with col1:
+            session_date = st.text_input("Date *", value=session["date"] or "")
+            start_time = st.text_input("Start time", value=session["start_time"] or "")
+            end_time = st.text_input("End time", value=session["end_time"] or "")
+            location = st.selectbox("Location", [""] + LOCATIONS,
+                index=([""] + LOCATIONS).index(session["location"]) if session["location"] in LOCATIONS else 0)
+            lighting = st.selectbox("Lighting", [""] + LIGHTING,
+                index=([""] + LIGHTING).index(session["lighting"]) if session["lighting"] in LIGHTING else 0)
+            mental_state = st.selectbox("Mental / physical state", [""] + MENTAL_STATES,
+                index=([""] + MENTAL_STATES).index(session["mental_state"]) if session["mental_state"] in MENTAL_STATES else 0)
+            rating = st.slider("Session rating *", 1, 5, int(session["rating"] or 3))
+        with col2:
+            completion_percent = st.slider("Estimated completion %", 0, 100, int(session["completion_percent"] or 0))
+            reference_used = st.selectbox("Reference used", [""] + REFERENCE_TYPES,
+                index=([""] + REFERENCE_TYPES).index(session["reference_used"]) if session["reference_used"] in REFERENCE_TYPES else 0)
+            reference_detail = st.text_input("Reference detail", value=session["reference_detail"] or "")
+            techniques = st.multiselect("Techniques used", TECHNIQUES,
+                default=[t for t in (session["techniques"] or "").split(", ") if t in TECHNIQUES])
+            brushes = st.multiselect("Brushes used", BRUSH_SIZES,
+                default=[b for b in (session["brushes_used"] or "").split(", ") if b in BRUSH_SIZES])
+            colors_used = st.text_input("Colors used", value=session["colors_used"] or "",
+                placeholder="e.g. Ultramarine, Burnt Sienna")
+
+        what_worked_on = st.text_area("What I worked on", value=session["what_worked_on"] or "")
+        whats_next = st.text_area("What's next", value=session["whats_next"] or "")
+        what_worked = st.text_area("What worked", value=session["what_worked"] or "")
+        what_didnt = st.text_area("What did not work", value=session["what_didnt_work"] or "")
+        do_differently = st.text_area("What I would do differently", value=session["do_differently"] or "")
+        notes = st.text_area("Free notes", value=session["notes"] or "")
+
+        if session["image_path"] and os.path.exists(session["image_path"]):
+            st.image(session["image_path"], width=150)
+            remove_image = st.checkbox("Remove current photo")
+        else:
+            remove_image = False
+
+        new_image = st.file_uploader("Upload new session photo", type=["jpg", "jpeg", "png"])
+
+        col1, col2 = st.columns(2)
+        with col1:
+            save = st.form_submit_button("Save changes")
+        with col2:
+            cancel = st.form_submit_button("Cancel")
+
+        if cancel:
+            st.rerun()
+
+        if save:
+            new_image_path = session["image_path"]
+            if remove_image:
+                if session["image_path"] and os.path.exists(session["image_path"]):
+                    os.remove(session["image_path"])
+                new_image_path = None
+            if new_image:
+                if session["image_path"] and os.path.exists(session["image_path"]):
+                    os.remove(session["image_path"])
+                new_image_path = os.path.join(IMAGES_DIR, f"{session['painting_id']}_{session_date}_{new_image.name}")
+                with open(new_image_path, "wb") as f:
+                    f.write(new_image.getbuffer())
+
+            try:
+                start_dt = datetime.strptime(start_time, "%H:%M:%S")
+                end_dt = datetime.strptime(end_time, "%H:%M:%S")
+                duration = max(0, int((end_dt - start_dt).total_seconds() / 60))
+            except Exception:
+                duration = session["duration_minutes"] or 0
+
+            conn.execute("""
+                UPDATE sessions SET
+                    date=?, start_time=?, end_time=?, duration_minutes=?,
+                    completion_percent=?, location=?, lighting=?, reference_used=?,
+                    reference_detail=?, what_worked_on=?, whats_next=?, techniques=?,
+                    colors_used=?, brushes_used=?, mental_state=?, what_worked=?,
+                    what_didnt_work=?, do_differently=?, rating=?, notes=?, image_path=?
+                WHERE id=?
+            """, (
+                session_date, start_time, end_time, duration,
+                completion_percent, location, lighting, reference_used,
+                reference_detail, what_worked_on, whats_next,
+                ", ".join(techniques), colors_used,
+                ", ".join(brushes), mental_state, what_worked,
+                what_didnt, do_differently, rating, notes, new_image_path,
+                session_id
+            ))
+            conn.commit()
+            st.success("Session updated!")
             st.rerun()
 
 st.set_page_config(page_title="Manage Paintings", page_icon="🖼️")
@@ -329,6 +412,31 @@ with tab1:
                                         st.write(f"**Notes:** {session['notes']}")
                                 if session["completion_percent"]:
                                     st.progress(session["completion_percent"] / 100, text=f"{session['completion_percent']}%")
+
+                                st.markdown("---")
+                                col1, col2 = st.columns(2)
+                                with col1:
+                                    if st.button("Edit session", key=f"edit_session_{session['id']}"):
+                                        edit_session_dialog(session["id"], IMAGES_DIR)
+                                with col2:
+                                    if st.button("Delete session", key=f"delete_session_{session['id']}"):
+                                        st.session_state[f"confirm_delete_session_{session['id']}"] = True
+
+                                if st.session_state.get(f"confirm_delete_session_{session['id']}"):
+                                    st.error("Are you sure you want to delete this session? This cannot be undone.")
+                                    col1, col2 = st.columns(2)
+                                    with col1:
+                                        if st.button("Yes, delete", key=f"yes_delete_session_{session['id']}"):
+                                            if session["image_path"] and os.path.exists(session["image_path"]):
+                                                os.remove(session["image_path"])
+                                            conn.execute("DELETE FROM sessions WHERE id = ?", (session["id"],))
+                                            conn.commit()
+                                            st.session_state[f"confirm_delete_session_{session['id']}"] = False
+                                            st.rerun()
+                                    with col2:
+                                        if st.button("Cancel", key=f"cancel_delete_session_{session['id']}"):
+                                            st.session_state[f"confirm_delete_session_{session['id']}"] = False
+                                            st.rerun()
 
                 else:
                     series_rows = conn.execute("SELECT id, name FROM series").fetchall()
