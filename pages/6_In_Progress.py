@@ -1,34 +1,32 @@
 import streamlit as st
 from database import get_connection
 from datetime import datetime
+import os
 
-st.set_page_config(page_title="Next Up", page_icon="🎯")
-st.title("🎯 What to Work on Next")
+st.set_page_config(page_title="In Progress", page_icon="🎯")
+st.title("🎯 In Progress & Abandoned")
+
 st.markdown("""
-All paintings currently in progress, sorted by how long since your last session. Use this as your daily prompt — the painting at the top is the one you have left waiting the longest.
+All paintings currently in progress or abandoned, sorted by how long since your last session. Use this as your daily prompt — the painting at the top is the one you have left waiting the longest.
 """)
 
 conn = get_connection()
-
-st.subheader("In-progress paintings")
-st.markdown("Sorted by how long since your last session.")
 
 paintings = conn.execute("""
     SELECT p.*,
         MAX(s.date) as last_session_date,
         COUNT(s.id) as session_count,
         SUM(s.duration_minutes) as total_minutes,
-        MAX(s.completion_percent) as latest_completion,
-        MAX(s.image_path) as latest_image
+        MAX(s.completion_percent) as latest_completion
     FROM paintings p
     LEFT JOIN sessions s ON s.painting_id = p.id
-    WHERE p.status = 'In progress'
+    WHERE p.status IN ('In progress', 'Abandoned')
     GROUP BY p.id
     ORDER BY last_session_date ASC
 """).fetchall()
 
 if not paintings:
-    st.info("No in-progress paintings. Add a painting and set its status to In progress.")
+    st.info("No in-progress or abandoned paintings. Add a painting and set its status to In progress.")
 else:
     for painting in paintings:
         days_since = None
@@ -39,25 +37,53 @@ else:
             except Exception:
                 pass
 
-        label = f"🖼️ {painting['title']}"
+        label = f"{'🎨' if painting['status'] == 'In progress' else '⏸️'} {painting['title']} — {painting['status']}"
         if days_since is not None:
-            label += f" — last session {days_since} days ago"
+            if days_since == 0:
+                label += " — last session today"
+            elif days_since == 1:
+                label += " — last session yesterday"
+            elif days_since < 365:
+                label += f" — last session {days_since} days ago"
+            else:
+                years = days_since // 365
+                label += f" — last session {years} year{'s' if years > 1 else ''} ago"
         else:
             label += " — no sessions yet"
 
         with st.expander(label):
-            col1, col2 = st.columns(2)
+            col1, col2 = st.columns([1, 3])
             with col1:
+                if painting["image_path"] and os.path.exists(painting["image_path"]):
+                    st.image(painting["image_path"], width=120)
+                else:
+                    st.markdown(
+                        '<div style="background:#f0f0f0;height:120px;width:120px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No preview</div>',
+                        unsafe_allow_html=True
+                    )
+            with col2:
                 st.write(f"**Sessions:** {painting['session_count'] or 0}")
                 total_hours = (painting["total_minutes"] or 0) // 60
                 total_mins = (painting["total_minutes"] or 0) % 60
                 st.write(f"**Total time:** {total_hours}h {total_mins}m")
                 st.write(f"**Completion:** {painting['latest_completion'] or 0}%")
-                st.write(f"**Genre:** {painting['genre'] or 'not set'}")
-                st.write(f"**Style:** {painting['style'] or 'not set'}")
-            with col2:
-                if painting["latest_image"]:
-                    st.image(painting["latest_image"], caption="Last session photo", width=250)
+                st.write(f"**Genre:** {painting['genre'] or '—'}")
+                st.write(f"**Style:** {painting['style'] or '—'}")
+
+                if painting["date_started"]:
+                    try:
+                        started = datetime.strptime(painting["date_started"], "%Y-%m-%d")
+                        days_started = (datetime.today() - started).days
+                        if days_started < 365:
+                            ago_text = f"{days_started} day{'s' if days_started != 1 else ''} ago"
+                        else:
+                            years = days_started // 365
+                            ago_text = f"{years} year{'s' if years > 1 else ''} ago"
+                        st.write(f"**Started:** {painting['date_started']} ({ago_text})")
+                    except Exception:
+                        st.write(f"**Started:** {painting['date_started']}")
+                else:
+                    st.write(f"**Started:** —")
 
             last_session = conn.execute("""
                 SELECT whats_next FROM sessions
