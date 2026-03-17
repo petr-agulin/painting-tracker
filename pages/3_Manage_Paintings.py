@@ -252,7 +252,13 @@ if "paintings_page_loaded" not in st.session_state:
 tab1, tab2 = st.tabs(["Paintings", "Add new"])
 
 with tab1:
-    paintings_all = conn.execute("SELECT * FROM paintings ORDER BY title").fetchall()
+    paintings_all = conn.execute("""
+        SELECT p.*, MAX(s.date) as last_session_date
+        FROM paintings p
+        LEFT JOIN sessions s ON s.painting_id = p.id
+        GROUP BY p.id
+        ORDER BY COALESCE(MAX(s.date), p.date_started, '1900-01-01') DESC
+    """).fetchall()
 
     if not paintings_all:
         st.info("No paintings yet. Add one in the Add new tab.")
@@ -319,28 +325,67 @@ with tab1:
                     ).fetchone()
                     completion = latest_completion["completion_percent"] if latest_completion else 0
 
-                    col1, col2 = st.columns(2)
+                    from datetime import datetime as dt
+
+                    def time_ago(date_str):
+                        try:
+                            d = dt.strptime(date_str, "%Y-%m-%d")
+                            days = (dt.today() - d).days
+                            if days == 0:
+                                return "today"
+                            elif days == 1:
+                                return "1 day ago"
+                            elif days < 30:
+                                return f"{days} days ago"
+                            elif days < 365:
+                                months = days // 30
+                                return f"{months} month{'s' if months > 1 else ''} ago"
+                            else:
+                                years = days // 365
+                                return f"{years} year{'s' if years > 1 else ''} ago"
+                        except Exception:
+                            return ""
+
+                    last_session_row = conn.execute(
+                        "SELECT date FROM sessions WHERE painting_id = ? ORDER BY date DESC LIMIT 1",
+                        (painting["id"],)
+                    ).fetchone()
+                    last_session_date = last_session_row["date"] if last_session_row else None
+
+                    col1, col2, col3 = st.columns([1, 2, 2])
                     with col1:
+                        if painting["image_path"] and os.path.exists(painting["image_path"]):
+                            st.image(painting["image_path"], width=150)
+                            image_link(painting["image_path"], "View full size")
+                        else:
+                            st.caption("No preview photo.")
+                    with col2:
+                        st.write(f"**Paper:** {painting['paper_size'] or '—'} / {painting['paper_type'] or '—'}")
                         st.write(f"**Series:** {series_name_display}")
-                        st.write(f"**Genre:** {painting['genre'] or '—'}")
                         st.write(f"**Subject:** {painting['subject'] or '—'}")
                         st.write(f"**Style:** {painting['style'] or '—'}")
+                        st.write(f"**Genre:** {painting['genre'] or '—'}")
                         st.write(f"**Mood:** {painting['mood'] or '—'}")
-                        st.write(f"**Paper:** {painting['paper_size'] or '—'} / {painting['paper_type'] or '—'}")
-                    with col2:
-                        st.write(f"**Started:** {painting['date_started'] or '—'}")
-                        st.write(f"**Finished:** {painting['date_finished'] or '—'}")
                         st.write(f"**Inspiration:** {painting['inspiration_category'] or '—'}")
-                        st.write(f"**Note:** {painting['inspiration_note'] or '—'}")
-                        st.write(f"**Sessions:** {session_count}")
-                        st.write(f"**Total time:** {total_minutes // 60}h {total_minutes % 60}m")
-                        st.write(f"**Completion:** {completion or 0}%")
+                    with col3:
+                        started = painting['date_started']
+                        started_text = f"{started} ({time_ago(started)})" if started else "—"
+                        st.write(f"**Started:** {started_text}")
 
-                    if painting["image_path"] and os.path.exists(painting["image_path"]):
-                        st.image(painting["image_path"], width=150)
-                        image_link(painting["image_path"], "View full size")
-                    else:
-                        st.caption("No preview photo.")
+                        finished = painting['date_finished']
+                        finished_text = f"{finished} ({time_ago(finished)})" if finished else "—"
+                        st.write(f"**Finished:** {finished_text}")
+
+                        st.write(f"**Completion:** {completion or 0}%")
+                        st.write(f"**Sessions:** {session_count}")
+
+                        if last_session_date:
+                            st.write(f"**Last session:** {last_session_date} ({time_ago(last_session_date)})")
+                        else:
+                            st.write(f"**Last session:** —")
+
+                        st.write(f"**Total work time:** {total_minutes // 60}h {total_minutes % 60}m")
+                        st.write(f"**Note:** {painting['inspiration_note'] or '—'}")
 
                     st.markdown("---")
                     if st.button("Edit this painting", key=f"edit_{painting['id']}"):
@@ -383,7 +428,7 @@ with tab1:
                         total_sessions = len(sessions_for_painting)
                         for i, session in enumerate(sessions_for_painting):
                             session_num = total_sessions - i
-                            with st.expander(f"Session {session_num} — {session['date']} — Rating {session['rating'] or '—'}/5", expanded=False):
+                            with st.expander(f"Session {session_num} — {session['date']} — {session['duration_minutes'] or 0} min — {session['completion_percent'] or 0}%", expanded=False):
                                 col1, col2 = st.columns([2, 3])
                                 with col1:
                                     if session["image_path"]:
