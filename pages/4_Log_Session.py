@@ -359,7 +359,6 @@ elif st.session_state.log_phase == "active":
     ptitle = st.session_state.log_painting_title
     pseries = st.session_state.log_painting_series
     series_str = f" — {pseries}" if pseries else ""
-    st.caption(f"Painting: **{ptitle}**{series_str}")
 
     # Auto-refresh every 60 seconds
     if AUTOREFRESH_AVAILABLE:
@@ -374,21 +373,8 @@ elif st.session_state.log_phase == "active":
     except Exception:
         elapsed_display = "—"
 
-    st.markdown("🟢 &nbsp;**Session in progress**")
+    st.markdown(f"🟢 &nbsp;**Session in progress** &nbsp;·&nbsp; {ptitle}{series_str}")
     st.markdown(f"### ⏱ {elapsed_display}")
-    end_clicked = st.button("■ End session")
-
-    if end_clicked:
-        end_time = datetime.now().strftime("%H:%M:%S")
-        dur = duration_mins(st.session_state.log_start_time, end_time)
-        conn.execute(
-            "UPDATE sessions SET end_time=?, duration_minutes=? WHERE id=?",
-            (end_time, dur, st.session_state.log_draft_id)
-        )
-        conn.commit()
-        st.session_state.log_end_time = end_time
-        st.session_state.log_phase = "wrapup"
-        st.rerun()
 
     st.markdown("---")
 
@@ -500,6 +486,21 @@ elif st.session_state.log_phase == "active":
                     unsafe_allow_html=True
                 )
 
+    st.markdown("---")
+    end_clicked = st.button("■ End session")
+
+    if end_clicked:
+        end_time = datetime.now().strftime("%H:%M:%S")
+        dur = duration_mins(st.session_state.log_start_time, end_time)
+        conn.execute(
+            "UPDATE sessions SET end_time=?, duration_minutes=? WHERE id=?",
+            (end_time, dur, st.session_state.log_draft_id)
+        )
+        conn.commit()
+        st.session_state.log_end_time = end_time
+        st.session_state.log_phase = "wrapup"
+        st.rerun()
+
 
 # ══════════════════════════════════════════════════════════════
 # PHASE 3 — WRAP UP
@@ -524,7 +525,7 @@ elif st.session_state.log_phase == "wrapup":
         st.error("Are you sure you want to discard this session? This cannot be undone.")
         dc1, dc2, _ = st.columns([1, 1, 3])
         with dc1:
-            if st.button("Yes, discard", type="primary"):
+            if st.button("Yes, discard", type="secondary"):
                 conn.execute("DELETE FROM sessions WHERE id=?", (st.session_state.log_draft_id,))
                 conn.commit()
                 reset_session_state()
@@ -579,11 +580,8 @@ elif st.session_state.log_phase == "wrapup":
         image_file = st.file_uploader("Session photo", type=["jpg", "jpeg", "png"])
 
         st.markdown("---")
-        fc1, fc2 = st.columns([4, 1])
-        with fc1:
-            save_btn = st.form_submit_button("💾 Save session", type="primary", use_container_width=True)
-        with fc2:
-            discard_btn = st.form_submit_button("Discard", use_container_width=True)
+        discard_btn = st.form_submit_button("Discard session")
+        save_btn = st.form_submit_button("💾 Save session")
 
     if save_btn:
         image_path = None
@@ -610,6 +608,19 @@ elif st.session_state.log_phase == "wrapup":
             rating, notes, image_path,
             st.session_state.log_draft_id
         ))
+
+        # If session marked 100% complete, update painting status and finish date
+        if completion == 100:
+            existing = conn.execute(
+                "SELECT date_finished FROM paintings WHERE id=?",
+                (st.session_state.log_painting_id,)
+            ).fetchone()
+            finish_date = existing["date_finished"] if existing and existing["date_finished"] else str(date.today())
+            conn.execute(
+                "UPDATE paintings SET status='Complete', date_finished=? WHERE id=?",
+                (finish_date, st.session_state.log_painting_id)
+            )
+
         conn.commit()
         reset_session_state()
         st.success(f"Session saved! {dur_label(mins)} on '{ptitle}'.")

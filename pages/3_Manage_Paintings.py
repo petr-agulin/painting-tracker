@@ -50,86 +50,6 @@ def image_link(image_path, label="View full size"):
     href = f'<a href="data:{mime};base64,{data}" target="_blank">{label}</a>'
     st.markdown(href, unsafe_allow_html=True)
 
-@st.dialog("Add New Session", width="large")
-def add_session_dialog(painting_id, painting_title, IMAGES_DIR):
-    conn = get_connection()
-    st.markdown(f"**Painting:** {painting_title}")
-
-    with st.form("dialog_session_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            session_date = st.date_input("Date *", value=date.today())
-            start_time = st.time_input("Start time")
-            end_time = st.time_input("End time")
-            location = st.selectbox("Location", [""] + LOCATIONS)
-            lighting = st.selectbox("Lighting", [""] + LIGHTING)
-            mental_state = st.selectbox("Mental / physical state", [""] + MENTAL_STATES)
-            rating = st.slider("Session rating *", 1, 5, 3)
-        with col2:
-            completion_percent = st.slider("Estimated completion %", 0, 100, 0)
-            reference_used = st.selectbox("Reference used", [""] + REFERENCE_TYPES)
-            reference_detail = st.text_input("Reference detail")
-            techniques = st.multiselect("Techniques used", TECHNIQUES)
-            brushes = st.multiselect("Brushes used", BRUSH_SIZES)
-            colors_used = st.text_input("Colors used", placeholder="e.g. Ultramarine, Burnt Sienna")
-
-        what_worked_on = st.text_area("What I worked on")
-        whats_next = st.text_area("What's next")
-        what_worked = st.text_area("What worked")
-        what_didnt = st.text_area("What did not work")
-        do_differently = st.text_area("What I would do differently")
-        notes = st.text_area("Free notes")
-        image_file = st.file_uploader("Session photo", type=["jpg", "jpeg", "png"])
-
-        col1, col2 = st.columns(2)
-        with col1:
-            save_session = st.form_submit_button("Save Session")
-        with col2:
-            cancel_session = st.form_submit_button("Cancel")
-
-        if cancel_session:
-            st.rerun()
-
-        if save_session:
-            start_dt = datetime.combine(date.today(), start_time)
-            end_dt = datetime.combine(date.today(), end_time)
-            duration = max(0, int((end_dt - start_dt).total_seconds() / 60))
-
-            image_path = None
-            if image_file:
-                image_path = os.path.join(IMAGES_DIR, f"{painting_id}_{session_date}_{image_file.name}")
-                with open(image_path, "wb") as f:
-                    f.write(image_file.getbuffer())
-
-            session_count_now = conn.execute(
-                "SELECT COUNT(*) as count FROM sessions WHERE painting_id = ?",
-                (painting_id,)
-            ).fetchone()["count"]
-
-            conn.execute("""
-                INSERT INTO sessions (
-                    painting_id, date, start_time, end_time, duration_minutes,
-                    completion_percent, location, lighting, reference_used,
-                    reference_detail, what_worked_on, whats_next, techniques,
-                    colors_used, brushes_used, mental_state, what_worked,
-                    what_didnt_work, do_differently, rating, notes, image_path
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                painting_id, str(session_date),
-                str(start_time), str(end_time), duration,
-                completion_percent, location, lighting,
-                reference_used, reference_detail,
-                what_worked_on, whats_next,
-                ", ".join(techniques),
-                colors_used,
-                ", ".join(brushes), mental_state,
-                what_worked, what_didnt, do_differently,
-                rating, notes, image_path
-            ))
-            conn.commit()
-            st.success(f"Session saved! Duration: {duration} minutes. Session {session_count_now + 1} for this painting.")
-            st.rerun()
-
 @st.dialog("Edit Session", width="large")
 def edit_session_dialog(session_id, IMAGES_DIR):
     conn = get_connection()
@@ -298,7 +218,7 @@ with tab1:
 
         for painting in paintings:
             session_count = conn.execute(
-                "SELECT COUNT(*) as c FROM sessions WHERE painting_id = ?",
+                "SELECT COUNT(*) as c FROM sessions WHERE painting_id = ? AND (is_draft IS NULL OR is_draft = 0)",
                 (painting["id"],)
             ).fetchone()["c"]
 
@@ -315,12 +235,12 @@ with tab1:
                             series_name_display = series_row["name"]
 
                     total_minutes = conn.execute(
-                        "SELECT SUM(duration_minutes) as t FROM sessions WHERE painting_id = ?",
+                        "SELECT SUM(duration_minutes) as t FROM sessions WHERE painting_id = ? AND (is_draft IS NULL OR is_draft = 0)",
                         (painting["id"],)
                     ).fetchone()["t"] or 0
 
                     latest_completion = conn.execute(
-                        "SELECT completion_percent FROM sessions WHERE painting_id = ? ORDER BY date DESC LIMIT 1",
+                        "SELECT completion_percent FROM sessions WHERE painting_id = ? AND (is_draft IS NULL OR is_draft = 0) ORDER BY date DESC LIMIT 1",
                         (painting["id"],)
                     ).fetchone()
                     completion = latest_completion["completion_percent"] if latest_completion else 0
@@ -347,7 +267,7 @@ with tab1:
                             return ""
 
                     last_session_row = conn.execute(
-                        "SELECT date FROM sessions WHERE painting_id = ? ORDER BY date DESC LIMIT 1",
+                        "SELECT date FROM sessions WHERE painting_id = ? AND (is_draft IS NULL OR is_draft = 0) ORDER BY date DESC LIMIT 1",
                         (painting["id"],)
                     ).fetchone()
                     last_session_date = last_session_row["date"] if last_session_row else None
@@ -373,8 +293,9 @@ with tab1:
                         st.write(f"**Started:** {started_text}")
 
                         finished = painting['date_finished']
-                        finished_text = f"{finished} ({time_ago(finished)})" if finished else "—"
-                        st.write(f"**Finished:** {finished_text}")
+                        if painting['status'] == 'Complete' or finished:
+                            finished_text = f"{finished} ({time_ago(finished)})" if finished else "—"
+                            st.write(f"**Finished:** {finished_text}")
 
                         st.write(f"**Completion:** {completion or 0}%")
                         st.write(f"**Sessions:** {session_count}")
@@ -413,16 +334,14 @@ with tab1:
                             st.session_state[f"confirm_delete_{painting['id']}"] = False
                             st.rerun()
 
+                    # Session timeline — newest first, numbered highest to lowest
                     sessions_for_painting = conn.execute(
-                        "SELECT * FROM sessions WHERE painting_id = ? ORDER BY date DESC",
+                        "SELECT * FROM sessions WHERE painting_id = ? AND (is_draft IS NULL OR is_draft = 0) ORDER BY date DESC, id DESC",
                         (painting["id"],)
                     ).fetchall()
 
                     st.markdown("---")
                     st.markdown("**Session timeline**")
-
-                    if st.button("+ Add new session", key=f"add_session_btn_{painting['id']}"):
-                        add_session_dialog(painting["id"], painting["title"], IMAGES_DIR)
 
                     if sessions_for_painting:
                         total_sessions = len(sessions_for_painting)
@@ -482,6 +401,8 @@ with tab1:
                                         if st.button("Cancel", key=f"cancel_delete_session_{session['id']}"):
                                             st.session_state[f"confirm_delete_session_{session['id']}"] = False
                                             st.rerun()
+                    else:
+                        st.caption("No sessions logged yet. Use the Log Session page to record a session.")
 
                 else:
                     series_rows = conn.execute("SELECT id, name FROM series").fetchall()
