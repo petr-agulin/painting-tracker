@@ -122,30 +122,86 @@ def paint_detail_modal(paint_id):
             conn.commit()
             st.rerun()
 
-tab1, tab2 = st.tabs(["Paint Database", "My Collection"])
+
+tab1, tab2, tab3 = st.tabs(["My Palette", "Paint Database", "Add Paint Manually"])
+
+# ── Tab 1: My Palette ─────────────────────────────────────────
 
 with tab1:
+    st.subheader("My paint collection")
+    my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
+
+    if not my_paints:
+        st.info("Your collection is empty. Add paints from the Paint Database tab.")
+    else:
+        brands_in_palette = list(dict.fromkeys(p["brand"] for p in my_paints))
+        for brand in brands_in_palette:
+            st.markdown(f"**{brand or 'Other'}**")
+            brand_paints = [p for p in my_paints if p["brand"] == brand]
+            for paint in brand_paints:
+                col1, col2, col3, col4, col5, col6 = st.columns([1, 3, 2, 2, 2, 3])
+                with col1:
+                    st.markdown(
+                        f'<div style="background-color:{paint["hex_color"]};width:32px;height:32px;border-radius:4px;border:1px solid #ccc;margin-top:4px"></div>',
+                        unsafe_allow_html=True
+                    )
+                with col2:
+                    st.markdown(f"**{paint['name']}**")
+                with col3:
+                    st.caption(paint["form"] or "—")
+                with col4:
+                    st.caption(paint["amount_remaining"] or "—")
+                with col5:
+                    st.caption(paint["date_purchased"] or "—")
+                with col6:
+                    if st.button("View / Edit / Remove", key=f"view_paint_{paint['id']}", use_container_width=True):
+                        paint_detail_modal(paint["id"])
+            st.markdown("---")
+
+# ── Tab 2: Paint Database ─────────────────────────────────────
+
+with tab2:
     st.subheader("Browse & add paints")
     col1, col2 = st.columns(2)
     with col1:
         selected_brand = st.selectbox("Brand", brand_names, key="db_brand")
     with col2:
-        search = st.text_input("Search by name or code", placeholder="e.g. Ultramarine or 496")
-
-    brand_data = next(b for b in paint_db["brands"] if b["brand"] == selected_brand)
-    paints = brand_data["paints"]
-
-    if search:
-        paints = [p for p in paints if search.lower() in p["name"].lower() or search.lower() in p["code"].lower()]
+        if st.session_state.pop("do_clear_search", False):
+            st.session_state["search_counter"] = st.session_state.get("search_counter", 0) + 1
+        s1, s2 = st.columns([5, 1])
+        with s1:
+            st.text_input(
+                "Search by name or code",
+                placeholder="e.g. Ivory Black or PB29 — searches all brands",
+                key=f"db_search_val_{st.session_state.get('search_counter', 0)}"
+            )
+        with s2:
+            st.markdown("<div style='margin-top:28px'></div>", unsafe_allow_html=True)
+            if st.button("✕", key="clear_search", help="Clear search"):
+                st.session_state["do_clear_search"] = True
+                st.rerun()
 
     my_paints_check = conn.execute("SELECT name, brand FROM paints").fetchall()
     my_paints_set = {(p["name"], p["brand"]) for p in my_paints_check}
 
-    if not paints:
+    search_term = st.session_state.get(f"db_search_val_{st.session_state.get('search_counter', 0)}", "")
+    if search_term:
+        paints_with_brand = []
+        for brand in paint_db["brands"]:
+            for p in brand["paints"]:
+                if search_term.lower() in p["name"].lower() or search_term.lower() in p["code"].lower():
+                    paints_with_brand.append((p, brand["brand"]))
+    else:
+        brand_data = next(b for b in paint_db["brands"] if b["brand"] == selected_brand)
+        paints_with_brand = [(p, selected_brand) for p in brand_data["paints"]]
+
+    if not paints_with_brand:
         st.info("No paints found. Try a different search term.")
     else:
-        for paint in paints:
-            in_collection = (paint["name"], selected_brand) in my_paints_set
+        if search_term:
+            st.caption(f"{len(paints_with_brand)} result(s) across all brands")
+        for paint, brand in paints_with_brand:
+            in_collection = (paint["name"], brand) in my_paints_set
             col1, col2, col3 = st.columns([1, 4, 2])
             with col1:
                 if in_collection:
@@ -163,37 +219,45 @@ with tab1:
                     )
             with col2:
                 st.markdown(f"**{paint['name']}** — {paint['code']}")
-                st.caption(f"Pigments: {paint['pigments']}")
+                st.caption(f"{brand} · Pigments: {paint['pigments']}")
             with col3:
                 if in_collection:
                     st.markdown('<span style="color:#5a8a5a;font-weight:500">Added</span>', unsafe_allow_html=True)
                 else:
-                    if st.button("Add to my collection", key=f"add_{selected_brand}_{paint['code']}"):
+                    if st.button("Add to my collection", key=f"add_{brand}_{paint['name']}"):
                         conn.execute(
                             "INSERT INTO paints (name, hex_color, brand) VALUES (?, ?, ?)",
-                            (paint["name"], paint["hex"], selected_brand)
+                            (paint["name"], paint["hex"], brand)
                         )
                         conn.commit()
                         st.rerun()
 
-    st.markdown("---")
+# ── Tab 3: Add Paint Manually ─────────────────────────────────
+
+with tab3:
     st.subheader("Add a paint manually")
     st.markdown("For paints not in the database.")
 
+    if st.session_state.pop("reset_manual_form", False):
+        st.session_state["manual_color_picker"] = "#888888"
+        st.session_state["prev_manual_color"] = "#888888"
+        st.session_state["manual_name_input"] = ""
+        st.session_state.pop("manual_brand", None)
+        st.session_state.pop("manual_pigments", None)
+
     if "prev_manual_color" not in st.session_state:
-        st.session_state["prev_manual_color"] = "#2E3192"
+        st.session_state["prev_manual_color"] = "#888888"
     if "manual_name_input" not in st.session_state:
-        st.session_state["manual_name_input"] = "#2E3192"
-    if st.session_state.get("reset_manual_form"):
-        st.session_state["manual_name_input"] = "#2E3192"
-        st.session_state["prev_manual_color"] = "#2E3192"
-        st.session_state["reset_manual_form"] = False
+        st.session_state["manual_name_input"] = ""
+
+    if st.session_state.pop("show_add_success", None):
+        st.success("✓ Paint added to your collection.")
 
     manual_color = st.color_picker("Pick color", st.session_state["prev_manual_color"], key="manual_color_picker")
 
     if manual_color != st.session_state["prev_manual_color"]:
-        st.session_state["manual_name_input"] = manual_color.upper()
         st.session_state["prev_manual_color"] = manual_color
+        st.session_state["manual_name_input"] = manual_color.upper()
 
     manual_name = st.text_input("Paint name *", key="manual_name_input", placeholder="e.g. Ultramarine Blue")
     manual_brand = st.text_input("Brand", placeholder="e.g. Schmincke Horadam", key="manual_brand")
@@ -208,39 +272,8 @@ with tab1:
                 (manual_name, manual_color, manual_brand)
             )
             conn.commit()
-            st.success(f"Added {manual_name} to your collection!")
             st.session_state["reset_manual_form"] = True
+            st.session_state["show_add_success"] = True
             st.rerun()
-
-with tab2:
-    st.subheader("My paint collection")
-    my_paints = conn.execute("SELECT * FROM paints ORDER BY brand, name").fetchall()
-
-    if not my_paints:
-        st.info("Your collection is empty. Add paints from the Paint Database tab.")
-    else:
-        brands_in_palette = list(dict.fromkeys(p["brand"] for p in my_paints))
-        for brand in brands_in_palette:
-            st.markdown(f"**{brand or 'Other'}**")
-            brand_paints = [p for p in my_paints if p["brand"] == brand]
-            for paint in brand_paints:
-                col1, col2, col3, col4, col5, col6 = st.columns([1, 3, 2, 2, 2, 2])
-                with col1:
-                    st.markdown(
-                        f'<div style="background-color:{paint["hex_color"]};width:32px;height:32px;border-radius:4px;border:1px solid #ccc;margin-top:4px"></div>',
-                        unsafe_allow_html=True
-                    )
-                with col2:
-                    st.markdown(f"**{paint['name']}**")
-                with col3:
-                    st.caption(paint["form"] or "—")
-                with col4:
-                    st.caption(paint["amount_remaining"] or "—")
-                with col5:
-                    st.caption(paint["date_purchased"] or "—")
-                with col6:
-                    if st.button("View / Edit / Remove", key=f"view_paint_{paint['id']}"):
-                        paint_detail_modal(paint["id"])
-            st.markdown("---")
 
 conn.close()

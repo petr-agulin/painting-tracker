@@ -3,268 +3,5444 @@
     {
       "brand": "Schmincke Horadam",
       "paints": [
-        {"code": "101", "name": "Titanium Opaque White", "pigments": "PW6", "hex": "#FFFFFF"},
-        {"code": "102", "name": "Permanent Chinese White", "pigments": "PW4", "hex": "#F0F0EC"},
-        {"code": "206", "name": "Titanium Yellow", "pigments": "PY53", "hex": "#E8D44D"},
-        {"code": "215", "name": "Lemon Yellow", "pigments": "PY3", "hex": "#FFF44F"},
-        {"code": "216", "name": "Pure Yellow", "pigments": "PY154", "hex": "#FFE135"},
-        {"code": "220", "name": "Indian Yellow", "pigments": "PY110, PY154", "hex": "#F5A623"},
-        {"code": "222", "name": "Yellow Orange", "pigments": "PY110", "hex": "#FFAA00"},
-        {"code": "224", "name": "Cadmium Yellow Light", "pigments": "PY35", "hex": "#FFD700"},
-        {"code": "225", "name": "Cadmium Yellow Medium", "pigments": "PY35", "hex": "#FFC200"},
-        {"code": "226", "name": "Cadmium Yellow Deep", "pigments": "PY35, PO20", "hex": "#FFB300"},
-        {"code": "227", "name": "Cadmium Orange Light", "pigments": "PO20", "hex": "#FF8C00"},
-        {"code": "214", "name": "Chromium Orange Hue", "pigments": "PO62", "hex": "#FF6600"},
-        {"code": "341", "name": "Cadmium Red Light", "pigments": "PR108", "hex": "#FF3300"},
-        {"code": "342", "name": "Cadmium Red Medium", "pigments": "PR108", "hex": "#E8220A"},
-        {"code": "343", "name": "Cadmium Red Deep", "pigments": "PR108", "hex": "#C0110A"},
-        {"code": "346", "name": "Scarlet Red", "pigments": "PR255", "hex": "#FF2400"},
-        {"code": "349", "name": "Translucent Orange", "pigments": "PO71", "hex": "#E8600A"},
-        {"code": "352", "name": "Permanent Red", "pigments": "PR170", "hex": "#C0392B"},
-        {"code": "354", "name": "Madder Red", "pigments": "PR209", "hex": "#B22222"},
-        {"code": "356", "name": "Alizarin Crimson Hue", "pigments": "PR83", "hex": "#9B1B30"},
-        {"code": "362", "name": "Perylene Maroon", "pigments": "PR179", "hex": "#7B2D2D"},
-        {"code": "363", "name": "Mahogany Brown", "pigments": "PBr33", "hex": "#6B2A1A"},
-        {"code": "366", "name": "Ruby Red", "pigments": "PV19", "hex": "#9B1B4B"},
-        {"code": "368", "name": "Quinacridone Violet", "pigments": "PV19", "hex": "#8B008B"},
-        {"code": "369", "name": "Quinacridone Magenta", "pigments": "PR202", "hex": "#E91E8C"},
-        {"code": "371", "name": "Purple Magenta", "pigments": "PR122, PV19", "hex": "#C71585"},
-        {"code": "372", "name": "Dioxazine Violet", "pigments": "PV23", "hex": "#4B0082"},
-        {"code": "474", "name": "Cobalt Blue Hue", "pigments": "PB28", "hex": "#4169E1"},
-        {"code": "476", "name": "Ultramarine Finest", "pigments": "PB29", "hex": "#1B2A80"},
-        {"code": "477", "name": "Phthalo Blue", "pigments": "PB15", "hex": "#0047AB"},
-        {"code": "479", "name": "Prussian Blue", "pigments": "PB27", "hex": "#003153"},
-        {"code": "480", "name": "Indigo", "pigments": "PB60, PBk6", "hex": "#1A1A5E"},
-        {"code": "482", "name": "Cerulean Blue", "pigments": "PB35", "hex": "#6CA0DC"},
-        {"code": "484", "name": "Cobalt Azure", "pigments": "PB28, PG50", "hex": "#0080C0"},
-        {"code": "485", "name": "Manganese Blue Hue", "pigments": "PB15, PW6", "hex": "#6AAFE6"},
-        {"code": "492", "name": "Helio Turquoise", "pigments": "PB16", "hex": "#00CED1"},
-        {"code": "494", "name": "Cobalt Turquoise", "pigments": "PG50", "hex": "#00827F"},
-        {"code": "495", "name": "Cobalt Turquoise Light", "pigments": "PG50, PB28", "hex": "#40B0C0"},
-        {"code": "496", "name": "Ultramarine Blue", "pigments": "PB15, PB29", "hex": "#2E4DA0"},
-        {"code": "509", "name": "Sap Green", "pigments": "PG7, PY150", "hex": "#4A7C3F"},
-        {"code": "514", "name": "Chromium Oxide Green", "pigments": "PG17", "hex": "#4A7C59"},
-        {"code": "519", "name": "Viridian", "pigments": "PG18", "hex": "#40826D"},
-        {"code": "524", "name": "Phthalo Green", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "528", "name": "Cobalt Green", "pigments": "PG19", "hex": "#3D9970"},
-        {"code": "530", "name": "Emerald Green", "pigments": "PG36", "hex": "#00A86B"},
-        {"code": "533", "name": "Helio Green", "pigments": "PG7, PY3", "hex": "#66BB00"},
-        {"code": "534", "name": "May Green", "pigments": "PY150, PG7", "hex": "#7EC850"},
-        {"code": "536", "name": "Green Yellow", "pigments": "PY150, PBk7", "hex": "#A0A830"},
-        {"code": "603", "name": "Raw Sienna", "pigments": "PY43", "hex": "#C68642"},
-        {"code": "606", "name": "Yellow Ochre", "pigments": "PY43", "hex": "#CC7722"},
-        {"code": "609", "name": "Burnt Sienna", "pigments": "PBr7", "hex": "#8B4513"},
-        {"code": "612", "name": "English Venetian Red", "pigments": "PR101", "hex": "#883010"},
-        {"code": "615", "name": "Caput Mortuum Violet", "pigments": "PR101", "hex": "#592720"},
-        {"code": "648", "name": "Raw Umber", "pigments": "PBr7", "hex": "#735244"},
-        {"code": "649", "name": "Burnt Umber", "pigments": "PBr7", "hex": "#5C3317"},
-        {"code": "652", "name": "Walnut Brown", "pigments": "PBr33", "hex": "#5C3A1E"},
-        {"code": "660", "name": "Sepia Brown", "pigments": "PBk6, PBr7", "hex": "#3D2B1F"},
-        {"code": "780", "name": "Ivory Black", "pigments": "PBk9", "hex": "#231F20"},
-        {"code": "782", "name": "Lamp Black", "pigments": "PBk6", "hex": "#1C1C1C"},
-        {"code": "785", "name": "Payne's Grey", "pigments": "PB15, PBk6", "hex": "#40484C"}
-      ]
-    },
-    {
-      "brand": "Winsor & Newton",
-      "paints": [
-        {"code": "025", "name": "Alizarin Crimson", "pigments": "PR83", "hex": "#9B1B30"},
-        {"code": "038", "name": "Aureolin", "pigments": "PY40", "hex": "#E8CB00"},
-        {"code": "055", "name": "Burnt Sienna", "pigments": "PBr7", "hex": "#8B4513"},
-        {"code": "076", "name": "Burnt Umber", "pigments": "PBr7", "hex": "#5C3317"},
-        {"code": "089", "name": "Cadmium Lemon", "pigments": "PY35", "hex": "#FFF44F"},
-        {"code": "090", "name": "Cadmium Orange", "pigments": "PO20", "hex": "#FF8C00"},
-        {"code": "094", "name": "Cadmium Red", "pigments": "PR108", "hex": "#E8220A"},
-        {"code": "108", "name": "Cadmium Yellow Deep", "pigments": "PY35", "hex": "#FFB300"},
-        {"code": "109", "name": "Cadmium Yellow Pale", "pigments": "PY35", "hex": "#FFD700"},
-        {"code": "137", "name": "Cerulean Blue", "pigments": "PB35", "hex": "#6CA0DC"},
-        {"code": "139", "name": "Chinese White", "pigments": "PW4", "hex": "#F0F0EC"},
-        {"code": "179", "name": "Cobalt Blue", "pigments": "PB28", "hex": "#4169E1"},
-        {"code": "189", "name": "Cobalt Turquoise Light", "pigments": "PG50", "hex": "#40B0C0"},
-        {"code": "219", "name": "Dioxazine Violet", "pigments": "PV23", "hex": "#4B0082"},
-        {"code": "242", "name": "French Ultramarine", "pigments": "PB29", "hex": "#1B2A80"},
-        {"code": "266", "name": "Hooker's Green Dark", "pigments": "PG7, PBk6", "hex": "#2D5A27"},
-        {"code": "309", "name": "Indian Red", "pigments": "PR101", "hex": "#883010"},
-        {"code": "322", "name": "Indian Yellow", "pigments": "PY110", "hex": "#FFAA00"},
-        {"code": "330", "name": "Indigo", "pigments": "PB60, PBk6", "hex": "#1A1A5E"},
-        {"code": "386", "name": "Lemon Yellow", "pigments": "PY175", "hex": "#FFF44F"},
-        {"code": "415", "name": "Mauve", "pigments": "PV23, PR122", "hex": "#7B4B8E"},
-        {"code": "422", "name": "Neutral Tint", "pigments": "PBk6, PB15, PV23", "hex": "#3D3D3D"},
-        {"code": "447", "name": "Paynes Grey", "pigments": "PB15, PBk6", "hex": "#40484C"},
-        {"code": "459", "name": "Permanent Alizarin Crimson", "pigments": "PR206", "hex": "#9B1B30"},
-        {"code": "466", "name": "Permanent Carmine", "pigments": "PR N/A", "hex": "#960018"},
-        {"code": "468", "name": "Permanent Magenta", "pigments": "PV19", "hex": "#C71585"},
-        {"code": "489", "name": "Permanent Rose", "pigments": "PV19", "hex": "#E8399A"},
-        {"code": "502", "name": "Phthalo Blue", "pigments": "PB15", "hex": "#0047AB"},
-        {"code": "503", "name": "Phthalo Green Blue Shade", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "522", "name": "Prussian Blue", "pigments": "PB27", "hex": "#003153"},
-        {"code": "537", "name": "Quinacridone Magenta", "pigments": "PR122", "hex": "#E91E8C"},
-        {"code": "552", "name": "Raw Sienna", "pigments": "PY43", "hex": "#C68642"},
-        {"code": "554", "name": "Raw Umber", "pigments": "PBr7", "hex": "#735244"},
-        {"code": "580", "name": "Sap Green", "pigments": "PG36, PY110", "hex": "#4A7C3F"},
-        {"code": "599", "name": "Sepia", "pigments": "PBk6, PBr7", "hex": "#3D2B1F"},
-        {"code": "609", "name": "Terre Verte", "pigments": "PG23", "hex": "#7C8C6A"},
-        {"code": "628", "name": "Ultramarine Violet", "pigments": "PV15", "hex": "#5B2C8E"},
-        {"code": "637", "name": "Vandyke Brown", "pigments": "PBr7, PBk6", "hex": "#4A2C17"},
-        {"code": "644", "name": "Viridian", "pigments": "PG18", "hex": "#40826D"},
-        {"code": "653", "name": "Winsor Blue Green Shade", "pigments": "PB15:3", "hex": "#0070BB"},
-        {"code": "654", "name": "Winsor Blue Red Shade", "pigments": "PB15:1", "hex": "#0000CD"},
-        {"code": "660", "name": "Winsor Green Blue Shade", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "664", "name": "Winsor Lemon", "pigments": "PY175", "hex": "#FFFE00"},
-        {"code": "668", "name": "Winsor Orange", "pigments": "PO73", "hex": "#FF6600"},
-        {"code": "678", "name": "Winsor Red", "pigments": "PR254", "hex": "#E8000D"},
-        {"code": "730", "name": "Yellow Ochre", "pigments": "PY43", "hex": "#CC7722"}
+        {
+          "name": "Titanium White",
+          "code": "101",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "102",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Zinc White",
+          "code": "103",
+          "hex": "#F5F5F5",
+          "pigments": "PW4, PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "106",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Mars Black",
+          "code": "107",
+          "hex": "#222222",
+          "pigments": "PBk11"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "108",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Carbon Black",
+          "code": "109",
+          "hex": "#111111",
+          "pigments": "PBk7"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "215",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "216",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23, PB15"
+        },
+        {
+          "name": "Davy's Grey",
+          "code": "217",
+          "hex": "#666666",
+          "pigments": "PBk19"
+        },
+        {
+          "name": "Graphite Grey",
+          "code": "218",
+          "hex": "#5C5C5C",
+          "pigments": "PBk10"
+        },
+        {
+          "name": "Cold Grey I",
+          "code": "230",
+          "hex": "#D0D4D8",
+          "pigments": "PW6, PB29, PBk7"
+        },
+        {
+          "name": "Cold Grey II",
+          "code": "231",
+          "hex": "#A8ADB5",
+          "pigments": "PW6, PB29, PBk7"
+        },
+        {
+          "name": "Cold Grey III",
+          "code": "232",
+          "hex": "#808890",
+          "pigments": "PW6, PB29, PBk7"
+        },
+        {
+          "name": "Warm Grey I",
+          "code": "233",
+          "hex": "#D4D0C8",
+          "pigments": "PW6, PBr7, PBk7"
+        },
+        {
+          "name": "Warm Grey II",
+          "code": "234",
+          "hex": "#B0A898",
+          "pigments": "PW6, PBr7, PBk7"
+        },
+        {
+          "name": "Warm Grey III",
+          "code": "235",
+          "hex": "#888070",
+          "pigments": "PW6, PBr7, PBk7"
+        },
+        {
+          "name": "Schmincke Grey",
+          "code": "236",
+          "hex": "#909090",
+          "pigments": "PW6, PBk7"
+        },
+        {
+          "name": "Ultramarine Blue finest",
+          "code": "494",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Blue light",
+          "code": "495",
+          "hex": "#2A4AAF",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Blue deep",
+          "code": "496",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "480",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue light",
+          "code": "481",
+          "hex": "#3D70C0",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue deep",
+          "code": "482",
+          "hex": "#1E4A90",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "485",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Cerulean Blue deep",
+          "code": "486",
+          "hex": "#1E88C0",
+          "pigments": "PB35, PB28"
+        },
+        {
+          "name": "Helio Cerulean",
+          "code": "472",
+          "hex": "#3AB0D8",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Helio Blue",
+          "code": "474",
+          "hex": "#0060B8",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "404",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "487",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Cobalt Teal Blue",
+          "code": "488",
+          "hex": "#008080",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Turquoise",
+          "code": "484",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Manganese Blue hue",
+          "code": "473",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Indanthrene Blue",
+          "code": "405",
+          "hex": "#1A237E",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "220",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "221",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Delft Blue",
+          "code": "475",
+          "hex": "#2A3A80",
+          "pigments": "PB29, PV23"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "476",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Smalt Blue",
+          "code": "477",
+          "hex": "#3560A0",
+          "pigments": "PB28, PV23"
+        },
+        {
+          "name": "Cobalt Blue Cerulean",
+          "code": "483",
+          "hex": "#4080C0",
+          "pigments": "PB28, PB35"
+        },
+        {
+          "name": "Viridian",
+          "code": "514",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "516",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Phthalo Green light",
+          "code": "518",
+          "hex": "#00897B",
+          "pigments": "PG36"
+        },
+        {
+          "name": "Chrome Oxide Green",
+          "code": "515",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "525",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "526",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7, PBr7"
+        },
+        {
+          "name": "Green Earth",
+          "code": "527",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Permanent Green olive",
+          "code": "528",
+          "hex": "#4E6830",
+          "pigments": "PY150, PG36"
+        },
+        {
+          "name": "May Green",
+          "code": "519",
+          "hex": "#7DB840",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Permanent Green light",
+          "code": "517",
+          "hex": "#50A050",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Forest Green",
+          "code": "520",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "521",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Permanent Green deep",
+          "code": "522",
+          "hex": "#1A5E30",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "523",
+          "hex": "#2E5E38",
+          "pigments": "PG7, PY150, PBk7"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "529",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Moss Green",
+          "code": "530",
+          "hex": "#6B7C4A",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Pine Green",
+          "code": "531",
+          "hex": "#1A4A30",
+          "pigments": "PG7, PBk7"
+        },
+        {
+          "name": "Cobalt Green deep",
+          "code": "532",
+          "hex": "#3A8060",
+          "pigments": "PG50, PG7"
+        },
+        {
+          "name": "Cadmium Yellow Lemon",
+          "code": "224",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "225",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "226",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "227",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Aureolin",
+          "code": "214",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Nickel Titanate Yellow",
+          "code": "218",
+          "hex": "#E8D4A0",
+          "pigments": "PY53"
+        },
+        {
+          "name": "Hansa Yellow Light",
+          "code": "219",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Hansa Yellow Medium",
+          "code": "222",
+          "hex": "#FFD600",
+          "pigments": "PY97"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "223",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "228",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Naples Yellow reddish",
+          "code": "229",
+          "hex": "#F0B06A",
+          "pigments": "PY35, PR101, PW6"
+        },
+        {
+          "name": "Transparent Yellow",
+          "code": "209",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "210",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "657",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "658",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "659",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Isoindoline Yellow",
+          "code": "211",
+          "hex": "#E8A030",
+          "pigments": "PY110"
+        },
+        {
+          "name": "Lemon Yellow",
+          "code": "207",
+          "hex": "#FFF44F",
+          "pigments": "PY175"
+        },
+        {
+          "name": "Bismuth Yellow",
+          "code": "208",
+          "hex": "#FFE060",
+          "pigments": "PY184"
+        },
+        {
+          "name": "Chrome Yellow Lemon hue",
+          "code": "205",
+          "hex": "#FFE020",
+          "pigments": "PY154"
+        },
+        {
+          "name": "Chrome Yellow Medium hue",
+          "code": "206",
+          "hex": "#FFC000",
+          "pigments": "PY154, PO62"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "231",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Cadmium Red Orange",
+          "code": "232",
+          "hex": "#FF5500",
+          "pigments": "PO20, PR108"
+        },
+        {
+          "name": "Transparent Orange",
+          "code": "233",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Chrome Orange",
+          "code": "234",
+          "hex": "#FF6A00",
+          "pigments": "PO62"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "235",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Perinone Orange",
+          "code": "236",
+          "hex": "#E85A20",
+          "pigments": "PO43"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "649",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Scarlet Red",
+          "code": "237",
+          "hex": "#FF3300",
+          "pigments": "PR255, PO73"
+        },
+        {
+          "name": "Vermillion",
+          "code": "341",
+          "hex": "#E8341C",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "343",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium",
+          "code": "344",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "345",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Permanent Red",
+          "code": "346",
+          "hex": "#CC2020",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "347",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Carmine Red",
+          "code": "348",
+          "hex": "#960018",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "349",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder",
+          "code": "350",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Permanent Carmine",
+          "code": "351",
+          "hex": "#8B0038",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Ruby Red",
+          "code": "352",
+          "hex": "#9B111E",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Transparent Red Deep",
+          "code": "353",
+          "hex": "#800010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "355",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Caput Mortuum",
+          "code": "356",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "354",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Madder Red",
+          "code": "357",
+          "hex": "#A0102A",
+          "pigments": "PR206"
+        },
+        {
+          "name": "Pyrrol Scarlet",
+          "code": "358",
+          "hex": "#E82010",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Indian Red",
+          "code": "359",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Translucent Red",
+          "code": "360",
+          "hex": "#CC2A2A",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Light Red",
+          "code": "361",
+          "hex": "#C05030",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "370",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "361",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "362",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "363",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Manganese Violet",
+          "code": "364",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Dioxazine Violet",
+          "code": "365",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Perylene Violet",
+          "code": "366",
+          "hex": "#6B1E6E",
+          "pigments": "PV29"
+        },
+        {
+          "name": "Blue Violet",
+          "code": "367",
+          "hex": "#4A2888",
+          "pigments": "PV23, PB29"
+        },
+        {
+          "name": "Red Violet",
+          "code": "368",
+          "hex": "#9B1060",
+          "pigments": "PV19, PR122"
+        },
+        {
+          "name": "Mauve",
+          "code": "369",
+          "hex": "#9B4080",
+          "pigments": "PV16, PV23"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "652",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "654",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "655",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "656",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Mars Violet",
+          "code": "660",
+          "hex": "#7A2A38",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Brown",
+          "code": "661",
+          "hex": "#6E3A1E",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Mars Brown",
+          "code": "662",
+          "hex": "#7A4A28",
+          "pigments": "PBr11"
+        },
+        {
+          "name": "Raw Umber siennaish",
+          "code": "663",
+          "hex": "#8B6040",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Warm Sepia",
+          "code": "664",
+          "hex": "#3A1E0E",
+          "pigments": "PBr7, PR101"
+        }
       ]
     },
     {
       "brand": "Daniel Smith",
       "paints": [
-        {"code": "DS001", "name": "Burnt Sienna", "pigments": "PBr7", "hex": "#8B4513"},
-        {"code": "DS002", "name": "Burnt Umber", "pigments": "PBr7", "hex": "#5C3317"},
-        {"code": "DS003", "name": "Cadmium Orange Hue", "pigments": "PO62", "hex": "#FF6600"},
-        {"code": "DS004", "name": "Cadmium Red Medium Hue", "pigments": "PR255", "hex": "#E8220A"},
-        {"code": "DS005", "name": "Cadmium Yellow Light Hue", "pigments": "PY65", "hex": "#FFD700"},
-        {"code": "DS006", "name": "Carbazole Violet", "pigments": "PV23", "hex": "#4B0082"},
-        {"code": "DS007", "name": "Cerulean Blue Chromium", "pigments": "PB36", "hex": "#5B92C8"},
-        {"code": "DS008", "name": "Cobalt Blue", "pigments": "PB28", "hex": "#4169E1"},
-        {"code": "DS009", "name": "Cobalt Teal Blue", "pigments": "PG50", "hex": "#00827F"},
-        {"code": "DS010", "name": "Duochrome Aquamarine", "pigments": "PW20", "hex": "#00CED1"},
-        {"code": "DS011", "name": "French Ultramarine", "pigments": "PB29", "hex": "#1B2A80"},
-        {"code": "DS012", "name": "Green Gold", "pigments": "PY129", "hex": "#A8B820"},
-        {"code": "DS013", "name": "Hansa Yellow Light", "pigments": "PY3", "hex": "#FFF44F"},
-        {"code": "DS014", "name": "Hansa Yellow Medium", "pigments": "PY97", "hex": "#FFD700"},
-        {"code": "DS015", "name": "Indanthrone Blue", "pigments": "PB60", "hex": "#1A1A5E"},
-        {"code": "DS016", "name": "Indian Yellow", "pigments": "PY110", "hex": "#FFAA00"},
-        {"code": "DS017", "name": "Lunar Black", "pigments": "PBk11", "hex": "#2A2A2A"},
-        {"code": "DS018", "name": "Mayan Blue Genuine", "pigments": "PB74", "hex": "#5B7FA6"},
-        {"code": "DS019", "name": "Moonglow", "pigments": "PB29, PV19, PBk11", "hex": "#4A4A6A"},
-        {"code": "DS020", "name": "Naples Yellow Deep", "pigments": "PY153, PO62", "hex": "#E8C060"},
-        {"code": "DS021", "name": "New Gamboge", "pigments": "PY153, PO49", "hex": "#E8A020"},
-        {"code": "DS022", "name": "Paynes Gray", "pigments": "PB29, PBk6", "hex": "#40484C"},
-        {"code": "DS023", "name": "Perylene Green", "pigments": "PBk31", "hex": "#1A3A2A"},
-        {"code": "DS024", "name": "Phthalo Blue Green Shade", "pigments": "PB15:3", "hex": "#0070BB"},
-        {"code": "DS025", "name": "Phthalo Blue Red Shade", "pigments": "PB15:1", "hex": "#0000CD"},
-        {"code": "DS026", "name": "Phthalo Green Blue Shade", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "DS027", "name": "Phthalo Green Yellow Shade", "pigments": "PG36", "hex": "#00A86B"},
-        {"code": "DS028", "name": "Prussian Blue", "pigments": "PB27", "hex": "#003153"},
-        {"code": "DS029", "name": "Pyrrol Crimson", "pigments": "PR264", "hex": "#960018"},
-        {"code": "DS030", "name": "Pyrrol Orange", "pigments": "PO73", "hex": "#FF6000"},
-        {"code": "DS031", "name": "Pyrrol Red", "pigments": "PR254", "hex": "#E8000D"},
-        {"code": "DS032", "name": "Pyrrol Scarlet", "pigments": "PR255", "hex": "#FF2400"},
-        {"code": "DS033", "name": "Quinacridone Burnt Orange", "pigments": "PO48", "hex": "#C05020"},
-        {"code": "DS034", "name": "Quinacridone Coral", "pigments": "PO48", "hex": "#E86050"},
-        {"code": "DS035", "name": "Quinacridone Gold", "pigments": "PO49", "hex": "#D4A017"},
-        {"code": "DS036", "name": "Quinacridone Magenta", "pigments": "PR122", "hex": "#E91E8C"},
-        {"code": "DS037", "name": "Quinacridone Pink", "pigments": "PV19", "hex": "#E8399A"},
-        {"code": "DS038", "name": "Quinacridone Rose", "pigments": "PV19", "hex": "#E8006A"},
-        {"code": "DS039", "name": "Quinacridone Sienna", "pigments": "PO48", "hex": "#A04020"},
-        {"code": "DS040", "name": "Quinacridone Violet", "pigments": "PV19", "hex": "#8B008B"},
-        {"code": "DS041", "name": "Raw Sienna", "pigments": "PY43", "hex": "#C68642"},
-        {"code": "DS042", "name": "Raw Umber", "pigments": "PBr7", "hex": "#735244"},
-        {"code": "DS043", "name": "Rhodonite Genuine", "pigments": "natural", "hex": "#D4607A"},
-        {"code": "DS044", "name": "Sap Green", "pigments": "PG36, PY110", "hex": "#4A7C3F"},
-        {"code": "DS045", "name": "Serpentine Genuine", "pigments": "natural", "hex": "#5A7A60"},
-        {"code": "DS046", "name": "Sleeping Beauty Turquoise", "pigments": "natural", "hex": "#48A0A0"},
-        {"code": "DS047", "name": "Sodalite Blue Genuine", "pigments": "natural", "hex": "#4060A0"},
-        {"code": "DS048", "name": "Tiger's Eye Genuine", "pigments": "natural", "hex": "#A07830"},
-        {"code": "DS049", "name": "Transparent Pyrrol Orange", "pigments": "PO71", "hex": "#E86020"},
-        {"code": "DS050", "name": "Ultramarine Blue", "pigments": "PB29", "hex": "#2E3192"},
-        {"code": "DS051", "name": "Ultramarine Violet", "pigments": "PV15", "hex": "#5B2C8E"},
-        {"code": "DS052", "name": "Viridian", "pigments": "PG18", "hex": "#40826D"},
-        {"code": "DS053", "name": "Yellow Ochre", "pigments": "PY43", "hex": "#CC7722"}
+        {
+          "name": "Titanium White",
+          "code": "284600229",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "284600030",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "284600036",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Carbon Black",
+          "code": "284600051",
+          "hex": "#111111",
+          "pigments": "PBk7"
+        },
+        {
+          "name": "Payne's Gray",
+          "code": "284600120",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "284600108",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23, PB15"
+        },
+        {
+          "name": "Graphite Gray",
+          "code": "284600009",
+          "hex": "#5C5C5C",
+          "pigments": "PBk10"
+        },
+        {
+          "name": "Lunar Black",
+          "code": "284600037",
+          "hex": "#303030",
+          "pigments": "PBk11"
+        },
+        {
+          "name": "Moonglow",
+          "code": "284600104",
+          "hex": "#5A6080",
+          "pigments": "PB29, PV19, PBk11"
+        },
+        {
+          "name": "Ultramarine Blue",
+          "code": "284600219",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "French Ultramarine",
+          "code": "284600078",
+          "hex": "#243085",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "284600060",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue Deep",
+          "code": "284600062",
+          "hex": "#1E4A90",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "284600054",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Cerulean Blue Chromium",
+          "code": "284600055",
+          "hex": "#3498C0",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "284600141",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "284600093",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue (Green Shade)",
+          "code": "284600123",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Phthalo Blue (Red Shade)",
+          "code": "284600124",
+          "hex": "#0047AB",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Manganese Blue Hue",
+          "code": "284600099",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Cobalt Teal Blue",
+          "code": "284600064",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Phthalo Turquoise",
+          "code": "284600135",
+          "hex": "#00A09A",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Indanthrone Blue",
+          "code": "284600092",
+          "hex": "#1A237E",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Anthraquinoid Blue",
+          "code": "284600003",
+          "hex": "#283590",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "284600063",
+          "hex": "#20B2AA",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Verditer Blue",
+          "code": "284600221",
+          "hex": "#3A90C0",
+          "pigments": "PB17"
+        },
+        {
+          "name": "Sleeping Beauty Turquoise Genuine",
+          "code": "284600178",
+          "hex": "#3AB8C0",
+          "pigments": "PB Natural"
+        },
+        {
+          "name": "Lapis Lazuli Genuine",
+          "code": "284600097",
+          "hex": "#26619C",
+          "pigments": "PB29 Natural"
+        },
+        {
+          "name": "Azurite Genuine",
+          "code": "284600007",
+          "hex": "#2E86C1",
+          "pigments": "PB Natural"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "284600176",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Duochrome Aquamarine",
+          "code": "284610019",
+          "hex": "#40B0C8",
+          "pigments": "PB15:3, PW22"
+        },
+        {
+          "name": "Blue Apatite Genuine",
+          "code": "284600015",
+          "hex": "#5090B0",
+          "pigments": "PBlue Natural"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "284600218",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Viridian",
+          "code": "284600222",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green (Blue Shade)",
+          "code": "284600126",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Phthalo Green (Yellow Shade)",
+          "code": "284600127",
+          "hex": "#00897B",
+          "pigments": "PG36"
+        },
+        {
+          "name": "Chromium Oxide Green",
+          "code": "284600057",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "284600162",
+          "hex": "#4A7C40",
+          "pigments": "PY110, PG36"
+        },
+        {
+          "name": "Olive Green",
+          "code": "284600112",
+          "hex": "#6B7C3B",
+          "pigments": "PY43, PG7"
+        },
+        {
+          "name": "Green Gold",
+          "code": "284600082",
+          "hex": "#9B8830",
+          "pigments": "PY129"
+        },
+        {
+          "name": "Serpentine Genuine",
+          "code": "284600172",
+          "hex": "#8A9B6E",
+          "pigments": "PG Natural"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "284600089",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Jadeite Genuine",
+          "code": "284600096",
+          "hex": "#7BAF8A",
+          "pigments": "PG Natural"
+        },
+        {
+          "name": "Perylene Green",
+          "code": "284600119",
+          "hex": "#1A3A28",
+          "pigments": "PBk31"
+        },
+        {
+          "name": "Undersea Green",
+          "code": "284600217",
+          "hex": "#3D6B50",
+          "pigments": "PG7, PBk11"
+        },
+        {
+          "name": "Permanent Green",
+          "code": "284600115",
+          "hex": "#3A8040",
+          "pigments": "PG36, PY3"
+        },
+        {
+          "name": "Cascade Green",
+          "code": "284600049",
+          "hex": "#5A9A70",
+          "pigments": "PG7, PY110"
+        },
+        {
+          "name": "Fir Green",
+          "code": "284600075",
+          "hex": "#1A4030",
+          "pigments": "PG7, PBk7"
+        },
+        {
+          "name": "Forest Green",
+          "code": "284600077",
+          "hex": "#2D5A3D",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "May Green",
+          "code": "284600101",
+          "hex": "#7DB840",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Terre Verte Genuine",
+          "code": "284600196",
+          "hex": "#8A9B6E",
+          "pigments": "PG23 Natural"
+        },
+        {
+          "name": "Malachite Genuine",
+          "code": "284600098",
+          "hex": "#45A870",
+          "pigments": "PG Natural"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "284600059",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "284600236",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Amazonite Genuine",
+          "code": "284600001",
+          "hex": "#5FA8A0",
+          "pigments": "PG Natural"
+        },
+        {
+          "name": "Cobalt Green Deep",
+          "code": "284600061",
+          "hex": "#3A8060",
+          "pigments": "PG50, PG7"
+        },
+        {
+          "name": "New Gamboge",
+          "code": "284600105",
+          "hex": "#E8A020",
+          "pigments": "PY153, PO49"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "284600149",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Hansa Yellow Light",
+          "code": "284600085",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Hansa Yellow Medium",
+          "code": "284600086",
+          "hex": "#FFD600",
+          "pigments": "PY97"
+        },
+        {
+          "name": "Hansa Yellow Deep",
+          "code": "284600084",
+          "hex": "#FFC000",
+          "pigments": "PY65"
+        },
+        {
+          "name": "Aureolin",
+          "code": "284600006",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "284600091",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "284600237",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "284600151",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Nickel Azo Yellow",
+          "code": "284600109",
+          "hex": "#E0A820",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Bismuth Yellow",
+          "code": "284600018",
+          "hex": "#FFE060",
+          "pigments": "PY184"
+        },
+        {
+          "name": "Transparent Yellow",
+          "code": "284600207",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Nickel Titanate Yellow",
+          "code": "284600110",
+          "hex": "#E8D4A0",
+          "pigments": "PY53"
+        },
+        {
+          "name": "Monte Amiata Natural Sienna",
+          "code": "284600103",
+          "hex": "#C47828",
+          "pigments": "PBr7 Natural"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "284600106",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Isoindoline Yellow",
+          "code": "284600094",
+          "hex": "#E8A030",
+          "pigments": "PY110"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "284600081",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Goethite (Brown Ochre)",
+          "code": "284600080",
+          "hex": "#B07030",
+          "pigments": "PY43 Natural"
+        },
+        {
+          "name": "Yellow Ochre Genuine",
+          "code": "284600238",
+          "hex": "#C8902A",
+          "pigments": "PY43 Natural"
+        },
+        {
+          "name": "Cadmium Yellow Light Hue",
+          "code": "284600040",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium Hue",
+          "code": "284600041",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep Hue",
+          "code": "284600042",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Lemon Yellow",
+          "code": "284600098",
+          "hex": "#FFF44F",
+          "pigments": "PY175"
+        },
+        {
+          "name": "Azo Yellow",
+          "code": "284600008",
+          "hex": "#FFD700",
+          "pigments": "PY74"
+        },
+        {
+          "name": "Pyrrol Orange",
+          "code": "284600148",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Quinacridone Sienna",
+          "code": "284600168",
+          "hex": "#B86020",
+          "pigments": "PO49"
+        },
+        {
+          "name": "Quinacridone Burnt Orange",
+          "code": "284600146",
+          "hex": "#A05020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Transparent Orange",
+          "code": "284600206",
+          "hex": "#E06020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "284600025",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Cadmium Orange Hue",
+          "code": "284600038",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Perinone Orange",
+          "code": "284600118",
+          "hex": "#E85A20",
+          "pigments": "PO43"
+        },
+        {
+          "name": "Quinacridone Burnt Scarlet",
+          "code": "284600142",
+          "hex": "#A03020",
+          "pigments": "PO49, PR209"
+        },
+        {
+          "name": "Italian Burnt Sienna",
+          "code": "284600095",
+          "hex": "#9A4A20",
+          "pigments": "PBr7 Natural"
+        },
+        {
+          "name": "Lunar Earth",
+          "code": "284600038",
+          "hex": "#8A5030",
+          "pigments": "PBr11"
+        },
+        {
+          "name": "Bloodstone Genuine",
+          "code": "284600019",
+          "hex": "#7A3030",
+          "pigments": "PR Natural"
+        },
+        {
+          "name": "Pyrrol Red",
+          "code": "284600147",
+          "hex": "#CC1E1E",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Pyrrol Scarlet",
+          "code": "284600145",
+          "hex": "#E82010",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Pyrrol Crimson",
+          "code": "284600144",
+          "hex": "#A01820",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "284600155",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Carmine",
+          "code": "284600143",
+          "hex": "#A00038",
+          "pigments": "PR206"
+        },
+        {
+          "name": "Quinacridone Rose",
+          "code": "284600156",
+          "hex": "#CC4488",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Coral",
+          "code": "284600140",
+          "hex": "#E05050",
+          "pigments": "PO48, PR207"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "284600100",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Quinacridone Pink",
+          "code": "284600152",
+          "hex": "#E060A0",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Fuchsia",
+          "code": "284600079",
+          "hex": "#C83080",
+          "pigments": "PV19, PR122"
+        },
+        {
+          "name": "Permanent Alizarin Crimson",
+          "code": "284600116",
+          "hex": "#72001A",
+          "pigments": "PR206, PV19"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "284600001",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder Genuine",
+          "code": "284600160",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Carmine",
+          "code": "284600045",
+          "hex": "#960018",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "284600220",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "284600090",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Red",
+          "code": "284600118",
+          "hex": "#880000",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "284600117",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Transparent Red Oxide",
+          "code": "284600209",
+          "hex": "#8B3020",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Cadmium Red Light Hue",
+          "code": "284600043",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium Hue",
+          "code": "284600044",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep Hue",
+          "code": "284600045",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Permanent Red",
+          "code": "284600114",
+          "hex": "#CC2020",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Scarlet Lake",
+          "code": "284600163",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Vermilion",
+          "code": "284600223",
+          "hex": "#E8341C",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Opera Pink",
+          "code": "284600113",
+          "hex": "#FF70A0",
+          "pigments": "PR122, PR81"
+        },
+        {
+          "name": "Light Red",
+          "code": "284600099",
+          "hex": "#C05030",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Mars Red",
+          "code": "284600100",
+          "hex": "#9A3A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Red Ochre",
+          "code": "284600153",
+          "hex": "#B04030",
+          "pigments": "PR102"
+        },
+        {
+          "name": "Caput Mortuum Violet",
+          "code": "284600046",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Carbazole Violet",
+          "code": "284600048",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "284600061",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "284600158",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Purple",
+          "code": "284600153",
+          "hex": "#8B008B",
+          "pigments": "PV19, PR122"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "284600218",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Dioxazine Purple",
+          "code": "284600072",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Manganese Violet",
+          "code": "284600100",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Perylene Violet",
+          "code": "284600120",
+          "hex": "#6B1E6E",
+          "pigments": "PV29"
+        },
+        {
+          "name": "Permanent Violet",
+          "code": "284600121",
+          "hex": "#8030A0",
+          "pigments": "PV23, PV14"
+        },
+        {
+          "name": "Burgundy Yellow Ochre",
+          "code": "284600024",
+          "hex": "#7A2A3A",
+          "pigments": "PR101, PV19"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "284600152",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "284600026",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "284600220",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "284600173",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Transparent Brown Oxide",
+          "code": "284600205",
+          "hex": "#6E3A1E",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Quinacridone Deep Gold",
+          "code": "284600148",
+          "hex": "#B07020",
+          "pigments": "PO49"
+        },
+        {
+          "name": "Raw Umber Violet",
+          "code": "284600152",
+          "hex": "#6B5040",
+          "pigments": "PBr7, PV19"
+        },
+        {
+          "name": "Undersea Blue",
+          "code": "284600216",
+          "hex": "#3A5A7A",
+          "pigments": "PB28, PBk11"
+        },
+        {
+          "name": "Shadow Violet",
+          "code": "284600175",
+          "hex": "#5A4868",
+          "pigments": "PV23, PBk7"
+        },
+        {
+          "name": "Potter's Pink",
+          "code": "284600138",
+          "hex": "#D08090",
+          "pigments": "PR233"
+        },
+        {
+          "name": "Aussie Red Gold",
+          "code": "284600005",
+          "hex": "#B06020",
+          "pigments": "PBr7 Natural"
+        },
+        {
+          "name": "Lunar Violet",
+          "code": "284600039",
+          "hex": "#6A4A6A",
+          "pigments": "PV15, PBk11"
+        },
+        {
+          "name": "Lunar Blue",
+          "code": "284600038",
+          "hex": "#3A4A6A",
+          "pigments": "PB29, PBk11"
+        },
+        {
+          "name": "Amethyst Genuine",
+          "code": "284600002",
+          "hex": "#9B59B6",
+          "pigments": "PV Nat"
+        },
+        {
+          "name": "Garnet Red Genuine",
+          "code": "284600079",
+          "hex": "#8B0000",
+          "pigments": "PR Nat"
+        },
+        {
+          "name": "Hematite Genuine",
+          "code": "284600087",
+          "hex": "#7A3030",
+          "pigments": "PR102 Nat"
+        },
+        {
+          "name": "Mayan Blue Genuine",
+          "code": "284600102",
+          "hex": "#3A70B0",
+          "pigments": "PB Natural"
+        },
+        {
+          "name": "Piemontite Genuine",
+          "code": "284600128",
+          "hex": "#9A3858",
+          "pigments": "PR Nat"
+        },
+        {
+          "name": "Rhodonite Genuine",
+          "code": "284600157",
+          "hex": "#D06080",
+          "pigments": "PR Nat"
+        },
+        {
+          "name": "Tiger's Eye Genuine",
+          "code": "284600200",
+          "hex": "#B08028",
+          "pigments": "PBr Nat"
+        },
+        {
+          "name": "Chrysocolla Genuine",
+          "code": "284600056",
+          "hex": "#2E8B8B",
+          "pigments": "PG Nat"
+        },
+        {
+          "name": "Zoisite Genuine",
+          "code": "284600240",
+          "hex": "#5A8040",
+          "pigments": "PG Nat"
+        },
+        {
+          "name": "Sugilite Genuine",
+          "code": "284600188",
+          "hex": "#8B3090",
+          "pigments": "PV Nat"
+        },
+        {
+          "name": "Sodalite Genuine",
+          "code": "284600179",
+          "hex": "#2E4A8A",
+          "pigments": "PB Nat"
+        },
+        {
+          "name": "Kyanite Genuine",
+          "code": "284600097",
+          "hex": "#4A6A9A",
+          "pigments": "PB Nat"
+        },
+        {
+          "name": "Turquoise Genuine",
+          "code": "284600214",
+          "hex": "#30D5C8",
+          "pigments": "PB Nat"
+        },
+        {
+          "name": "Epidote Genuine",
+          "code": "284600073",
+          "hex": "#4A6030",
+          "pigments": "PG Nat"
+        },
+        {
+          "name": "Magnetite Crystal Genuine",
+          "code": "284600098",
+          "hex": "#303030",
+          "pigments": "PBk11 Nat"
+        },
+        {
+          "name": "Duochrome Aquamarine",
+          "code": "284610019",
+          "hex": "#40B0C8",
+          "pigments": "PB15:3, PW22"
+        },
+        {
+          "name": "Duochrome Violet Flame",
+          "code": "284610058",
+          "hex": "#7040C0",
+          "pigments": "PV23, PW22"
+        },
+        {
+          "name": "Duochrome Gold",
+          "code": "284610028",
+          "hex": "#D0A820",
+          "pigments": "PY42, PW22"
+        },
+        {
+          "name": "Duochrome Pink Flamingo",
+          "code": "284610046",
+          "hex": "#E070A0",
+          "pigments": "PR122, PW22"
+        }
       ]
     },
     {
-      "brand": "Holbein",
+      "brand": "Winsor & Newton Professional",
       "paints": [
-        {"code": "W001", "name": "Lemon Yellow", "pigments": "PY3", "hex": "#FFF44F"},
-        {"code": "W002", "name": "Permanent Yellow Lemon", "pigments": "PY175", "hex": "#FFFE00"},
-        {"code": "W003", "name": "Permanent Yellow", "pigments": "PY154", "hex": "#FFE135"},
-        {"code": "W004", "name": "Permanent Yellow Deep", "pigments": "PY65", "hex": "#FFB300"},
-        {"code": "W005", "name": "Cadmium Yellow", "pigments": "PY35", "hex": "#FFD700"},
-        {"code": "W006", "name": "Cadmium Yellow Deep", "pigments": "PY35, PO20", "hex": "#FFB300"},
-        {"code": "W007", "name": "Yellow Ochre", "pigments": "PY43", "hex": "#CC7722"},
-        {"code": "W008", "name": "Raw Sienna", "pigments": "PY43", "hex": "#C68642"},
-        {"code": "W009", "name": "Cadmium Orange", "pigments": "PO20", "hex": "#FF8C00"},
-        {"code": "W010", "name": "Permanent Orange", "pigments": "PO62", "hex": "#FF6600"},
-        {"code": "W011", "name": "Cadmium Red", "pigments": "PR108", "hex": "#E8220A"},
-        {"code": "W012", "name": "Cadmium Red Deep", "pigments": "PR108", "hex": "#C0110A"},
-        {"code": "W013", "name": "Permanent Red", "pigments": "PR170", "hex": "#C0392B"},
-        {"code": "W014", "name": "Permanent Alizarin", "pigments": "PR206", "hex": "#9B1B30"},
-        {"code": "W015", "name": "Rose Madder", "pigments": "PR9", "hex": "#C0305A"},
-        {"code": "W016", "name": "Quinacridone Red", "pigments": "PV19", "hex": "#E8006A"},
-        {"code": "W017", "name": "Opera", "pigments": "PR122, PW6", "hex": "#FF5FA2"},
-        {"code": "W018", "name": "Compose Rose", "pigments": "PV19, PW6", "hex": "#F4A0C0"},
-        {"code": "W019", "name": "Lavender", "pigments": "PV23, PW6", "hex": "#B57EDC"},
-        {"code": "W020", "name": "Mineral Violet", "pigments": "PV16", "hex": "#7B4B8E"},
-        {"code": "W021", "name": "Cobalt Violet", "pigments": "PV49", "hex": "#8B4BC8"},
-        {"code": "W022", "name": "Ultramarine Deep", "pigments": "PB29", "hex": "#1B2A80"},
-        {"code": "W023", "name": "Ultramarine", "pigments": "PB29", "hex": "#2E3192"},
-        {"code": "W024", "name": "Cobalt Blue", "pigments": "PB28", "hex": "#4169E1"},
-        {"code": "W025", "name": "Cerulean Blue", "pigments": "PB35", "hex": "#6CA0DC"},
-        {"code": "W026", "name": "Prussian Blue", "pigments": "PB27", "hex": "#003153"},
-        {"code": "W027", "name": "Phthalo Blue", "pigments": "PB15", "hex": "#0047AB"},
-        {"code": "W028", "name": "Manganese Blue Nova", "pigments": "PB15, PW6", "hex": "#6AAFE6"},
-        {"code": "W029", "name": "Cobalt Turquoise", "pigments": "PG50", "hex": "#00827F"},
-        {"code": "W030", "name": "Viridian", "pigments": "PG18", "hex": "#40826D"},
-        {"code": "W031", "name": "Phthalo Green", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "W032", "name": "Sap Green", "pigments": "PG7, PY110", "hex": "#4A7C3F"},
-        {"code": "W033", "name": "Permanent Green", "pigments": "PG36, PY150", "hex": "#3D9940"},
-        {"code": "W034", "name": "Permanent Green Light", "pigments": "PG36, PY154", "hex": "#66BB00"},
-        {"code": "W035", "name": "Compose Green", "pigments": "PG7, PY3, PW6", "hex": "#8BC88A"},
-        {"code": "W036", "name": "Yellow Green", "pigments": "PY150, PG7", "hex": "#7EC850"},
-        {"code": "W037", "name": "Raw Umber", "pigments": "PBr7", "hex": "#735244"},
-        {"code": "W038", "name": "Burnt Sienna", "pigments": "PBr7", "hex": "#8B4513"},
-        {"code": "W039", "name": "Burnt Umber", "pigments": "PBr7", "hex": "#5C3317"},
-        {"code": "W040", "name": "Sepia", "pigments": "PBk6, PBr7", "hex": "#3D2B1F"},
-        {"code": "W041", "name": "Paynes Gray", "pigments": "PB15, PBk6", "hex": "#40484C"},
-        {"code": "W042", "name": "Lamp Black", "pigments": "PBk6", "hex": "#1C1C1C"},
-        {"code": "W043", "name": "Ivory Black", "pigments": "PBk9", "hex": "#231F20"},
-        {"code": "W044", "name": "Chinese White", "pigments": "PW4", "hex": "#F0F0EC"}
+        {
+          "name": "Titanium White",
+          "code": "644",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "150",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "331",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "337",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Mars Black",
+          "code": "386",
+          "hex": "#222222",
+          "pigments": "PBk11"
+        },
+        {
+          "name": "Sepia",
+          "code": "609",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "465",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "430",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23, PB15"
+        },
+        {
+          "name": "Davy's Grey",
+          "code": "187",
+          "hex": "#666666",
+          "pigments": "PBk19, PW6"
+        },
+        {
+          "name": "Charcoal Grey",
+          "code": "116",
+          "hex": "#505050",
+          "pigments": "PBk7, PW6"
+        },
+        {
+          "name": "Blue Grey",
+          "code": "044",
+          "hex": "#6A7A8A",
+          "pigments": "PB29, PW6, PBk7"
+        },
+        {
+          "name": "Warm Grey",
+          "code": "698",
+          "hex": "#9A9088",
+          "pigments": "PBr7, PW6, PBk7"
+        },
+        {
+          "name": "French Ultramarine",
+          "code": "263",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine (Green Shade)",
+          "code": "667",
+          "hex": "#2A4AAF",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "672",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "178",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue Deep",
+          "code": "180",
+          "hex": "#1E4A90",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "137",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Cerulean Blue (Chromium)",
+          "code": "139",
+          "hex": "#3498C0",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "538",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "322",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Winsor Blue (Green Shade)",
+          "code": "719",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Winsor Blue (Red Shade)",
+          "code": "707",
+          "hex": "#0047AB",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Manganese Blue Hue",
+          "code": "379",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Antwerp Blue",
+          "code": "010",
+          "hex": "#1A6090",
+          "pigments": "PB15, PB27"
+        },
+        {
+          "name": "Phthalo Turquoise",
+          "code": "526",
+          "hex": "#00A09A",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "190",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Cobalt Turquoise Light",
+          "code": "191",
+          "hex": "#20B2AA",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Indanthrene Blue",
+          "code": "321",
+          "hex": "#1A237E",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "617",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Smalt (Dumont's Blue)",
+          "code": "620",
+          "hex": "#4060A0",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue Hue",
+          "code": "179",
+          "hex": "#3060B0",
+          "pigments": "PB29, PW6"
+        },
+        {
+          "name": "Viridian",
+          "code": "692",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Winsor Green (Blue Shade)",
+          "code": "721",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Winsor Green (Yellow Shade)",
+          "code": "720",
+          "hex": "#00897B",
+          "pigments": "PG36"
+        },
+        {
+          "name": "Oxide of Chromium",
+          "code": "459",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "599",
+          "hex": "#4A7C40",
+          "pigments": "PY110, PG36"
+        },
+        {
+          "name": "Olive Green",
+          "code": "447",
+          "hex": "#6B7C3B",
+          "pigments": "PY43, PG7"
+        },
+        {
+          "name": "Green Gold",
+          "code": "294",
+          "hex": "#9B8830",
+          "pigments": "PY129"
+        },
+        {
+          "name": "Terre Verte",
+          "code": "637",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "311",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Permanent Sap Green",
+          "code": "503",
+          "hex": "#558B2F",
+          "pigments": "PY110, PG36"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "184",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Permanent Green Light",
+          "code": "483",
+          "hex": "#50A050",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Viridian Hue",
+          "code": "693",
+          "hex": "#3D8060",
+          "pigments": "PG7, PG18"
+        },
+        {
+          "name": "Prussian Green",
+          "code": "539",
+          "hex": "#1A4A30",
+          "pigments": "PG7, PB27"
+        },
+        {
+          "name": "Lemon Yellow (Nickel Titanate)",
+          "code": "347",
+          "hex": "#FFF066",
+          "pigments": "PY53"
+        },
+        {
+          "name": "Winsor Yellow",
+          "code": "730",
+          "hex": "#FFD600",
+          "pigments": "PY154"
+        },
+        {
+          "name": "Winsor Yellow Deep",
+          "code": "731",
+          "hex": "#FFA500",
+          "pigments": "PY65"
+        },
+        {
+          "name": "Cadmium Yellow Pale",
+          "code": "118",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow",
+          "code": "108",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "111",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Aureolin",
+          "code": "019",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "New Gamboge",
+          "code": "421",
+          "hex": "#E8A020",
+          "pigments": "PY153, PO49"
+        },
+        {
+          "name": "Gamboge",
+          "code": "268",
+          "hex": "#D49520",
+          "pigments": "PY83, PO49"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "552",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "744",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "285",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "422",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Naples Yellow Deep",
+          "code": "423",
+          "hex": "#EDB060",
+          "pigments": "PY37, PR101, PW6"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "547",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "319",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Transparent Yellow",
+          "code": "653",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Bismuth Yellow",
+          "code": "025",
+          "hex": "#FFE060",
+          "pigments": "PY184"
+        },
+        {
+          "name": "Isoindoline Yellow",
+          "code": "329",
+          "hex": "#E8A030",
+          "pigments": "PY110"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "090",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Winsor Orange",
+          "code": "723",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Winsor Orange (Red Shade)",
+          "code": "724",
+          "hex": "#D04020",
+          "pigments": "PO73, PR254"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "074",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Light Red",
+          "code": "362",
+          "hex": "#C05030",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Scarlet Lake",
+          "code": "603",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Perinone Orange",
+          "code": "469",
+          "hex": "#E85A20",
+          "pigments": "PO43"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "385",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Cadmium Red",
+          "code": "094",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "097",
+          "hex": "#A81010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Scarlet",
+          "code": "106",
+          "hex": "#E83020",
+          "pigments": "PR108, PO20"
+        },
+        {
+          "name": "Winsor Red",
+          "code": "726",
+          "hex": "#CC2020",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Winsor Red Deep",
+          "code": "727",
+          "hex": "#AA1818",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Permanent Rose",
+          "code": "502",
+          "hex": "#CC1F58",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "545",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Permanent Carmine",
+          "code": "479",
+          "hex": "#8B0038",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "004",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder Genuine",
+          "code": "587",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Carmine",
+          "code": "130",
+          "hex": "#960018",
+          "pigments": "NR4"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "678",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "317",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "507",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Brown Madder",
+          "code": "056",
+          "hex": "#7A1A1A",
+          "pigments": "PR206"
+        },
+        {
+          "name": "Pyrrol Scarlet",
+          "code": "540",
+          "hex": "#E82010",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Pyrrol Red",
+          "code": "538",
+          "hex": "#CC1E1E",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Pyrrol Crimson",
+          "code": "536",
+          "hex": "#A01820",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Potter's Pink",
+          "code": "536",
+          "hex": "#D08090",
+          "pigments": "PR233"
+        },
+        {
+          "name": "Transparent Red Oxide",
+          "code": "648",
+          "hex": "#8B3020",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Mars Red",
+          "code": "388",
+          "hex": "#9A3A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Red Ochre",
+          "code": "557",
+          "hex": "#B04030",
+          "pigments": "PR102"
+        },
+        {
+          "name": "Opera Rose",
+          "code": "448",
+          "hex": "#FF70A0",
+          "pigments": "PR122, PR81"
+        },
+        {
+          "name": "Winsor Violet (Dioxazine)",
+          "code": "733",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "192",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Permanent Mauve",
+          "code": "491",
+          "hex": "#9B4080",
+          "pigments": "PV16, PV23"
+        },
+        {
+          "name": "Purple Lake",
+          "code": "544",
+          "hex": "#6B0060",
+          "pigments": "PR122, PV23"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "548",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Perylene Violet",
+          "code": "508",
+          "hex": "#6B1E6E",
+          "pigments": "PV29"
+        },
+        {
+          "name": "Manganese Violet",
+          "code": "380",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "554",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "076",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "676",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum Violet",
+          "code": "129",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Brown",
+          "code": "655",
+          "hex": "#6E3A1E",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Warm Sepia",
+          "code": "698",
+          "hex": "#3A1E0E",
+          "pigments": "PBr7, PR101"
+        }
+      ]
+    },
+    {
+      "brand": "Rembrandt",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "105",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "106",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "701",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "702",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "708",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Grey",
+          "code": "710",
+          "hex": "#808080",
+          "pigments": "PW6, PBk7"
+        },
+        {
+          "name": "Cold Grey",
+          "code": "712",
+          "hex": "#A0A8B0",
+          "pigments": "PW6, PB29, PBk7"
+        },
+        {
+          "name": "Ultramarine Deep",
+          "code": "506",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Light",
+          "code": "504",
+          "hex": "#2A4AAF",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue Ultra",
+          "code": "512",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "530",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "508",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "533",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "570",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Manganese Blue Hue",
+          "code": "551",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "535",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Turquoise Blue",
+          "code": "522",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Delft Blue",
+          "code": "503",
+          "hex": "#2A3A80",
+          "pigments": "PB29, PV23"
+        },
+        {
+          "name": "Viridian",
+          "code": "616",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "675",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Chrome Oxide Green",
+          "code": "640",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "623",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "620",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Green Earth",
+          "code": "610",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Permanent Green Deep",
+          "code": "619",
+          "hex": "#1A5E30",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "633",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "645",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Cadmium Yellow Lemon",
+          "code": "207",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "208",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "209",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "210",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Aureolin",
+          "code": "206",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "227",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "234",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow Light",
+          "code": "222",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Naples Yellow Deep",
+          "code": "223",
+          "hex": "#EDB060",
+          "pigments": "PY37, PR101, PW6"
+        },
+        {
+          "name": "Transparent Yellow Medium",
+          "code": "284",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "244",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "231",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "211",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "411",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Azo Orange",
+          "code": "276",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "342",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "303",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium",
+          "code": "306",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "309",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Quinacridone Rose",
+          "code": "366",
+          "hex": "#CC4488",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "372",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Permanent Carmine",
+          "code": "318",
+          "hex": "#8B0038",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "331",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder Lake",
+          "code": "362",
+          "hex": "#C0306A",
+          "pigments": "NR9, PV19"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "339",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "347",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Oxide Red",
+          "code": "378",
+          "hex": "#8B3020",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Permanent Blue Violet",
+          "code": "548",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "545",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "591",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "507",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Permanent Red Violet",
+          "code": "567",
+          "hex": "#8B1060",
+          "pigments": "PV19, PR122"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "408",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "409",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "403",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "416",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum Violet",
+          "code": "381",
+          "hex": "#592220",
+          "pigments": "PR101"
+        }
+      ]
+    },
+    {
+      "brand": "Sakura Koi",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "001",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "049",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Payne's Gray",
+          "code": "046",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Ultramarine",
+          "code": "028",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "030",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "032",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "034",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "036",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Turquoise Green",
+          "code": "238",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "140",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Indigo",
+          "code": "044",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Viridian Hue",
+          "code": "228",
+          "hex": "#3B7A57",
+          "pigments": "PG7, PG18"
+        },
+        {
+          "name": "Sap Green",
+          "code": "242",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "244",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Permanent Green",
+          "code": "226",
+          "hex": "#50A050",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "222",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Leaf Green",
+          "code": "224",
+          "hex": "#6BA840",
+          "pigments": "PY150, PG36"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "240",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Lemon Yellow",
+          "code": "003",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Cadmium Yellow Hue",
+          "code": "004",
+          "hex": "#FFD700",
+          "pigments": "PY97"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "012",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "014",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow Hue",
+          "code": "008",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6"
+        },
+        {
+          "name": "Cadmium Orange Hue",
+          "code": "005",
+          "hex": "#FF7700",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "016",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Cadmium Red Hue",
+          "code": "007",
+          "hex": "#CC2010",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Scarlet",
+          "code": "006",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Rose Madder Hue",
+          "code": "024",
+          "hex": "#C0306A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "026",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Crimson Lake",
+          "code": "020",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Permanent Violet",
+          "code": "040",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Lavender",
+          "code": "038",
+          "hex": "#9B7ABF",
+          "pigments": "PV23, PW6"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "050",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "052",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Sepia",
+          "code": "053",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "054",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Flesh Tint",
+          "code": "009",
+          "hex": "#F2C0A0",
+          "pigments": "PW6, PY43, PR101"
+        },
+        {
+          "name": "Yellow Grey",
+          "code": "011",
+          "hex": "#C0B890",
+          "pigments": "PY43, PBk7"
+        }
+      ]
+    },
+    {
+      "brand": "Holbein Artists'",
+      "paints": [
+        {
+          "name": "Permanent White",
+          "code": "W001",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "W002",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "W320",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "W322",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Mars Black",
+          "code": "W324",
+          "hex": "#222222",
+          "pigments": "PBk11"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "W315",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "W316",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23"
+        },
+        {
+          "name": "Davy's Grey",
+          "code": "W317",
+          "hex": "#666666",
+          "pigments": "PBk19"
+        },
+        {
+          "name": "Ultramarine Deep",
+          "code": "W090",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Light",
+          "code": "W091",
+          "hex": "#2A4AAF",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "W080",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "W075",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Cerulean Blue Hue",
+          "code": "W076",
+          "hex": "#3498C0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "W095",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "W099",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "W096",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Compose Blue",
+          "code": "W098",
+          "hex": "#4A7AB0",
+          "pigments": "PB29, PW6"
+        },
+        {
+          "name": "Manganese Blue Nova",
+          "code": "W074",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Cobalt Turquoise Light",
+          "code": "W082",
+          "hex": "#20B2AA",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Cobalt Teal",
+          "code": "W083",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Turquoise Blue",
+          "code": "W078",
+          "hex": "#00A09A",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "W077",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Compose Green 1",
+          "code": "W145",
+          "hex": "#5A9A70",
+          "pigments": "PG7, PY110"
+        },
+        {
+          "name": "Marine Blue",
+          "code": "W093",
+          "hex": "#1A6090",
+          "pigments": "PB15, PB28"
+        },
+        {
+          "name": "Viridian",
+          "code": "W120",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "W125",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Sap Green",
+          "code": "W143",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "W140",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Green Grey",
+          "code": "W136",
+          "hex": "#7A9070",
+          "pigments": "PG23, PBk7"
+        },
+        {
+          "name": "Permanent Green No.1",
+          "code": "W127",
+          "hex": "#50A050",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Permanent Green No.2",
+          "code": "W128",
+          "hex": "#3A8040",
+          "pigments": "PG36, PY150"
+        },
+        {
+          "name": "Terre Verte",
+          "code": "W118",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Chromium Oxide Green",
+          "code": "W122",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Hooker's Green No.1",
+          "code": "W131",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Hooker's Green No.2",
+          "code": "W132",
+          "hex": "#1A4A30",
+          "pigments": "PG7, PBk7"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "W124",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "W150",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Spring Green",
+          "code": "W148",
+          "hex": "#7DB840",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Aureolin",
+          "code": "W010",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Cadmium Yellow Lemon",
+          "code": "W008",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "W012",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "W013",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "W014",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Lemon Yellow",
+          "code": "W005",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "W046",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "W052",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "W025",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "W021",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Permanent Yellow Lemon",
+          "code": "W004",
+          "hex": "#FFF44F",
+          "pigments": "PY175"
+        },
+        {
+          "name": "Compose Yellow",
+          "code": "W033",
+          "hex": "#F0D060",
+          "pigments": "PY110, PW6"
+        },
+        {
+          "name": "Jaune Brilliant",
+          "code": "W026",
+          "hex": "#F8E080",
+          "pigments": "PY53, PW6"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "W015",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Permanent Orange",
+          "code": "W063",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "W053",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "W060",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "W049",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Cadmium Red Orange",
+          "code": "W220",
+          "hex": "#E83020",
+          "pigments": "PR108, PO20"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "W221",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red",
+          "code": "W222",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "W223",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Vermilion",
+          "code": "W230",
+          "hex": "#E8341C",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Permanent Rose",
+          "code": "W213",
+          "hex": "#CC1F58",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "W212",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Permanent Carmine",
+          "code": "W206",
+          "hex": "#8B0038",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "W200",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder",
+          "code": "W214",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Scarlet Lake",
+          "code": "W231",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "W245",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "W244",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Red",
+          "code": "W240",
+          "hex": "#880000",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Compose Red",
+          "code": "W208",
+          "hex": "#D04060",
+          "pigments": "PV19, PW6"
+        },
+        {
+          "name": "Shell Pink",
+          "code": "W207",
+          "hex": "#F0C0B0",
+          "pigments": "PW6, PR101, PY43"
+        },
+        {
+          "name": "Opera",
+          "code": "W215",
+          "hex": "#FF70A0",
+          "pigments": "PR122, PR81"
+        },
+        {
+          "name": "Compose Violet",
+          "code": "W270",
+          "hex": "#8060B0",
+          "pigments": "PV23, PW6"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "W263",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Mineral Violet",
+          "code": "W267",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "W261",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Dioxazine Purple",
+          "code": "W265",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Mauve",
+          "code": "W268",
+          "hex": "#9B4080",
+          "pigments": "PV16, PV23"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "W295",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "W290",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "W303",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "W305",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum",
+          "code": "W248",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Brown",
+          "code": "W296",
+          "hex": "#6E3A1E",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber Light",
+          "code": "W291",
+          "hex": "#7A4020",
+          "pigments": "PBr7"
+        }
+      ]
+    },
+    {
+      "brand": "QoR",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "QR-TW",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "QR-IB",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Carbon Black",
+          "code": "QR-CB",
+          "hex": "#111111",
+          "pigments": "PBk7"
+        },
+        {
+          "name": "Payne's Gray",
+          "code": "QR-PG",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Ultramarine Blue",
+          "code": "QR-UB",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "QR-CoB",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "QR-CeB",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Cerulean Blue Chromium",
+          "code": "QR-CBC",
+          "hex": "#3498C0",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "QR-PrB",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "QR-In",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue (Green Shade)",
+          "code": "QR-PhBG",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Phthalo Blue (Red Shade)",
+          "code": "QR-PhBR",
+          "hex": "#0047AB",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Manganese Blue",
+          "code": "QR-MB",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Cobalt Teal",
+          "code": "QR-CT",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Phthalo Turquoise",
+          "code": "QR-PhT",
+          "hex": "#00A09A",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Indanthrone Blue",
+          "code": "QR-InB",
+          "hex": "#1A237E",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Viridian",
+          "code": "QR-Vi",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green (Blue Shade)",
+          "code": "QR-PhGB",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Phthalo Green (Yellow Shade)",
+          "code": "QR-PhGY",
+          "hex": "#00897B",
+          "pigments": "PG36"
+        },
+        {
+          "name": "Chromium Oxide Green",
+          "code": "QR-COG",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "QR-SG",
+          "hex": "#4A7C40",
+          "pigments": "PY110, PG36"
+        },
+        {
+          "name": "Olive Green",
+          "code": "QR-OG",
+          "hex": "#6B7C3B",
+          "pigments": "PY43, PG7"
+        },
+        {
+          "name": "Green Gold",
+          "code": "QR-GG",
+          "hex": "#9B8830",
+          "pigments": "PY129"
+        },
+        {
+          "name": "Hansa Yellow Light",
+          "code": "QR-HYL",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Hansa Yellow Medium",
+          "code": "QR-HYM",
+          "hex": "#FFD600",
+          "pigments": "PY97"
+        },
+        {
+          "name": "Hansa Yellow Deep",
+          "code": "QR-HYD",
+          "hex": "#FFC000",
+          "pigments": "PY65"
+        },
+        {
+          "name": "Bismuth Yellow",
+          "code": "QR-BY",
+          "hex": "#FFE060",
+          "pigments": "PY184"
+        },
+        {
+          "name": "Nickel Azo Yellow",
+          "code": "QR-NAY",
+          "hex": "#E0A820",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "QR-YO",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "QR-RS",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "New Gamboge",
+          "code": "QR-NG",
+          "hex": "#E8A020",
+          "pigments": "PY153, PO49"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "QR-QG",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "QR-NY",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Transparent Yellow",
+          "code": "QR-TY",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Pyrrol Orange",
+          "code": "QR-PO",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Quinacridone Burnt Orange",
+          "code": "QR-QBO",
+          "hex": "#A05020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "QR-BS",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Transparent Pyrrol Orange",
+          "code": "QR-TPO",
+          "hex": "#D06020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Pyrrol Red",
+          "code": "QR-PR",
+          "hex": "#CC1E1E",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Pyrrol Scarlet",
+          "code": "QR-PSc",
+          "hex": "#E82010",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Pyrrol Crimson",
+          "code": "QR-PCr",
+          "hex": "#A01820",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "QR-QR",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Rose",
+          "code": "QR-QRo",
+          "hex": "#CC4488",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "QR-QM",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Quinacridone Carmine",
+          "code": "QR-QC",
+          "hex": "#A00038",
+          "pigments": "PR206"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "QR-AC",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "QR-VR",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "QR-IR",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "QR-PM",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Carbazole Violet",
+          "code": "QR-CV",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "QR-CoV",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "QR-QV",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "QR-UV",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "QR-RU",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "QR-BU",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "QR-VB",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "QR-Se",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Transparent Brown Oxide",
+          "code": "QR-TBO",
+          "hex": "#6E3A1E",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Moonglow",
+          "code": "QR-Mo",
+          "hex": "#5A6080",
+          "pigments": "PB29, PV19, PBk11"
+        },
+        {
+          "name": "Green Apatite Genuine",
+          "code": "QR-GAG",
+          "hex": "#5A9870",
+          "pigments": "PG Nat"
+        }
       ]
     },
     {
       "brand": "Sennelier",
       "paints": [
-        {"code": "501", "name": "Chinese White", "pigments": "PW4", "hex": "#F0F0EC"},
-        {"code": "502", "name": "Titanium White", "pigments": "PW6", "hex": "#FFFFFF"},
-        {"code": "503", "name": "Lemon Yellow", "pigments": "PY3", "hex": "#FFF44F"},
-        {"code": "504", "name": "Cadmium Yellow Light", "pigments": "PY35", "hex": "#FFD700"},
-        {"code": "505", "name": "Cadmium Yellow Deep", "pigments": "PY35, PO20", "hex": "#FFB300"},
-        {"code": "506", "name": "Yellow Ochre", "pigments": "PY43", "hex": "#CC7722"},
-        {"code": "507", "name": "Raw Sienna", "pigments": "PY43", "hex": "#C68642"},
-        {"code": "508", "name": "Indian Yellow", "pigments": "PY110", "hex": "#FFAA00"},
-        {"code": "509", "name": "Cadmium Orange", "pigments": "PO20", "hex": "#FF8C00"},
-        {"code": "510", "name": "Cadmium Red Light", "pigments": "PR108", "hex": "#FF3300"},
-        {"code": "511", "name": "Cadmium Red Deep", "pigments": "PR108", "hex": "#C0110A"},
-        {"code": "512", "name": "Scarlet Lake", "pigments": "PR255", "hex": "#FF2400"},
-        {"code": "513", "name": "Vermilion", "pigments": "PR255, PO62", "hex": "#E34234"},
-        {"code": "514", "name": "Alizarin Crimson", "pigments": "PR83", "hex": "#9B1B30"},
-        {"code": "515", "name": "Rose Madder Lake", "pigments": "PV19", "hex": "#C0305A"},
-        {"code": "516", "name": "Quinacridone Rose", "pigments": "PV19", "hex": "#E8399A"},
-        {"code": "517", "name": "Helios Purple", "pigments": "PV23", "hex": "#4B0082"},
-        {"code": "518", "name": "Cobalt Violet", "pigments": "PV49", "hex": "#8B4BC8"},
-        {"code": "519", "name": "Ultramarine Deep", "pigments": "PB29", "hex": "#1B2A80"},
-        {"code": "520", "name": "French Ultramarine", "pigments": "PB29", "hex": "#2E3192"},
-        {"code": "521", "name": "Cobalt Blue", "pigments": "PB28", "hex": "#4169E1"},
-        {"code": "522", "name": "Cerulean Blue", "pigments": "PB35", "hex": "#6CA0DC"},
-        {"code": "523", "name": "Prussian Blue", "pigments": "PB27", "hex": "#003153"},
-        {"code": "524", "name": "Phthalo Blue", "pigments": "PB15", "hex": "#0047AB"},
-        {"code": "525", "name": "Indigo", "pigments": "PB60, PBk6", "hex": "#1A1A5E"},
-        {"code": "526", "name": "Turquoise", "pigments": "PB16", "hex": "#00CED1"},
-        {"code": "527", "name": "Cobalt Turquoise", "pigments": "PG50", "hex": "#00827F"},
-        {"code": "528", "name": "Viridian", "pigments": "PG18", "hex": "#40826D"},
-        {"code": "529", "name": "Phthalo Green", "pigments": "PG7", "hex": "#00A550"},
-        {"code": "530", "name": "Sap Green", "pigments": "PG7, PY150", "hex": "#4A7C3F"},
-        {"code": "531", "name": "Chromium Oxide Green", "pigments": "PG17", "hex": "#4A7C59"},
-        {"code": "532", "name": "Raw Umber", "pigments": "PBr7", "hex": "#735244"},
-        {"code": "533", "name": "Burnt Sienna", "pigments": "PBr7", "hex": "#8B4513"},
-        {"code": "534", "name": "Burnt Umber", "pigments": "PBr7", "hex": "#5C3317"},
-        {"code": "535", "name": "Sepia", "pigments": "PBk6, PBr7", "hex": "#3D2B1F"},
-        {"code": "536", "name": "Vandyke Brown", "pigments": "PBr7, PBk6", "hex": "#4A2C17"},
-        {"code": "537", "name": "Paynes Grey", "pigments": "PB15, PBk6", "hex": "#40484C"},
-        {"code": "538", "name": "Lamp Black", "pigments": "PBk6", "hex": "#1C1C1C"},
-        {"code": "539", "name": "Ivory Black", "pigments": "PBk9", "hex": "#231F20"}
+        {
+          "name": "Chinese White",
+          "code": "101",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Titanium White",
+          "code": "116",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "703",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "709",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "703",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Grey",
+          "code": "704",
+          "hex": "#808080",
+          "pigments": "PW6, PBk7"
+        },
+        {
+          "name": "Charcoal Grey",
+          "code": "705",
+          "hex": "#505050",
+          "pigments": "PBk7, PW6"
+        },
+        {
+          "name": "French Ultramarine",
+          "code": "315",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Deep",
+          "code": "316",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "304",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cobalt Blue Deep",
+          "code": "305",
+          "hex": "#1E4A90",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "302",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "311",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "317",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "308",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "393",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Turquoise",
+          "code": "394",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Manganese Blue",
+          "code": "303",
+          "hex": "#4DB8D0",
+          "pigments": "PB15:3"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "395",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Indanthrone Blue",
+          "code": "309",
+          "hex": "#1A237E",
+          "pigments": "PB60"
+        },
+        {
+          "name": "Cobalt Blue Light",
+          "code": "306",
+          "hex": "#3D70C0",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Viridian",
+          "code": "837",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "841",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Chrome Oxide Green",
+          "code": "820",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "843",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "821",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Green Earth",
+          "code": "814",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Permanent Green Light",
+          "code": "836",
+          "hex": "#50A050",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "815",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Phthalo Green (Yellow Shade)",
+          "code": "842",
+          "hex": "#00897B",
+          "pigments": "PG36"
+        },
+        {
+          "name": "Yellow Green",
+          "code": "845",
+          "hex": "#9ACC40",
+          "pigments": "PY3, PG36"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "825",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Lemon Yellow",
+          "code": "501",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "532",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "533",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "534",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Aureolin",
+          "code": "506",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "523",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "524",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "514",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "513",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Nickel Yellow",
+          "code": "508",
+          "hex": "#E0A820",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "522",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "525",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Transparent Yellow",
+          "code": "509",
+          "hex": "#FFCC00",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Hansa Yellow Light",
+          "code": "502",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "613",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Cadmium Red Orange",
+          "code": "614",
+          "hex": "#FF5500",
+          "pigments": "PO20, PR108"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "619",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Pyrrol Orange",
+          "code": "617",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "612",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "694",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium",
+          "code": "695",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "696",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Vermillion",
+          "code": "672",
+          "hex": "#E8341C",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "689",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "690",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Carmine",
+          "code": "635",
+          "hex": "#960018",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "630",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Permanent Crimson",
+          "code": "660",
+          "hex": "#8B0038",
+          "pigments": "PR264"
+        },
+        {
+          "name": "Rose Madder",
+          "code": "677",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "652",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "644",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Red",
+          "code": "661",
+          "hex": "#880000",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Permanent Rose",
+          "code": "685",
+          "hex": "#CC4488",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Opera Rose",
+          "code": "688",
+          "hex": "#FF70A0",
+          "pigments": "PR122, PR81"
+        },
+        {
+          "name": "Scarlet",
+          "code": "670",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Dioxazine Purple",
+          "code": "920",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "902",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "918",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "910",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Red Violet",
+          "code": "921",
+          "hex": "#8B1060",
+          "pigments": "PV19, PR122"
+        },
+        {
+          "name": "Blue Violet",
+          "code": "912",
+          "hex": "#4A2888",
+          "pigments": "PV23, PB29"
+        },
+        {
+          "name": "Manganese Violet",
+          "code": "905",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "766",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "757",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "764",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "775",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum",
+          "code": "748",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Brown Oxide",
+          "code": "758",
+          "hex": "#6E3A1E",
+          "pigments": "PR101"
+        }
+      ]
+    },
+    {
+      "brand": "Maimeri Blu",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "018",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "019",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "540",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "544",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "490",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "495",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23"
+        },
+        {
+          "name": "Ultramarine Blue Deep",
+          "code": "390",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Blue Light",
+          "code": "391",
+          "hex": "#2A4AAF",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "370",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "400",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "394",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "385",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "402",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "410",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Turquoise",
+          "code": "415",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "398",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Viridian",
+          "code": "339",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "343",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Chrome Oxide Green",
+          "code": "336",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "347",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "340",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Green Earth",
+          "code": "330",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "350",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "334",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Cadmium Yellow Lemon",
+          "code": "076",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "077",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "078",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "079",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "123",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "128",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "112",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "111",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "119",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "082",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "133",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Pyrrol Orange",
+          "code": "084",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "250",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium",
+          "code": "251",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "252",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "257",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "256",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Permanent Carmine",
+          "code": "240",
+          "hex": "#8B0038",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "239",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "233",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "262",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Scarlet Red",
+          "code": "255",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Rose Madder",
+          "code": "247",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Dioxazine Violet",
+          "code": "440",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "442",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "445",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "443",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "137",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "134",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "148",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "152",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum",
+          "code": "143",
+          "hex": "#592220",
+          "pigments": "PR101"
+        }
+      ]
+    },
+    {
+      "brand": "Old Holland",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "A01",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Chinese White",
+          "code": "A02",
+          "hex": "#F0F0EB",
+          "pigments": "PW4"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "A64",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "A65",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Payne's Grey",
+          "code": "A63",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Grey",
+          "code": "A62",
+          "hex": "#808080",
+          "pigments": "PW6, PBk7"
+        },
+        {
+          "name": "Ultramarine Blue Extra",
+          "code": "B21",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Ultramarine Blue Deep",
+          "code": "B22",
+          "hex": "#182E7A",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue Extra",
+          "code": "B11",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "B13",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "B26",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Indigo",
+          "code": "B28",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "B25",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Manganese Blue",
+          "code": "B15",
+          "hex": "#4DB8D0",
+          "pigments": "PB33"
+        },
+        {
+          "name": "Cobalt Turquoise",
+          "code": "B17",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Cobalt Teal Blue",
+          "code": "B18",
+          "hex": "#008080",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Sky Blue",
+          "code": "B20",
+          "hex": "#7EC8E3",
+          "pigments": "PB15:3, PW6"
+        },
+        {
+          "name": "Viridian",
+          "code": "C11",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "C15",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Chrome Oxide Green",
+          "code": "C12",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "C18",
+          "hex": "#4A7C40",
+          "pigments": "PY150, PG7"
+        },
+        {
+          "name": "Olive Green",
+          "code": "C16",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Green Earth",
+          "code": "C10",
+          "hex": "#8A9B6E",
+          "pigments": "PG23"
+        },
+        {
+          "name": "Cobalt Green",
+          "code": "C13",
+          "hex": "#5EB8A0",
+          "pigments": "PG50"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "C17",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Cadmium Yellow Lemon",
+          "code": "D01",
+          "hex": "#FFE44F",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Light",
+          "code": "D02",
+          "hex": "#FFD700",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Medium",
+          "code": "D03",
+          "hex": "#FFC200",
+          "pigments": "PY35"
+        },
+        {
+          "name": "Cadmium Yellow Deep",
+          "code": "D04",
+          "hex": "#FFB000",
+          "pigments": "PY37"
+        },
+        {
+          "name": "Aureolin",
+          "code": "D10",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "D15",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "D16",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "D11",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "D12",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Gold Ochre",
+          "code": "D14",
+          "hex": "#C09030",
+          "pigments": "PY42"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "D13",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "E01",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Cadmium Red Orange",
+          "code": "E02",
+          "hex": "#FF5500",
+          "pigments": "PO20, PR108"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "E10",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Mars Orange",
+          "code": "E05",
+          "hex": "#C06820",
+          "pigments": "PBr24"
+        },
+        {
+          "name": "Cadmium Red Light",
+          "code": "F01",
+          "hex": "#E8302A",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Medium",
+          "code": "F02",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Cadmium Red Deep",
+          "code": "F03",
+          "hex": "#B01010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Vermillion",
+          "code": "F05",
+          "hex": "#E8341C",
+          "pigments": "PR255"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "F15",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "F16",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Carmine",
+          "code": "F10",
+          "hex": "#960018",
+          "pigments": "PR176"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "F08",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Rose Madder",
+          "code": "F12",
+          "hex": "#C0306A",
+          "pigments": "NR9"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "F20",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Indian Red",
+          "code": "F19",
+          "hex": "#6B2A20",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "F22",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Dioxazine Violet",
+          "code": "G05",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "G01",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "G06",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "G03",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Manganese Violet",
+          "code": "G04",
+          "hex": "#7B4080",
+          "pigments": "PV16"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "H05",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "H04",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "H08",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "H10",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Caput Mortuum",
+          "code": "H06",
+          "hex": "#592220",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Transparent Brown Oxide",
+          "code": "H07",
+          "hex": "#6E3A1E",
+          "pigments": "PR101"
+        }
+      ]
+    },
+    {
+      "brand": "M. Graham",
+      "paints": [
+        {
+          "name": "Titanium White",
+          "code": "MG-TW",
+          "hex": "#F8F8F8",
+          "pigments": "PW6"
+        },
+        {
+          "name": "Ivory Black",
+          "code": "MG-IB",
+          "hex": "#1C1C1C",
+          "pigments": "PBk9"
+        },
+        {
+          "name": "Lamp Black",
+          "code": "MG-LB",
+          "hex": "#1A1A1A",
+          "pigments": "PBk6"
+        },
+        {
+          "name": "Payne's Gray",
+          "code": "MG-PG",
+          "hex": "#4A5068",
+          "pigments": "PBk7, PB29"
+        },
+        {
+          "name": "Neutral Tint",
+          "code": "MG-NT",
+          "hex": "#4A4A52",
+          "pigments": "PBk6, PV23"
+        },
+        {
+          "name": "Ultramarine Blue",
+          "code": "MG-UB",
+          "hex": "#1F3A8F",
+          "pigments": "PB29"
+        },
+        {
+          "name": "Cobalt Blue",
+          "code": "MG-CB",
+          "hex": "#2B5BA8",
+          "pigments": "PB28"
+        },
+        {
+          "name": "Cerulean Blue",
+          "code": "MG-CeB",
+          "hex": "#2A9FD6",
+          "pigments": "PB35"
+        },
+        {
+          "name": "Prussian Blue",
+          "code": "MG-PrB",
+          "hex": "#003153",
+          "pigments": "PB27"
+        },
+        {
+          "name": "Phthalo Blue",
+          "code": "MG-PhB",
+          "hex": "#0D52A0",
+          "pigments": "PB15"
+        },
+        {
+          "name": "Indigo",
+          "code": "MG-In",
+          "hex": "#2E2D7E",
+          "pigments": "PB60, PBk6"
+        },
+        {
+          "name": "Cobalt Teal",
+          "code": "MG-CT",
+          "hex": "#009688",
+          "pigments": "PB36"
+        },
+        {
+          "name": "Phthalo Turquoise",
+          "code": "MG-PhT",
+          "hex": "#20B2AA",
+          "pigments": "PB15:3, PG7"
+        },
+        {
+          "name": "Antwerp Blue",
+          "code": "MG-AB",
+          "hex": "#1A6090",
+          "pigments": "PB15, PB27"
+        },
+        {
+          "name": "Viridian",
+          "code": "MG-Vi",
+          "hex": "#3B7A57",
+          "pigments": "PG18"
+        },
+        {
+          "name": "Phthalo Green",
+          "code": "MG-PhG",
+          "hex": "#00695C",
+          "pigments": "PG7"
+        },
+        {
+          "name": "Chromium Oxide Green",
+          "code": "MG-CrOG",
+          "hex": "#4E6B3C",
+          "pigments": "PG17"
+        },
+        {
+          "name": "Sap Green",
+          "code": "MG-SG",
+          "hex": "#4A7C40",
+          "pigments": "PY110, PG36"
+        },
+        {
+          "name": "Olive Green",
+          "code": "MG-OG",
+          "hex": "#6B7C3B",
+          "pigments": "PY42, PG7"
+        },
+        {
+          "name": "Hooker's Green",
+          "code": "MG-HG",
+          "hex": "#2D6A4F",
+          "pigments": "PG7, PY150"
+        },
+        {
+          "name": "Green Gold",
+          "code": "MG-GG",
+          "hex": "#9B8830",
+          "pigments": "PY129"
+        },
+        {
+          "name": "Hansa Yellow Light",
+          "code": "MG-HYL",
+          "hex": "#FFF066",
+          "pigments": "PY3"
+        },
+        {
+          "name": "Hansa Yellow Medium",
+          "code": "MG-HYM",
+          "hex": "#FFD600",
+          "pigments": "PY97"
+        },
+        {
+          "name": "Azo Yellow",
+          "code": "MG-AY",
+          "hex": "#FFD700",
+          "pigments": "PY74"
+        },
+        {
+          "name": "Aureolin",
+          "code": "MG-Au",
+          "hex": "#FDEE00",
+          "pigments": "PY40"
+        },
+        {
+          "name": "Yellow Ochre",
+          "code": "MG-YO",
+          "hex": "#C9942A",
+          "pigments": "PY43"
+        },
+        {
+          "name": "Raw Sienna",
+          "code": "MG-RS",
+          "hex": "#C47A2B",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Naples Yellow",
+          "code": "MG-NY",
+          "hex": "#F2C46A",
+          "pigments": "PY35, PW6, PR101"
+        },
+        {
+          "name": "Quinacridone Gold",
+          "code": "MG-QG",
+          "hex": "#C89020",
+          "pigments": "PO48"
+        },
+        {
+          "name": "Indian Yellow",
+          "code": "MG-IY",
+          "hex": "#E8A020",
+          "pigments": "PY153"
+        },
+        {
+          "name": "Nickel Azo Yellow",
+          "code": "MG-NAY",
+          "hex": "#E0A820",
+          "pigments": "PY150"
+        },
+        {
+          "name": "Cadmium Orange",
+          "code": "MG-CO",
+          "hex": "#FF7700",
+          "pigments": "PO20"
+        },
+        {
+          "name": "Burnt Sienna",
+          "code": "MG-BS",
+          "hex": "#A0522D",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Pyrrol Orange",
+          "code": "MG-PO",
+          "hex": "#E85020",
+          "pigments": "PO73"
+        },
+        {
+          "name": "Cadmium Red",
+          "code": "MG-CR",
+          "hex": "#CC2010",
+          "pigments": "PR108"
+        },
+        {
+          "name": "Pyrrol Red",
+          "code": "MG-PR",
+          "hex": "#CC1E1E",
+          "pigments": "PR254"
+        },
+        {
+          "name": "Quinacridone Red",
+          "code": "MG-QR",
+          "hex": "#CC1F58",
+          "pigments": "PR209"
+        },
+        {
+          "name": "Quinacridone Rose",
+          "code": "MG-QRo",
+          "hex": "#CC4488",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Quinacridone Magenta",
+          "code": "MG-QM",
+          "hex": "#CC0066",
+          "pigments": "PR122"
+        },
+        {
+          "name": "Alizarin Crimson",
+          "code": "MG-AC",
+          "hex": "#72001A",
+          "pigments": "PR83"
+        },
+        {
+          "name": "Permanent Rose",
+          "code": "MG-PRo",
+          "hex": "#C0306A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Venetian Red",
+          "code": "MG-VR",
+          "hex": "#8B3A2A",
+          "pigments": "PR101"
+        },
+        {
+          "name": "Perylene Maroon",
+          "code": "MG-PM",
+          "hex": "#6B1010",
+          "pigments": "PR179"
+        },
+        {
+          "name": "Scarlet Lake",
+          "code": "MG-SL",
+          "hex": "#FF2800",
+          "pigments": "PR188"
+        },
+        {
+          "name": "Dioxazine Purple",
+          "code": "MG-DP",
+          "hex": "#5B2C8D",
+          "pigments": "PV23"
+        },
+        {
+          "name": "Cobalt Violet",
+          "code": "MG-CV",
+          "hex": "#7B2D8B",
+          "pigments": "PV14"
+        },
+        {
+          "name": "Quinacridone Violet",
+          "code": "MG-QV",
+          "hex": "#9B1D8A",
+          "pigments": "PV19"
+        },
+        {
+          "name": "Ultramarine Violet",
+          "code": "MG-UV",
+          "hex": "#6A1A6A",
+          "pigments": "PV15"
+        },
+        {
+          "name": "Raw Umber",
+          "code": "MG-RU",
+          "hex": "#7B5E3A",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Burnt Umber",
+          "code": "MG-BU",
+          "hex": "#5C3317",
+          "pigments": "PBr7"
+        },
+        {
+          "name": "Vandyke Brown",
+          "code": "MG-VB",
+          "hex": "#3D2B1F",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Sepia",
+          "code": "MG-Se",
+          "hex": "#2F1B0E",
+          "pigments": "PBr7, PBk9"
+        },
+        {
+          "name": "Moonglow",
+          "code": "MG-Mo",
+          "hex": "#5A6080",
+          "pigments": "PB29, PV19, PBk11"
+        }
       ]
     }
   ]
