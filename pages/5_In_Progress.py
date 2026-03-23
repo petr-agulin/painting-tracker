@@ -3,7 +3,7 @@ from database import get_connection
 from datetime import datetime
 import os
 
-st.set_page_config(page_title="In Progress", page_icon="🎯")
+st.set_page_config(page_title="In Progress", page_icon="🎯", layout="wide")
 st.title("🎯 In Progress & Abandoned")
 
 st.markdown("""

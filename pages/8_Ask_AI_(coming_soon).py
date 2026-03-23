@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Ask AI (coming soon)", page_icon="🤖")
+st.set_page_config(page_title="Ask AI (coming soon)", page_icon="🤖", layout="wide")
 st.title("🤖 Ask AI")
 
 st.markdown("""

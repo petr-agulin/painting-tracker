@@ -1,7 +1,7 @@
 import streamlit as st
 from database import get_connection
 
-st.set_page_config(page_title="Manage Series", page_icon="📚")
+st.set_page_config(page_title="Manage Series", page_icon="📚", layout="wide")
 st.title("📚 Manage Series")
 
 st.markdown("""

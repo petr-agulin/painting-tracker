@@ -3,7 +3,7 @@ from database import get_connection
 import pandas as pd
 import io
 
-st.set_page_config(page_title="Export", page_icon="📥")
+st.set_page_config(page_title="Export", page_icon="📥", layout="wide")
 st.title("📥 Export Your Data")
 st.markdown("""
 Download your painting history as a CSV file for backup or further analysis.

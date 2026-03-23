@@ -23,7 +23,7 @@ try:
 except ImportError:
     AUTOREFRESH_AVAILABLE = False
 
-st.set_page_config(page_title="Log Session", page_icon="🎨")
+st.set_page_config(page_title="Log Session", page_icon="🎨", layout="wide")
 st.title("🎨 Log session")
 st.markdown(
     "Open this page when you sit down to paint. Set up your painting and reference image, "
@@ -620,6 +620,27 @@ elif st.session_state.log_phase == "wrapup":
                 "UPDATE paintings SET status='Complete', date_finished=? WHERE id=?",
                 (finish_date, st.session_state.log_painting_id)
             )
+            # Auto-add to gallery if a session photo was uploaded
+            if image_path:
+                conn.execute("""
+                    CREATE TABLE IF NOT EXISTS gallery (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        painting_id INTEGER NOT NULL,
+                        session_id INTEGER,
+                        image_path TEXT NOT NULL,
+                        source TEXT DEFAULT 'manual',
+                        caption TEXT,
+                        date_added TEXT,
+                        FOREIGN KEY (painting_id) REFERENCES paintings(id),
+                        FOREIGN KEY (session_id) REFERENCES sessions(id)
+                    )
+                """)
+                draft_id = st.session_state.log_draft_id
+                conn.execute(
+                    "INSERT INTO gallery (painting_id, session_id, image_path, source, date_added) VALUES (?,?,?,?,?)",
+                    (st.session_state.log_painting_id, draft_id, image_path, "session", str(date.today()))
+                )
+
 
         conn.commit()
         reset_session_state()

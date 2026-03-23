@@ -4,7 +4,7 @@ import json
 import os
 from PIL import Image
 
-st.set_page_config(page_title="My Palette", page_icon="🎨")
+st.set_page_config(page_title="My Palette", page_icon="🎨", layout="wide")
 st.title("🎨 My Palette")
 
 st.markdown("""

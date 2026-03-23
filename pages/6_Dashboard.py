@@ -3,7 +3,7 @@ from database import get_connection
 import plotly.express as px
 import pandas as pd
 
-st.set_page_config(page_title="Dashboard", page_icon="📊")
+st.set_page_config(page_title="Dashboard", page_icon="📊", layout="wide")
 st.title("📊 Insights Dashboard")
 st.markdown("""
 Discover patterns in your painting habits. Charts update automatically as you log more sessions — the more data you have, the more useful this becomes.

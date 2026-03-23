@@ -151,7 +151,7 @@ def edit_session_dialog(session_id, IMAGES_DIR):
             st.success("Session updated!")
             st.rerun()
 
-st.set_page_config(page_title="Manage Paintings", page_icon="🖼️")
+st.set_page_config(page_title="Manage Paintings", page_icon="🖼️", layout="wide")
 st.title("🖼️ Manage Paintings")
 
 st.markdown("""
