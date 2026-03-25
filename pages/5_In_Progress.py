@@ -94,47 +94,4 @@ else:
             if last_session and last_session["whats_next"]:
                 st.markdown(f"**Next step noted:** {last_session['whats_next']}")
 
-st.markdown("---")
-st.subheader("🏆 Personal Records")
-
-total_paintings = conn.execute("SELECT COUNT(*) as c FROM paintings").fetchone()["c"]
-total_sessions = conn.execute("SELECT COUNT(*) as c FROM sessions").fetchone()["c"]
-total_minutes = conn.execute("SELECT SUM(duration_minutes) as t FROM sessions").fetchone()["t"] or 0
-best_session = conn.execute("SELECT MAX(rating) as r FROM sessions").fetchone()["r"]
-longest_session = conn.execute("SELECT MAX(duration_minutes) as m FROM sessions").fetchone()["m"] or 0
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.metric("Total paintings", total_paintings)
-    st.metric("Best session rating", f"{best_session}/5" if best_session else "none yet")
-with col2:
-    st.metric("Total sessions", total_sessions)
-    st.metric("Longest session", f"{longest_session} min")
-with col3:
-    st.metric("Total hours painted", f"{total_minutes // 60}h {total_minutes % 60}m")
-
-sessions_by_date = conn.execute("""
-    SELECT date, COUNT(*) as count
-    FROM sessions
-    GROUP BY date
-    ORDER BY date
-""").fetchall()
-
-if sessions_by_date:
-    dates = [s["date"] for s in sessions_by_date]
-    streak = 1
-    best_streak = 1
-    for i in range(1, len(dates)):
-        try:
-            d1 = datetime.strptime(dates[i-1], "%Y-%m-%d")
-            d2 = datetime.strptime(dates[i], "%Y-%m-%d")
-            if (d2 - d1).days == 1:
-                streak += 1
-                best_streak = max(best_streak, streak)
-            else:
-                streak = 1
-        except Exception:
-            pass
-    st.metric("Best consecutive painting streak", f"{best_streak} days")
-
 conn.close()

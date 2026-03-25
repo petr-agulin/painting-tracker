@@ -2,6 +2,7 @@ import streamlit as st
 from database import get_connection
 import plotly.express as px
 import pandas as pd
+from datetime import datetime as dt
 
 st.set_page_config(page_title="Dashboard", page_icon="📊", layout="wide")
 st.title("📊 Insights Dashboard")
@@ -23,21 +24,63 @@ sessions["rating"] = pd.to_numeric(sessions["rating"], errors="coerce")
 sessions["date"] = pd.to_datetime(sessions["date"], errors="coerce")
 
 st.markdown("---")
-col1, col2, col3, col4 = st.columns(4)
+st.subheader("Overview")
+total_hours = int(sessions["duration_minutes"].sum() // 60)
+longest_session = int(sessions["duration_minutes"].max())
+
+sessions_sorted = sessions.dropna(subset=["date"]).copy().sort_values("date")
+dates = sessions_sorted["date"].dt.strftime("%Y-%m-%d").tolist()
+best_streak = 1
+streak = 1
+for i in range(1, len(dates)):
+    try:
+        d1 = dt.strptime(dates[i-1], "%Y-%m-%d")
+        d2 = dt.strptime(dates[i], "%Y-%m-%d")
+        if (d2 - d1).days == 1:
+            streak += 1
+            best_streak = max(best_streak, streak)
+        else:
+            streak = 1
+    except Exception:
+        pass
+
+now = pd.Timestamp.now()
+this_month = sessions_sorted[
+    (sessions_sorted["date"].dt.year == now.year) &
+    (sessions_sorted["date"].dt.month == now.month)
+]
+last_month_date = now - pd.DateOffset(months=1)
+last_month = sessions_sorted[
+    (sessions_sorted["date"].dt.year == last_month_date.year) &
+    (sessions_sorted["date"].dt.month == last_month_date.month)
+]
+avg_dur_this = this_month["duration_minutes"].mean() if not this_month.empty else None
+avg_dur_last = last_month["duration_minutes"].mean() if not last_month.empty else None
+dur_delta = None
+if avg_dur_this is not None and avg_dur_last is not None:
+    dur_delta = round(avg_dur_this - avg_dur_last)
+
+avg_dur_label = f"{round(avg_dur_this)} min" if avg_dur_this is not None else "no data"
+dur_delta_label = f"{dur_delta:+d} min vs last month" if dur_delta is not None else None
+
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 with col1:
     st.metric("Total Paintings", len(paintings))
 with col2:
     st.metric("Total Sessions", len(sessions))
 with col3:
-    total_hours = int(sessions["duration_minutes"].sum() // 60)
     st.metric("Total Hours", total_hours)
 with col4:
-    avg_rating = sessions["rating"].mean()
-    st.metric("Avg Session Rating", f"{avg_rating:.1f}/5")
+    st.metric("Avg Duration This Month", avg_dur_label, delta=dur_delta_label)
+with col5:
+    st.metric("Longest Session", f"{longest_session} min")
+with col6:
+    st.metric("Best Streak", f"{best_streak} days")
 
 st.markdown("---")
+st.subheader("Stats")
 
-st.subheader("Session ratings over time")
+st.markdown("#### Session ratings over time")
 fig1 = px.scatter(
     sessions, x="date", y="rating",
     trendline="lowess",
@@ -46,21 +89,12 @@ fig1 = px.scatter(
 )
 st.plotly_chart(fig1, use_container_width=True)
 
-st.subheader("Session duration distribution")
-fig2 = px.histogram(
-    sessions, x="duration_minutes",
-    nbins=20,
-    labels={"duration_minutes": "Duration (minutes)"},
-    color_discrete_sequence=["#B5C4B1"]
-)
-st.plotly_chart(fig2, use_container_width=True)
-
 if "mental_state" in sessions.columns:
     mood_ratings = sessions.groupby("mental_state")["rating"].mean().reset_index()
     mood_ratings.columns = ["Mental State", "Average Rating"]
     mood_ratings = mood_ratings.dropna()
     if not mood_ratings.empty:
-        st.subheader("Average rating by mental state")
+        st.markdown("#### Average rating by mental state")
         fig3 = px.bar(
             mood_ratings, x="Mental State", y="Average Rating",
             color_discrete_sequence=["#D4B896"]
@@ -72,7 +106,7 @@ if "techniques" in sessions.columns:
     if not all_techniques.empty:
         technique_counts = all_techniques.value_counts().reset_index()
         technique_counts.columns = ["Technique", "Count"]
-        st.subheader("Techniques used")
+        st.markdown("#### Techniques used")
         fig4 = px.bar(
             technique_counts, x="Technique", y="Count",
             color_discrete_sequence=["#9B8EA8"]
@@ -85,22 +119,43 @@ if "inspiration_category" in merged.columns:
     insp_ratings.columns = ["Inspiration Source", "Average Rating"]
     insp_ratings = insp_ratings.dropna()
     if not insp_ratings.empty:
-        st.subheader("Average rating by inspiration source")
+        st.markdown("#### Average rating by inspiration source")
         fig5 = px.bar(
             insp_ratings, x="Inspiration Source", y="Average Rating",
             color_discrete_sequence=["#C4A882"]
         )
         st.plotly_chart(fig5, use_container_width=True)
 
-if "completion_percent" in sessions.columns:
-    completion = sessions.groupby("painting_id")["completion_percent"].max().reset_index()
-    completion = completion.merge(paintings[["id", "title"]], left_on="painting_id", right_on="id")
-    st.subheader("Completion progress per painting")
-    fig6 = px.bar(
-        completion, x="title", y="completion_percent",
-        labels={"title": "Painting", "completion_percent": "Completion %"},
-        color_discrete_sequence=["#A8C5B5"]
+sessions_with_date = sessions.dropna(subset=["date"]).copy()
+sessions_with_date["year"] = sessions_with_date["date"].dt.year
+sessions_with_date["month"] = sessions_with_date["date"].dt.month
+sessions_with_date["month_label"] = sessions_with_date["date"].dt.strftime("%b")
+
+available_years = sorted(sessions_with_date["year"].dropna().unique().tolist(), reverse=True)
+if available_years:
+    st.markdown("#### Sessions per month")
+    col_year, _ = st.columns([1, 9])
+    with col_year:
+        selected_year = st.selectbox("Year", available_years, key="sessions_per_month_year", label_visibility="collapsed")
+    year_data = sessions_with_date[sessions_with_date["year"] == selected_year]
+    monthly_counts = (
+        year_data.groupby(["month", "month_label"])
+        .size()
+        .reset_index(name="Sessions")
+        .sort_values("month")
     )
-    st.plotly_chart(fig6, use_container_width=True)
+    all_months = pd.DataFrame({
+        "month": range(1, 13),
+        "month_label": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    })
+    monthly_counts = all_months.merge(monthly_counts, on=["month", "month_label"], how="left").fillna(0)
+    monthly_counts["Sessions"] = monthly_counts["Sessions"].astype(int)
+    fig_monthly = px.bar(
+        monthly_counts, x="month_label", y="Sessions",
+        labels={"month_label": "Month", "Sessions": "Sessions"},
+        color_discrete_sequence=["#7B9E87"]
+    )
+    fig_monthly.update_layout(xaxis={"categoryorder": "array", "categoryarray": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]})
+    st.plotly_chart(fig_monthly, use_container_width=True)
 
 conn.close()

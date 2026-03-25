@@ -63,30 +63,6 @@ if selected_title:
             mime="text/csv"
         )
 
-    st.markdown("---")
-    st.subheader("Painting details")
-    st.write(f"**Title:** {painting['title']}")
-    st.write(f"**Status:** {painting['status']}")
-    st.write(f"**Started:** {painting['date_started'] or 'not set'}")
-    st.write(f"**Genre:** {painting['genre'] or 'not set'}")
-    st.write(f"**Style:** {painting['style'] or 'not set'}")
-    st.write(f"**Inspiration:** {painting['inspiration_category'] or 'not set'}")
 
-    if sessions:
-        st.markdown("---")
-        st.subheader("Session history")
-        for i, s in enumerate(sessions):
-            with st.expander(f"Session {i+1} — {s['date']} — Rating {s['rating']}/5"):
-                st.write(f"**Duration:** {s['duration_minutes'] or 0} minutes")
-                st.write(f"**Completion after session:** {s['completion_percent'] or 0}%")
-                st.write(f"**What I worked on:** {s['what_worked_on'] or 'not noted'}")
-                st.write(f"**What worked:** {s['what_worked'] or 'not noted'}")
-                st.write(f"**What did not work:** {s['what_didnt_work'] or 'not noted'}")
-                st.write(f"**Do differently:** {s['do_differently'] or 'not noted'}")
-                st.write(f"**Notes:** {s['notes'] or 'none'}")
-                if s["image_path"]:
-                    st.image(s["image_path"], width=300)
-    else:
-        st.info("No sessions logged for this painting yet.")
 
 conn.close()
