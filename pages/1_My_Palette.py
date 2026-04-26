@@ -44,7 +44,6 @@ def paint_detail_modal(paint_id):
         )
     with col2:
         st.markdown(f"## {paint['name']}")
-        st.markdown(f"**Brand:** {paint['brand'] or '—'}")
 
     st.markdown("---")
 
@@ -52,6 +51,8 @@ def paint_detail_modal(paint_id):
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Paint properties**")
+            brand = st.text_input("Brand", value=paint["brand"] or "",
+                placeholder="e.g. Schmincke Horadam")
             form = st.selectbox("Form", FORM_OPTIONS,
                 index=FORM_OPTIONS.index(paint["form"]) if paint["form"] in FORM_OPTIONS else 0)
             amount = st.selectbox("Amount remaining", AMOUNT_OPTIONS,
@@ -98,13 +99,13 @@ def paint_detail_modal(paint_id):
         if save:
             conn.execute("""
                 UPDATE paints SET
-                    form=?, amount_remaining=?, pigments=?, lightfastness=?,
+                    brand=?, form=?, amount_remaining=?, pigments=?, lightfastness=?,
                     transparency=?, granulation=?, staining=?, rewettability=?,
                     price_paid=?, date_purchased=?, where_purchased=?,
                     would_repurchase=?, notes=?
                 WHERE id=?
             """, (
-                form, amount, pigments, lightfastness,
+                brand, form, amount, pigments, lightfastness,
                 transparency, granulation, staining, rewettability,
                 price if price > 0 else None,
                 date_purchased, where_purchased,

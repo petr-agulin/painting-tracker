@@ -11,31 +11,8 @@ Your finished work, in one place. Images are added automatically when a session 
 """)
 
 IMAGES_DIR = os.path.join(os.path.dirname(__file__), "..", "images")
+os.makedirs(IMAGES_DIR, exist_ok=True)
 
-# ── One-time init: table + directory ─────────────────────────
-@st.cache_resource
-def init_gallery():
-    conn = get_connection()
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS gallery (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            painting_id INTEGER,
-            session_id INTEGER,
-            image_path TEXT NOT NULL,
-            source TEXT DEFAULT 'manual',
-            title TEXT,
-            caption TEXT,
-            date_added TEXT,
-            FOREIGN KEY (painting_id) REFERENCES paintings(id),
-            FOREIGN KEY (session_id) REFERENCES sessions(id)
-        )
-    """)
-    conn.commit()
-    os.makedirs(IMAGES_DIR, exist_ok=True)
-
-init_gallery()
-
-# ── Cached image encoder — keyed by path, refreshes on new version ──
 @st.cache_data
 def img_to_base64(path):
     try:
@@ -47,9 +24,7 @@ def img_to_base64(path):
     except Exception:
         return None
 
-# ── Cached DB queries — version increments on any mutation ────
-@st.cache_data
-def fetch_entries(version):
+def fetch_entries():
     conn = get_connection()
     rows = conn.execute("""
         SELECT g.*, p.title as painting_title
@@ -60,8 +35,7 @@ def fetch_entries(version):
     """).fetchall()
     return [dict(r) for r in rows]
 
-@st.cache_data
-def fetch_entry(entry_id, version):
+def fetch_entry(entry_id):
     conn = get_connection()
     row = conn.execute("""
         SELECT g.*, p.date_finished, p.status
@@ -71,15 +45,9 @@ def fetch_entry(entry_id, version):
     """, (entry_id,)).fetchone()
     return dict(row) if row else None
 
-def bump_version():
-    st.session_state["gallery_version"] = st.session_state.get("gallery_version", 0) + 1
-
-version = st.session_state.get("gallery_version", 0)
-
-# ── Detail modal ──────────────────────────────────────────────
 @st.dialog("Image details", width="large")
 def gallery_detail(entry_id):
-    entry = fetch_entry(entry_id, st.session_state.get("gallery_version", 0))
+    entry = fetch_entry(entry_id)
     if not entry:
         st.error("Not found.")
         return
@@ -87,7 +55,7 @@ def gallery_detail(entry_id):
     if entry["image_path"]:
         src = img_to_base64(entry["image_path"])
         if src:
-            st.image(entry["image_path"], width=600)
+            st.image(os.path.normpath(entry["image_path"]), width=600)
 
     if entry["title"]:
         st.markdown(f"**{entry['title']}**")
@@ -96,7 +64,6 @@ def gallery_detail(entry_id):
     if entry["status"] == "Complete" and entry["date_finished"]:
         st.caption(f"Finished: {entry['date_finished']}")
 
-    # ── Edit title ──
     if not st.session_state.get(f"editing_title_{entry_id}"):
         if st.button("Edit title", key=f"edit_title_btn_{entry_id}"):
             st.session_state[f"editing_title_{entry_id}"] = True
@@ -111,14 +78,12 @@ def gallery_detail(entry_id):
                     conn.execute("UPDATE gallery SET title=? WHERE id=?", (new_title, entry_id))
                     conn.commit()
                     st.session_state.pop(f"editing_title_{entry_id}", None)
-                    bump_version()
                     st.rerun()
             with tc2:
                 if st.form_submit_button("Cancel"):
                     st.session_state.pop(f"editing_title_{entry_id}", None)
                     st.rerun()
 
-    # ── Edit caption ──
     if not st.session_state.get(f"editing_caption_{entry_id}"):
         if st.button("Edit caption", key=f"edit_cap_btn_{entry_id}"):
             st.session_state[f"editing_caption_{entry_id}"] = True
@@ -133,14 +98,12 @@ def gallery_detail(entry_id):
                     conn.execute("UPDATE gallery SET caption=? WHERE id=?", (new_caption, entry_id))
                     conn.commit()
                     st.session_state.pop(f"editing_caption_{entry_id}", None)
-                    bump_version()
                     st.rerun()
             with cc2:
                 if st.form_submit_button("Cancel"):
                     st.session_state.pop(f"editing_caption_{entry_id}", None)
                     st.rerun()
 
-    # ── Delete ──
     if not st.session_state.get(f"gal_confirm_delete_{entry_id}"):
         if st.button("Delete from Gallery", key=f"modal_delete_{entry_id}"):
             st.session_state[f"gal_confirm_delete_{entry_id}"] = True
@@ -152,14 +115,13 @@ def gallery_detail(entry_id):
             if st.button("Yes, delete", key=f"gal_yes_{entry_id}"):
                 if entry["source"] == "manual" and os.path.exists(entry["image_path"]):
                     os.remove(entry["image_path"])
-                    img_to_base64.clear()  # clear image cache for deleted file
+                    img_to_base64.clear()
                 conn = get_connection()
                 conn.execute("DELETE FROM gallery WHERE id=?", (entry_id,))
                 conn.commit()
                 st.session_state.pop(f"gal_confirm_delete_{entry_id}", None)
                 st.session_state.pop("gallery_detail_id", None)
                 st.session_state["gallery_dialog_open"] = False
-                bump_version()
                 st.rerun()
         with dc2:
             if st.button("Cancel", key=f"gal_cancel_{entry_id}"):
@@ -167,7 +129,7 @@ def gallery_detail(entry_id):
                 st.rerun()
 
 # ── Gallery grid ──────────────────────────────────────────────
-entries = fetch_entries(version)
+entries = fetch_entries()
 
 if st.button("Add image"):
     st.session_state["gallery_show_add"] = not st.session_state.get("gallery_show_add", False)
@@ -196,7 +158,6 @@ if st.session_state.get("gallery_show_add"):
                 )
                 conn.commit()
                 st.session_state["gallery_show_add"] = False
-                bump_version()
                 st.rerun()
     with ac2:
         if st.button("Cancel", key="gallery_cancel_btn"):
@@ -239,6 +200,5 @@ else:
                     if entry["caption"]:
                         st.caption(entry["caption"])
 
-# ── Dialog trigger ────────────────────────────────────────────
 if st.session_state.get("gallery_dialog_open") and "gallery_detail_id" in st.session_state:
     gallery_detail(st.session_state["gallery_detail_id"])

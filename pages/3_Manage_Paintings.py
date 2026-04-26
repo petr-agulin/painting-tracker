@@ -1,7 +1,7 @@
 import streamlit as st
 from database import get_connection
 from config import (
-    PAPER_SIZES, GENRES,
+    PAPER_SIZES, PAPER_TYPES, GENRES, STYLES, MOODS,
     INSPIRATION_CATEGORIES, STATUS_OPTIONS,
     LOCATIONS, LIGHTING, REFERENCE_TYPES,
     TECHNIQUES, MENTAL_STATES, BRUSH_SIZES
@@ -9,38 +9,6 @@ from config import (
 import os
 import base64
 from datetime import date, datetime
-
-MOODS = ["Calm", "Cozy", "Dark", "Dramatic", "Dreamy", "Dynamic", "Ethereal", "Intimate", "Melancholic", "Mysterious", "Nostalgic", "Playful", "Romantic", "Surreal", "Whimsical"]
-
-PAPER_TYPES = [
-    "Cotton Cold Press",
-    "Cotton Hot Press",
-    "Cotton Rough",
-    "Cellulose Cold Press",
-    "Cellulose Hot Press",
-    "Cellulose Rough",
-    "Cotton / Cellulose Blend Cold Press",
-    "Cotton / Cellulose Blend Hot Press",
-    "Cotton / Cellulose Blend Rough"
-]
-
-STYLES = [
-    "Realistic",
-    "Semi-realistic",
-    "Impressionistic",
-    "Expressionistic",
-    "Loose / Gestural",
-    "Painterly",
-    "Plein Air",
-    "Illustrative",
-    "Botanical",
-    "Sketch",
-    "Minimal",
-    "Abstract",
-    "Semi-abstract",
-    "Naive",
-    "Other"
-]
 
 def image_link(image_path, label="View full size"):
     with open(image_path, "rb") as f:
@@ -147,8 +115,42 @@ def edit_session_dialog(session_id, IMAGES_DIR):
                 what_didnt, do_differently, rating, notes, new_image_path,
                 session_id
             ))
+
+            # If session marked 100% complete, update painting status and finish date
+            if completion_percent == 100:
+                existing = conn.execute(
+                    "SELECT date_finished FROM paintings WHERE id=?",
+                    (session["painting_id"],)
+                ).fetchone()
+                finish_date = existing["date_finished"] if existing and existing["date_finished"] else session_date
+                conn.execute(
+                    "UPDATE paintings SET status='Complete', date_finished=? WHERE id=?",
+                    (finish_date, session["painting_id"])
+                )
+
+            # ── Gallery sync ──────────────────────────────────
+            # Gallery entry for this session should exist iff completion==100 AND image exists.
+            existing_gallery = conn.execute(
+                "SELECT id FROM gallery WHERE session_id=?", (session_id,)
+            ).fetchone()
+
+            if completion_percent == 100 and new_image_path:
+                if existing_gallery:
+                    conn.execute(
+                        "UPDATE gallery SET image_path=?, painting_id=?, date_added=? WHERE session_id=?",
+                        (new_image_path, session["painting_id"], str(date.today()), session_id)
+                    )
+                else:
+                    conn.execute(
+                        "INSERT INTO gallery (painting_id, session_id, image_path, source, date_added) VALUES (?,?,?,?,?)",
+                        (session["painting_id"], session_id, new_image_path, "session", str(date.today()))
+                    )
+            else:
+                # Not 100% or no image — remove any stale gallery entry
+                if existing_gallery:
+                    conn.execute("DELETE FROM gallery WHERE session_id=?", (session_id,))
+
             conn.commit()
-            st.success("Session updated!")
             st.rerun()
 
 st.set_page_config(page_title="Manage Paintings", page_icon="🖼️", layout="wide")

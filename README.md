@@ -1,5 +1,3 @@
-⚠️ Work in Progress — This project is under development. Contributions are welcome later, the code is unfinished.
-
 # 🎨 Painting Tracker
 
 A personal painting session tracker built for watercolor artists.
@@ -12,7 +10,7 @@ Log every painting session, track your progress, discover patterns in your creat
 
 - **Log paintings** — record subject, style, inspiration source, paper, mood, and more
 - **Log sessions** — track time, techniques, colors used, mental state, what worked and what didn't
-- **Visual palette** — build your personal paint collection from a database of 200+ professional watercolor paints across Schmincke Horadam, Winsor & Newton, Daniel Smith, Holbein, and Sennelier
+- **Visual palette** — build your personal paint collection from a database of nearly 900 professional watercolor paints across 11 brands: Schmincke Horadam, Daniel Smith, Winsor & Newton Professional, Rembrandt, Sakura Koi, Holbein Artists', QoR, Sennelier, Maimeri Blu, Old Holland, and M. Graham
 - **Progress timeline** — see a painting evolve session by session with photos and notes
 - **Next up inbox** — see all in-progress paintings sorted by last session date so nothing gets forgotten
 - **Insights dashboard** — discover patterns in your painting habits after months of data
@@ -24,7 +22,8 @@ Log every painting session, track your progress, discover patterns in your creat
 ## Requirements
 
 - Windows or Mac computer
-- Internet connection for the one-time setup only
+- Python 3.10 or newer
+- Internet connection for the one-time setup only (downloads about 200 MB of dependencies; first launch takes 1–3 minutes)
 
 ---
 
@@ -60,7 +59,7 @@ Your data is stored in a file called `painting_tracker.db` inside the `data` fol
 
 ## About the paint color database
 
-The app includes a database of 200+ watercolor paints with color swatches to help you quickly log which colors you used in each session.
+The app includes a database of nearly 900 watercolor paints with color swatches to help you quickly log which colors you used in each session.
 
 Note: The hex color codes in this database are pigment-based approximations, not scientifically measured values. Colors are derived from the known spectral properties of each paint's pigments and are intended as a visual reference only. Your actual paint on paper may differ slightly depending on dilution, paper type, and lighting conditions. You can correct any color manually using the built-in color picker in the Palette page.
 

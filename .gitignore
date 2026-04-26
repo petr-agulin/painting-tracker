@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Runtime logs
+*.log
+
+# Installers / large binaries that don't belong in source
+*.msi
+*.exe
+*.dmg
+*.zip
+
+# User data — these are personal and should not be shared
+data/*
+!data/.gitkeep
+images/*
+!images/.gitkeep

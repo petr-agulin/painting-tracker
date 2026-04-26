@@ -32,13 +32,6 @@ st.markdown(
 
 conn = get_connection()
 
-# Ensure is_draft column exists (safe to run on every load)
-try:
-    conn.execute("ALTER TABLE sessions ADD COLUMN is_draft INTEGER DEFAULT 0")
-    conn.commit()
-except Exception:
-    pass
-
 IMAGES_DIR = os.path.join(os.path.dirname(__file__), "..", "images")
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
@@ -208,8 +201,12 @@ def find_mix(target_hex, paints, max_colors=3):
 
 def elapsed_str(start_str):
     try:
-        start = datetime.combine(date.today(), datetime.strptime(start_str, "%H:%M:%S").time())
-        secs = max(0, int((datetime.now() - start).total_seconds()))
+        start_time = datetime.strptime(start_str, "%H:%M:%S").time()
+        now = datetime.now()
+        start = datetime.combine(now.date(), start_time)
+        if start > now:  # started before midnight, now it's the next day
+            start -= __import__('datetime').timedelta(days=1)
+        secs = max(0, int((now - start).total_seconds()))
         h, rem = divmod(secs, 3600)
         m, s = divmod(rem, 60)
         return f"{h}:{m:02d}:{s:02d}" if h else f"{m}:{s:02d}"
@@ -220,7 +217,10 @@ def duration_mins(start_str, end_str):
     try:
         s = datetime.strptime(start_str, "%H:%M:%S")
         e = datetime.strptime(end_str, "%H:%M:%S")
-        return max(0, int((e - s).total_seconds() / 60))
+        mins = int((e - s).total_seconds() / 60)
+        if mins < 0:
+            mins += 1440  # crossed midnight
+        return max(0, mins)
     except Exception:
         return 0
 
@@ -487,6 +487,12 @@ elif st.session_state.log_phase == "active":
                 )
 
     st.markdown("---")
+    st.text_area(
+        "Session notes",
+        placeholder="Jot anything down mid-session — observations, reminders, ideas...",
+        key="log_mid_notes",
+        height=80
+    )
     end_clicked = st.button("■ End session")
 
     if end_clicked:
@@ -576,7 +582,7 @@ elif st.session_state.log_phase == "wrapup":
         with c2:
             whats_next = st.text_area("What's next")
 
-        notes = st.text_area("Free notes")
+        notes = st.text_area("Free notes", value=st.session_state.get("log_mid_notes", ""))
         image_file = st.file_uploader("Session photo", type=["jpg", "jpeg", "png"])
 
         st.markdown("---")
@@ -622,23 +628,9 @@ elif st.session_state.log_phase == "wrapup":
             )
             # Auto-add to gallery if a session photo was uploaded
             if image_path:
-                conn.execute("""
-                    CREATE TABLE IF NOT EXISTS gallery (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        painting_id INTEGER NOT NULL,
-                        session_id INTEGER,
-                        image_path TEXT NOT NULL,
-                        source TEXT DEFAULT 'manual',
-                        caption TEXT,
-                        date_added TEXT,
-                        FOREIGN KEY (painting_id) REFERENCES paintings(id),
-                        FOREIGN KEY (session_id) REFERENCES sessions(id)
-                    )
-                """)
-                draft_id = st.session_state.log_draft_id
                 conn.execute(
                     "INSERT INTO gallery (painting_id, session_id, image_path, source, date_added) VALUES (?,?,?,?,?)",
-                    (st.session_state.log_painting_id, draft_id, image_path, "session", str(date.today()))
+                    (st.session_state.log_painting_id, st.session_state.log_draft_id, image_path, "session", str(date.today()))
                 )
 
 

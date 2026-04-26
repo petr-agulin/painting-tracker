@@ -6,9 +6,15 @@ PAPER_SIZES = [
 ]
 
 PAPER_TYPES = [
-    "Cold Press", "Hot Press", "Rough",
-    "Cotton", "Wood Pulp", "Mixed Media",
-    "Other"
+    "Cotton Cold Press",
+    "Cotton Hot Press",
+    "Cotton Rough",
+    "Cellulose Cold Press",
+    "Cellulose Hot Press",
+    "Cellulose Rough",
+    "Cotton / Cellulose Blend Cold Press",
+    "Cotton / Cellulose Blend Hot Press",
+    "Cotton / Cellulose Blend Rough",
 ]
 
 GENRES = [
@@ -19,20 +25,28 @@ GENRES = [
 ]
 
 STYLES = [
-    "Loose / Impressionistic",
-    "Detailed / Realistic",
-    "Wet on Wet",
-    "Dry Brush",
-    "Glazing",
-    "Mixed",
-    "Experimental",
-    "Other"
+    "Realistic",
+    "Semi-realistic",
+    "Impressionistic",
+    "Expressionistic",
+    "Loose / Gestural",
+    "Painterly",
+    "Plein Air",
+    "Illustrative",
+    "Botanical",
+    "Sketch",
+    "Minimal",
+    "Abstract",
+    "Semi-abstract",
+    "Naive",
+    "Other",
 ]
 
 MOODS = [
-    "Calm", "Melancholic", "Joyful",
-    "Dramatic", "Mysterious", "Romantic",
-    "Energetic", "Nostalgic", "Other"
+    "Calm", "Cozy", "Dark", "Dramatic", "Dreamy",
+    "Dynamic", "Ethereal", "Intimate", "Melancholic",
+    "Mysterious", "Nostalgic", "Playful", "Romantic",
+    "Surreal", "Whimsical",
 ]
 
 INSPIRATION_CATEGORIES = [

@@ -1,0 +1,9 @@
+streamlit
+pandas
+plotly
+pillow
+numpy
+scipy
+statsmodels
+streamlit-image-coordinates
+streamlit-autorefresh

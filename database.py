@@ -8,7 +8,15 @@ def get_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def _add_column(cursor, table, column, decl):
+    """Add a column if it doesn't already exist (idempotent migration)."""
+    try:
+        cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
+    except sqlite3.OperationalError:
+        pass
+
 def initialize_database():
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -38,6 +46,7 @@ def initialize_database():
             series_id INTEGER,
             inspiration_category TEXT,
             inspiration_note TEXT,
+            image_path TEXT,
             FOREIGN KEY (series_id) REFERENCES series (id)
         )
     """)
@@ -67,6 +76,7 @@ def initialize_database():
             rating INTEGER,
             notes TEXT,
             image_path TEXT,
+            is_draft INTEGER DEFAULT 0,
             FOREIGN KEY (painting_id) REFERENCES paintings (id)
         )
     """)
@@ -80,58 +90,43 @@ def initialize_database():
         )
     """)
 
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN form TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN amount_remaining TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN pigments TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN lightfastness TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN transparency TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN granulation TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN staining TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN rewettability TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN price_paid REAL")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN date_purchased TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN where_purchased TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN would_repurchase TEXT")
-    except Exception:
-        pass
-    try:
-        cursor.execute("ALTER TABLE paints ADD COLUMN notes TEXT")
-    except Exception:
-        pass
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS gallery (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            painting_id INTEGER,
+            session_id INTEGER,
+            image_path TEXT NOT NULL,
+            source TEXT DEFAULT 'manual',
+            title TEXT,
+            caption TEXT,
+            date_added TEXT,
+            FOREIGN KEY (painting_id) REFERENCES paintings(id),
+            FOREIGN KEY (session_id) REFERENCES sessions(id)
+        )
+    """)
+
+    # Migrations for existing databases — safe to run on every load.
+    paint_columns = [
+        ("form", "TEXT"),
+        ("amount_remaining", "TEXT"),
+        ("pigments", "TEXT"),
+        ("lightfastness", "TEXT"),
+        ("transparency", "TEXT"),
+        ("granulation", "TEXT"),
+        ("staining", "TEXT"),
+        ("rewettability", "TEXT"),
+        ("price_paid", "REAL"),
+        ("date_purchased", "TEXT"),
+        ("where_purchased", "TEXT"),
+        ("would_repurchase", "TEXT"),
+        ("notes", "TEXT"),
+    ]
+    for col, decl in paint_columns:
+        _add_column(cursor, "paints", col, decl)
+
+    _add_column(cursor, "paintings", "image_path", "TEXT")
+    _add_column(cursor, "sessions", "is_draft", "INTEGER DEFAULT 0")
+
     conn.commit()
     conn.close()
 
